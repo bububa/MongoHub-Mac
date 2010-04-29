@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'MongoHub' target in the 'MongoHub' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

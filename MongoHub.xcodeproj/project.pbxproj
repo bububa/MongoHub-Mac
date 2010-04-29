@@ -1,0 +1,874 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D1D65541189C5E000582917 /* collectionmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1D65501189C5E000582917 /* collectionmenu.png */; };
+		1D1D65551189C5E000582917 /* dbmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1D65511189C5E000582917 /* dbmenu.png */; };
+		1D1D65561189C5E000582917 /* querymenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1D65521189C5E000582917 /* querymenu.png */; };
+		1D1D65571189C5E000582917 /* servermenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1D65531189C5E000582917 /* servermenu.png */; };
+		1D1D65651189C93400582917 /* supportmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1D65641189C93400582917 /* supportmenu.png */; };
+		1D1D65A31189F05600582917 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1D1D65A21189F05600582917 /* Icon.icns */; };
+		1D20AC8F1188B28000D9D4C5 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC841188B28000D9D4C5 /* NSObject+SBJSON.m */; };
+		1D20AC901188B28000D9D4C5 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC861188B28000D9D4C5 /* NSString+SBJSON.m */; };
+		1D20AC911188B28000D9D4C5 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC881188B28000D9D4C5 /* SBJSON.m */; };
+		1D20AC921188B28000D9D4C5 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC8A1188B28000D9D4C5 /* SBJsonBase.m */; };
+		1D20AC931188B28000D9D4C5 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC8C1188B28000D9D4C5 /* SBJsonParser.m */; };
+		1D20AC941188B28000D9D4C5 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC8E1188B28000D9D4C5 /* SBJsonWriter.m */; };
+		1D79923011872DE4009C187F /* SSHTunnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D79922F11872DE4009C187F /* SSHTunnel.framework */; };
+		1D79923611872DF4009C187F /* SSHTunnel.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D79922F11872DE4009C187F /* SSHTunnel.framework */; };
+		1D799455118755EE009C187F /* AddDBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D799454118755EE009C187F /* AddDBController.m */; };
+		1D79945711875E7A009C187F /* NewDB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D79945611875E7A009C187F /* NewDB.xib */; };
+		1D8A624E11897C6800D55937 /* indexmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D8A624D11897C6800D55937 /* indexmenu.png */; };
+		1D93C1AE11832A71003216F7 /* libmongoclient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D93C1AD11832A71003216F7 /* libmongoclient.a */; };
+		1D93C1DA11832C1D003216F7 /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D93C1D911832C1D003216F7 /* Connection.m */; };
+		1D93C1E411833342003216F7 /* ConnectionsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D93C1DF11833342003216F7 /* ConnectionsCollectionView.m */; };
+		1D93C1E511833342003216F7 /* IconCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D93C1E111833342003216F7 /* IconCollectionItem.m */; };
+		1D93C1E611833342003216F7 /* IconViewBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D93C1E311833342003216F7 /* IconViewBox.m */; };
+		1D93C24B118334F6003216F7 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D93C24A118334F6003216F7 /* BWToolkitFramework.framework */; };
+		1D93C24F11833599003216F7 /* ConnectionsArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D93C24E11833599003216F7 /* ConnectionsArrayController.m */; };
+		1D93C27211833A19003216F7 /* database.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D93C27111833A19003216F7 /* database.png */; };
+		1D93C29A11833F26003216F7 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D93C29911833F26003216F7 /* Database.m */; };
+		1D93C29E118341D4003216F7 /* AddConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D93C29D118341D4003216F7 /* AddConnectionController.m */; };
+		1D93C2A0118343EF003216F7 /* NewConnection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D93C29F118343EF003216F7 /* NewConnection.xib */; };
+		1D93C37C11835BB4003216F7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D93C37B11835BB4003216F7 /* QuartzCore.framework */; };
+		1D93C38711835D2A003216F7 /* EditConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D93C38611835D2A003216F7 /* EditConnectionController.m */; };
+		1D93C38A11835FB8003216F7 /* EditConnection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D93C38911835FB8003216F7 /* EditConnection.xib */; };
+		1D93C3B111836510003216F7 /* connecticon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D93C3AF11836510003216F7 /* connecticon.png */; };
+		1D93C3B211836510003216F7 /* editicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D93C3B011836510003216F7 /* editicon.png */; };
+		1D93C3CF11836863003216F7 /* ConnectionWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D93C3CE11836863003216F7 /* ConnectionWindowController.mm */; };
+		1D93C3D11183690E003216F7 /* ConnectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D93C3D01183690E003216F7 /* ConnectionWindow.xib */; };
+		1D93C40211836DC2003216F7 /* ConnectionWindowTitleTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D93C40111836DC2003216F7 /* ConnectionWindowTitleTransformer.m */; };
+		1D93C42C1183744D003216F7 /* collectionicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D93C42A1183744D003216F7 /* collectionicon.png */; };
+		1D93C42D1183744D003216F7 /* dbicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D93C42B1183744D003216F7 /* dbicon.png */; };
+		1D93C45311837668003216F7 /* Sidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D93C44E11837668003216F7 /* Sidebar.m */; };
+		1D93C45411837668003216F7 /* SidebarBadgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D93C45011837668003216F7 /* SidebarBadgeCell.m */; };
+		1D93C45511837668003216F7 /* SidebarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D93C45211837668003216F7 /* SidebarNode.m */; };
+		1D93C5F01183992E003216F7 /* libboost_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D93C5EF1183992E003216F7 /* libboost_system.a */; };
+		1D93C5F211839940003216F7 /* libboost_thread.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D93C5F111839940003216F7 /* libboost_thread.a */; };
+		1D93C5F411839959003216F7 /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D93C5F311839959003216F7 /* libboost_filesystem.a */; };
+		1D93C5F611839970003216F7 /* libboost_program_options.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D93C5F511839970003216F7 /* libboost_program_options.a */; };
+		1D93C60B11841865003216F7 /* MongoDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D93C60A11841865003216F7 /* MongoDB.mm */; };
+		1D93C7491184369D003216F7 /* DatabasesArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D93C7481184369D003216F7 /* DatabasesArrayController.m */; };
+		1D93CB5C1184C243003216F7 /* ResultsOutlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D93CB5B1184C243003216F7 /* ResultsOutlineViewController.m */; };
+		1DA68047118875B300DFDD29 /* findmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DA68042118875B300DFDD29 /* findmenu.png */; };
+		1DA68048118875B300DFDD29 /* insertmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DA68043118875B300DFDD29 /* insertmenu.png */; };
+		1DA68049118875B300DFDD29 /* removemenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DA68044118875B300DFDD29 /* removemenu.png */; };
+		1DA6804A118875B300DFDD29 /* runmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DA68045118875B300DFDD29 /* runmenu.png */; };
+		1DA6804B118875B300DFDD29 /* updatemenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DA68046118875B300DFDD29 /* updatemenu.png */; };
+		1DA6806C11888BDD00DFDD29 /* NSString+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA6806B11888BDD00DFDD29 /* NSString+Extras.m */; };
+		1DF96E3B11881AED00C35AB8 /* AddCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF96E3A11881AED00C35AB8 /* AddCollectionController.m */; };
+		1DF96E3D11881EB400C35AB8 /* NewCollection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DF96E3C11881EB400C35AB8 /* NewCollection.xib */; };
+		1DF96F9211883B3800C35AB8 /* QueryWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1DF96F9111883B3800C35AB8 /* QueryWindowController.mm */; };
+		1DF96F9411883D5E00C35AB8 /* QueryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DF96F9311883D5E00C35AB8 /* QueryWindow.xib */; };
+		2F7446990DB6B7EA00F9684A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7446970DB6B7EA00F9684A /* MainMenu.xib */; };
+		770B37ED0679A11B001EADE2 /* MongoHub_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* MongoHub_DataModel.xcdatamodel */; };
+		77C8280E06725ACE000B614F /* MongoHub_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8280C06725ACE000B614F /* MongoHub_AppDelegate.m */; };
+		797A78450DDCFB3E0050D0C2 /* GetMetadataForFile.c in Sources */ = {isa = PBXBuildFile; fileRef = 797A783F0DDCFB3E0050D0C2 /* GetMetadataForFile.c */; };
+		797A78480DDCFB3E0050D0C2 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 797A78420DDCFB3E0050D0C2 /* main.c */; };
+		797A78490DDCFB3E0050D0C2 /* MySpotlightImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 797A78440DDCFB3E0050D0C2 /* MySpotlightImporter.m */; };
+		797A784A0DDCFC070050D0C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77C82804067257F0000B614F /* CoreData.framework */; };
+		797A784B0DDCFC090050D0C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
+		797A7AE20DDCFCE80050D0C2 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797A7AE10DDCFCE80050D0C2 /* CoreFoundation.framework */; };
+		797A7AE40DDCFCF40050D0C2 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797A7AE30DDCFCF40050D0C2 /* CoreServices.framework */; };
+		799CAA890DDE04C70030CB95 /* MongoHub.mdimporter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 797A78390DDCFADE0050D0C2 /* MongoHub.mdimporter */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		790512FB0DDD0A100070760D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 797A78380DDCFADE0050D0C2;
+			remoteInfo = "MongoHub Spotlight Importer";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1D79923911872E12009C187F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1D79923611872DF4009C187F /* SSHTunnel.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7905130A0DDD0A660070760D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ../Library/Spotlight;
+			dstSubfolderSpec = 7;
+			files = (
+				799CAA890DDE04C70030CB95 /* MongoHub.mdimporter in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		1D1D65501189C5E000582917 /* collectionmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = collectionmenu.png; path = Resourses/images/collectionmenu.png; sourceTree = SOURCE_ROOT; };
+		1D1D65511189C5E000582917 /* dbmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dbmenu.png; path = Resourses/images/dbmenu.png; sourceTree = SOURCE_ROOT; };
+		1D1D65521189C5E000582917 /* querymenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = querymenu.png; path = Resourses/images/querymenu.png; sourceTree = SOURCE_ROOT; };
+		1D1D65531189C5E000582917 /* servermenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = servermenu.png; path = Resourses/images/servermenu.png; sourceTree = SOURCE_ROOT; };
+		1D1D65641189C93400582917 /* supportmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = supportmenu.png; path = Resourses/images/supportmenu.png; sourceTree = SOURCE_ROOT; };
+		1D1D65A21189F05600582917 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon.icns; path = Resourses/images/Icon.icns; sourceTree = SOURCE_ROOT; };
+		1D20AC821188B28000D9D4C5 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSON.h; path = JSON/JSON.h; sourceTree = SOURCE_ROOT; };
+		1D20AC831188B28000D9D4C5 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJSON.h"; path = "JSON/NSObject+SBJSON.h"; sourceTree = SOURCE_ROOT; };
+		1D20AC841188B28000D9D4C5 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SBJSON.m"; path = "JSON/NSObject+SBJSON.m"; sourceTree = SOURCE_ROOT; };
+		1D20AC851188B28000D9D4C5 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+SBJSON.h"; path = "JSON/NSString+SBJSON.h"; sourceTree = SOURCE_ROOT; };
+		1D20AC861188B28000D9D4C5 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SBJSON.m"; path = "JSON/NSString+SBJSON.m"; sourceTree = SOURCE_ROOT; };
+		1D20AC871188B28000D9D4C5 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJSON.h; path = JSON/SBJSON.h; sourceTree = SOURCE_ROOT; };
+		1D20AC881188B28000D9D4C5 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJSON.m; path = JSON/SBJSON.m; sourceTree = SOURCE_ROOT; };
+		1D20AC891188B28000D9D4C5 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonBase.h; path = JSON/SBJsonBase.h; sourceTree = SOURCE_ROOT; };
+		1D20AC8A1188B28000D9D4C5 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonBase.m; path = JSON/SBJsonBase.m; sourceTree = SOURCE_ROOT; };
+		1D20AC8B1188B28000D9D4C5 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonParser.h; path = JSON/SBJsonParser.h; sourceTree = SOURCE_ROOT; };
+		1D20AC8C1188B28000D9D4C5 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonParser.m; path = JSON/SBJsonParser.m; sourceTree = SOURCE_ROOT; };
+		1D20AC8D1188B28000D9D4C5 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonWriter.h; path = JSON/SBJsonWriter.h; sourceTree = SOURCE_ROOT; };
+		1D20AC8E1188B28000D9D4C5 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonWriter.m; path = JSON/SBJsonWriter.m; sourceTree = SOURCE_ROOT; };
+		1D79922F11872DE4009C187F /* SSHTunnel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSHTunnel.framework; path = /Library/PrivateFrameWorks/SSHTunnel.framework; sourceTree = "<absolute>"; };
+		1D799453118755EE009C187F /* AddDBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDBController.h; sourceTree = "<group>"; };
+		1D799454118755EE009C187F /* AddDBController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDBController.m; sourceTree = "<group>"; };
+		1D79945611875E7A009C187F /* NewDB.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewDB.xib; sourceTree = "<group>"; };
+		1D8A624D11897C6800D55937 /* indexmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = indexmenu.png; path = Resourses/images/indexmenu.png; sourceTree = SOURCE_ROOT; };
+		1D93C1AD11832A71003216F7 /* libmongoclient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmongoclient.a; path = ../../../../../../usr/local/lib/libmongoclient.a; sourceTree = SOURCE_ROOT; };
+		1D93C1D811832C1D003216F7 /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
+		1D93C1D911832C1D003216F7 /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
+		1D93C1DE11833342003216F7 /* ConnectionsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsCollectionView.h; sourceTree = "<group>"; };
+		1D93C1DF11833342003216F7 /* ConnectionsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionsCollectionView.m; sourceTree = "<group>"; };
+		1D93C1E011833342003216F7 /* IconCollectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconCollectionItem.h; sourceTree = "<group>"; };
+		1D93C1E111833342003216F7 /* IconCollectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconCollectionItem.m; sourceTree = "<group>"; };
+		1D93C1E211833342003216F7 /* IconViewBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconViewBox.h; sourceTree = "<group>"; };
+		1D93C1E311833342003216F7 /* IconViewBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconViewBox.m; sourceTree = "<group>"; };
+		1D93C24A118334F6003216F7 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = /Library/PrivateFrameWorks/BWToolkitFramework.framework; sourceTree = "<absolute>"; };
+		1D93C24D11833599003216F7 /* ConnectionsArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsArrayController.h; sourceTree = "<group>"; };
+		1D93C24E11833599003216F7 /* ConnectionsArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionsArrayController.m; sourceTree = "<group>"; };
+		1D93C27111833A19003216F7 /* database.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = database.png; path = Resourses/images/database.png; sourceTree = SOURCE_ROOT; };
+		1D93C27411833C2A003216F7 /* Configure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configure.h; sourceTree = "<group>"; };
+		1D93C29811833F26003216F7 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
+		1D93C29911833F26003216F7 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
+		1D93C29C118341D4003216F7 /* AddConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddConnectionController.h; sourceTree = "<group>"; };
+		1D93C29D118341D4003216F7 /* AddConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddConnectionController.m; sourceTree = "<group>"; };
+		1D93C29F118343EF003216F7 /* NewConnection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewConnection.xib; sourceTree = "<group>"; };
+		1D93C37B11835BB4003216F7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1D93C38511835D2A003216F7 /* EditConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditConnectionController.h; sourceTree = "<group>"; };
+		1D93C38611835D2A003216F7 /* EditConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditConnectionController.m; sourceTree = "<group>"; };
+		1D93C38911835FB8003216F7 /* EditConnection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditConnection.xib; sourceTree = "<group>"; };
+		1D93C3AF11836510003216F7 /* connecticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = connecticon.png; path = Resourses/images/connecticon.png; sourceTree = SOURCE_ROOT; };
+		1D93C3B011836510003216F7 /* editicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = editicon.png; path = Resourses/images/editicon.png; sourceTree = SOURCE_ROOT; };
+		1D93C3CD11836863003216F7 /* ConnectionWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionWindowController.h; sourceTree = "<group>"; };
+		1D93C3CE11836863003216F7 /* ConnectionWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ConnectionWindowController.mm; sourceTree = "<group>"; };
+		1D93C3D01183690E003216F7 /* ConnectionWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConnectionWindow.xib; sourceTree = "<group>"; };
+		1D93C40011836DC2003216F7 /* ConnectionWindowTitleTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionWindowTitleTransformer.h; sourceTree = "<group>"; };
+		1D93C40111836DC2003216F7 /* ConnectionWindowTitleTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionWindowTitleTransformer.m; sourceTree = "<group>"; };
+		1D93C42A1183744D003216F7 /* collectionicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = collectionicon.png; path = Resourses/images/collectionicon.png; sourceTree = SOURCE_ROOT; };
+		1D93C42B1183744D003216F7 /* dbicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dbicon.png; path = Resourses/images/dbicon.png; sourceTree = SOURCE_ROOT; };
+		1D93C44D11837668003216F7 /* Sidebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sidebar.h; path = Sidebar/Sidebar.h; sourceTree = SOURCE_ROOT; };
+		1D93C44E11837668003216F7 /* Sidebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sidebar.m; path = Sidebar/Sidebar.m; sourceTree = SOURCE_ROOT; };
+		1D93C44F11837668003216F7 /* SidebarBadgeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SidebarBadgeCell.h; path = Sidebar/SidebarBadgeCell.h; sourceTree = SOURCE_ROOT; };
+		1D93C45011837668003216F7 /* SidebarBadgeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SidebarBadgeCell.m; path = Sidebar/SidebarBadgeCell.m; sourceTree = SOURCE_ROOT; };
+		1D93C45111837668003216F7 /* SidebarNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SidebarNode.h; path = Sidebar/SidebarNode.h; sourceTree = SOURCE_ROOT; };
+		1D93C45211837668003216F7 /* SidebarNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SidebarNode.m; path = Sidebar/SidebarNode.m; sourceTree = SOURCE_ROOT; };
+		1D93C5EF1183992E003216F7 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = ../../../../../../usr/local/lib/libboost_system.a; sourceTree = SOURCE_ROOT; };
+		1D93C5F111839940003216F7 /* libboost_thread.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_thread.a; path = ../../../../../../usr/local/lib/libboost_thread.a; sourceTree = SOURCE_ROOT; };
+		1D93C5F311839959003216F7 /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = ../../../../../../usr/local/lib/libboost_filesystem.a; sourceTree = SOURCE_ROOT; };
+		1D93C5F511839970003216F7 /* libboost_program_options.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_program_options.a; path = ../../../../../../usr/local/lib/libboost_program_options.a; sourceTree = SOURCE_ROOT; };
+		1D93C60911841865003216F7 /* MongoDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MongoDB.h; sourceTree = "<group>"; };
+		1D93C60A11841865003216F7 /* MongoDB.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MongoDB.mm; sourceTree = "<group>"; };
+		1D93C7471184369D003216F7 /* DatabasesArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabasesArrayController.h; sourceTree = "<group>"; };
+		1D93C7481184369D003216F7 /* DatabasesArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabasesArrayController.m; sourceTree = "<group>"; };
+		1D93CB5A1184C243003216F7 /* ResultsOutlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsOutlineViewController.h; sourceTree = "<group>"; };
+		1D93CB5B1184C243003216F7 /* ResultsOutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsOutlineViewController.m; sourceTree = "<group>"; };
+		1DA68042118875B300DFDD29 /* findmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = findmenu.png; path = Resourses/images/findmenu.png; sourceTree = SOURCE_ROOT; };
+		1DA68043118875B300DFDD29 /* insertmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = insertmenu.png; path = Resourses/images/insertmenu.png; sourceTree = SOURCE_ROOT; };
+		1DA68044118875B300DFDD29 /* removemenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = removemenu.png; path = Resourses/images/removemenu.png; sourceTree = SOURCE_ROOT; };
+		1DA68045118875B300DFDD29 /* runmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = runmenu.png; path = Resourses/images/runmenu.png; sourceTree = SOURCE_ROOT; };
+		1DA68046118875B300DFDD29 /* updatemenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = updatemenu.png; path = Resourses/images/updatemenu.png; sourceTree = SOURCE_ROOT; };
+		1DA6806A11888BDD00DFDD29 /* NSString+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extras.h"; sourceTree = "<group>"; };
+		1DA6806B11888BDD00DFDD29 /* NSString+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extras.m"; sourceTree = "<group>"; };
+		1DF96E3911881AED00C35AB8 /* AddCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCollectionController.h; sourceTree = "<group>"; };
+		1DF96E3A11881AED00C35AB8 /* AddCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCollectionController.m; sourceTree = "<group>"; };
+		1DF96E3C11881EB400C35AB8 /* NewCollection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCollection.xib; sourceTree = "<group>"; };
+		1DF96F9011883B3800C35AB8 /* QueryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryWindowController.h; sourceTree = "<group>"; };
+		1DF96F9111883B3800C35AB8 /* QueryWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QueryWindowController.mm; sourceTree = "<group>"; };
+		1DF96F9311883D5E00C35AB8 /* QueryWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QueryWindow.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		2F7446980DB6B7EA00F9684A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* MongoHub_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MongoHub_Prefix.pch; sourceTree = "<group>"; };
+		770B37EC0679A11B001EADE2 /* MongoHub_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = MongoHub_DataModel.xcdatamodel; sourceTree = "<group>"; };
+		77C82804067257F0000B614F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		77C8280B06725ACE000B614F /* MongoHub_AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MongoHub_AppDelegate.h; sourceTree = "<group>"; };
+		77C8280C06725ACE000B614F /* MongoHub_AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MongoHub_AppDelegate.m; sourceTree = "<group>"; };
+		797A78390DDCFADE0050D0C2 /* MongoHub.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MongoHub.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
+		797A783F0DDCFB3E0050D0C2 /* GetMetadataForFile.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = GetMetadataForFile.c; sourceTree = "<group>"; };
+		797A78410DDCFB3E0050D0C2 /* Importer-Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; name = "Importer-Info.plist"; path = "Importer/Importer-Info.plist"; sourceTree = "<group>"; };
+		797A78420DDCFB3E0050D0C2 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		797A78430DDCFB3E0050D0C2 /* MySpotlightImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySpotlightImporter.h; sourceTree = "<group>"; };
+		797A78440DDCFB3E0050D0C2 /* MySpotlightImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySpotlightImporter.m; sourceTree = "<group>"; };
+		797A7AE10DDCFCE80050D0C2 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = ../../../../../../../../../../../../System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<group>"; };
+		797A7AE30DDCFCF40050D0C2 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = ../../../../../../../../../../../../System/Library/Frameworks/CoreServices.framework; sourceTree = "<group>"; };
+		797A7AE70DDCFD2A0050D0C2 /* Importer Read Me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Importer Read Me.txt"; path = "Importer/Importer Read Me.txt"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* MongoHub-Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; path = "MongoHub-Info.plist"; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* MongoHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MongoHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		797A78370DDCFADE0050D0C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				797A784A0DDCFC070050D0C2 /* CoreData.framework in Frameworks */,
+				797A784B0DDCFC090050D0C2 /* Foundation.framework in Frameworks */,
+				797A7AE20DDCFCE80050D0C2 /* CoreFoundation.framework in Frameworks */,
+				797A7AE40DDCFCF40050D0C2 /* CoreServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				1D93C1AE11832A71003216F7 /* libmongoclient.a in Frameworks */,
+				1D93C24B118334F6003216F7 /* BWToolkitFramework.framework in Frameworks */,
+				1D93C37C11835BB4003216F7 /* QuartzCore.framework in Frameworks */,
+				1D93C5F01183992E003216F7 /* libboost_system.a in Frameworks */,
+				1D93C5F211839940003216F7 /* libboost_thread.a in Frameworks */,
+				1D93C5F411839959003216F7 /* libboost_filesystem.a in Frameworks */,
+				1D93C5F611839970003216F7 /* libboost_program_options.a in Frameworks */,
+				1D79923011872DE4009C187F /* SSHTunnel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1D20AC811188B28000D9D4C5 /* JSON */,
+				1D93C608118417D5003216F7 /* Helpers */,
+				1D93C44C11837668003216F7 /* Sidebar */,
+				1D93C3FF11836D98003216F7 /* Transformers */,
+				1D93C3CC11836849003216F7 /* ConnectionWindow */,
+				1D93C29B118341BD003216F7 /* ConnectionControllers */,
+				1D93C24C1183357D003216F7 /* ArrayControllers */,
+				1D93C1DD11833342003216F7 /* ConnectionsCollectionView */,
+				77C8280B06725ACE000B614F /* MongoHub_AppDelegate.h */,
+				77C8280C06725ACE000B614F /* MongoHub_AppDelegate.m */,
+				797A783E0DDCFB3E0050D0C2 /* Importer */,
+				1D93C27411833C2A003216F7 /* Configure.h */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1D93C5F511839970003216F7 /* libboost_program_options.a */,
+				1D93C5F311839959003216F7 /* libboost_filesystem.a */,
+				1D93C5F111839940003216F7 /* libboost_thread.a */,
+				1D93C5EF1183992E003216F7 /* libboost_system.a */,
+				1D93C1AD11832A71003216F7 /* libmongoclient.a */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				1D93C24A118334F6003216F7 /* BWToolkitFramework.framework */,
+				1D79922F11872DE4009C187F /* SSHTunnel.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				797A7AE30DDCFCF40050D0C2 /* CoreServices.framework */,
+				797A7AE10DDCFCE80050D0C2 /* CoreFoundation.framework */,
+				77C82804067257F0000B614F /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				1D93C37B11835BB4003216F7 /* QuartzCore.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* MongoHub.app */,
+				797A78390DDCFADE0050D0C2 /* MongoHub.mdimporter */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1D20AC811188B28000D9D4C5 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				1D20AC821188B28000D9D4C5 /* JSON.h */,
+				1D20AC831188B28000D9D4C5 /* NSObject+SBJSON.h */,
+				1D20AC841188B28000D9D4C5 /* NSObject+SBJSON.m */,
+				1D20AC851188B28000D9D4C5 /* NSString+SBJSON.h */,
+				1D20AC861188B28000D9D4C5 /* NSString+SBJSON.m */,
+				1D20AC871188B28000D9D4C5 /* SBJSON.h */,
+				1D20AC881188B28000D9D4C5 /* SBJSON.m */,
+				1D20AC891188B28000D9D4C5 /* SBJsonBase.h */,
+				1D20AC8A1188B28000D9D4C5 /* SBJsonBase.m */,
+				1D20AC8B1188B28000D9D4C5 /* SBJsonParser.h */,
+				1D20AC8C1188B28000D9D4C5 /* SBJsonParser.m */,
+				1D20AC8D1188B28000D9D4C5 /* SBJsonWriter.h */,
+				1D20AC8E1188B28000D9D4C5 /* SBJsonWriter.m */,
+			);
+			path = JSON;
+			sourceTree = SOURCE_ROOT;
+		};
+		1D93C1DD11833342003216F7 /* ConnectionsCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				1D93C1DE11833342003216F7 /* ConnectionsCollectionView.h */,
+				1D93C1DF11833342003216F7 /* ConnectionsCollectionView.m */,
+				1D93C1E011833342003216F7 /* IconCollectionItem.h */,
+				1D93C1E111833342003216F7 /* IconCollectionItem.m */,
+				1D93C1E211833342003216F7 /* IconViewBox.h */,
+				1D93C1E311833342003216F7 /* IconViewBox.m */,
+			);
+			path = ConnectionsCollectionView;
+			sourceTree = "<group>";
+		};
+		1D93C24C1183357D003216F7 /* ArrayControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1D93C24D11833599003216F7 /* ConnectionsArrayController.h */,
+				1D93C24E11833599003216F7 /* ConnectionsArrayController.m */,
+				1D93C7471184369D003216F7 /* DatabasesArrayController.h */,
+				1D93C7481184369D003216F7 /* DatabasesArrayController.m */,
+			);
+			name = ArrayControllers;
+			sourceTree = "<group>";
+		};
+		1D93C27011833A19003216F7 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				1D1D65A21189F05600582917 /* Icon.icns */,
+				1D1D65641189C93400582917 /* supportmenu.png */,
+				1D1D65501189C5E000582917 /* collectionmenu.png */,
+				1D1D65511189C5E000582917 /* dbmenu.png */,
+				1D1D65521189C5E000582917 /* querymenu.png */,
+				1D1D65531189C5E000582917 /* servermenu.png */,
+				1D8A624D11897C6800D55937 /* indexmenu.png */,
+				1DA68042118875B300DFDD29 /* findmenu.png */,
+				1DA68043118875B300DFDD29 /* insertmenu.png */,
+				1DA68044118875B300DFDD29 /* removemenu.png */,
+				1DA68045118875B300DFDD29 /* runmenu.png */,
+				1DA68046118875B300DFDD29 /* updatemenu.png */,
+				1D93C42A1183744D003216F7 /* collectionicon.png */,
+				1D93C42B1183744D003216F7 /* dbicon.png */,
+				1D93C3AF11836510003216F7 /* connecticon.png */,
+				1D93C3B011836510003216F7 /* editicon.png */,
+				1D93C27111833A19003216F7 /* database.png */,
+			);
+			name = images;
+			path = Resourses/images;
+			sourceTree = SOURCE_ROOT;
+		};
+		1D93C29B118341BD003216F7 /* ConnectionControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1D93C29C118341D4003216F7 /* AddConnectionController.h */,
+				1D93C29D118341D4003216F7 /* AddConnectionController.m */,
+				1D93C38511835D2A003216F7 /* EditConnectionController.h */,
+				1D93C38611835D2A003216F7 /* EditConnectionController.m */,
+				1D799453118755EE009C187F /* AddDBController.h */,
+				1D799454118755EE009C187F /* AddDBController.m */,
+				1DF96E3911881AED00C35AB8 /* AddCollectionController.h */,
+				1DF96E3A11881AED00C35AB8 /* AddCollectionController.m */,
+			);
+			name = ConnectionControllers;
+			sourceTree = "<group>";
+		};
+		1D93C3CC11836849003216F7 /* ConnectionWindow */ = {
+			isa = PBXGroup;
+			children = (
+				1D93C3CD11836863003216F7 /* ConnectionWindowController.h */,
+				1D93C3CE11836863003216F7 /* ConnectionWindowController.mm */,
+				1D93CB5A1184C243003216F7 /* ResultsOutlineViewController.h */,
+				1D93CB5B1184C243003216F7 /* ResultsOutlineViewController.m */,
+				1DF96F9011883B3800C35AB8 /* QueryWindowController.h */,
+				1DF96F9111883B3800C35AB8 /* QueryWindowController.mm */,
+			);
+			name = ConnectionWindow;
+			sourceTree = "<group>";
+		};
+		1D93C3FF11836D98003216F7 /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				1D93C40011836DC2003216F7 /* ConnectionWindowTitleTransformer.h */,
+				1D93C40111836DC2003216F7 /* ConnectionWindowTitleTransformer.m */,
+			);
+			name = Transformers;
+			sourceTree = "<group>";
+		};
+		1D93C44C11837668003216F7 /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				1D93C44D11837668003216F7 /* Sidebar.h */,
+				1D93C44E11837668003216F7 /* Sidebar.m */,
+				1D93C44F11837668003216F7 /* SidebarBadgeCell.h */,
+				1D93C45011837668003216F7 /* SidebarBadgeCell.m */,
+				1D93C45111837668003216F7 /* SidebarNode.h */,
+				1D93C45211837668003216F7 /* SidebarNode.m */,
+			);
+			path = Sidebar;
+			sourceTree = SOURCE_ROOT;
+		};
+		1D93C608118417D5003216F7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1D93C60911841865003216F7 /* MongoDB.h */,
+				1D93C60A11841865003216F7 /* MongoDB.mm */,
+				1DA6806A11888BDD00DFDD29 /* NSString+Extras.h */,
+				1DA6806B11888BDD00DFDD29 /* NSString+Extras.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* MongoHub */ = {
+			isa = PBXGroup;
+			children = (
+				7756732906782D8800D1FEB8 /* Models */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				797A7AE70DDCFD2A0050D0C2 /* Importer Read Me.txt */,
+			);
+			name = MongoHub;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* MongoHub_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1D93C27011833A19003216F7 /* images */,
+				8D1107310486CEB800E47090 /* MongoHub-Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				2F7446970DB6B7EA00F9684A /* MainMenu.xib */,
+				797A78410DDCFB3E0050D0C2 /* Importer-Info.plist */,
+				1D93C29F118343EF003216F7 /* NewConnection.xib */,
+				1D93C38911835FB8003216F7 /* EditConnection.xib */,
+				1D93C3D01183690E003216F7 /* ConnectionWindow.xib */,
+				1D79945611875E7A009C187F /* NewDB.xib */,
+				1DF96E3C11881EB400C35AB8 /* NewCollection.xib */,
+				1DF96F9311883D5E00C35AB8 /* QueryWindow.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7756732906782D8800D1FEB8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				770B37EC0679A11B001EADE2 /* MongoHub_DataModel.xcdatamodel */,
+				1D93C1D811832C1D003216F7 /* Connection.h */,
+				1D93C1D911832C1D003216F7 /* Connection.m */,
+				1D93C29811833F26003216F7 /* Database.h */,
+				1D93C29911833F26003216F7 /* Database.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		797A783E0DDCFB3E0050D0C2 /* Importer */ = {
+			isa = PBXGroup;
+			children = (
+				797A78420DDCFB3E0050D0C2 /* main.c */,
+				797A783F0DDCFB3E0050D0C2 /* GetMetadataForFile.c */,
+				797A78430DDCFB3E0050D0C2 /* MySpotlightImporter.h */,
+				797A78440DDCFB3E0050D0C2 /* MySpotlightImporter.m */,
+			);
+			path = Importer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		797A78380DDCFADE0050D0C2 /* MongoHub Spotlight Importer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 797A783D0DDCFADE0050D0C2 /* Build configuration list for PBXNativeTarget "MongoHub Spotlight Importer" */;
+			buildPhases = (
+				797A78350DDCFADE0050D0C2 /* Resources */,
+				797A78360DDCFADE0050D0C2 /* Sources */,
+				797A78370DDCFADE0050D0C2 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MongoHub Spotlight Importer";
+			productName = "MongoHub Spotlight Importer";
+			productReference = 797A78390DDCFADE0050D0C2 /* MongoHub.mdimporter */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8D1107260486CEB800E47090 /* MongoHub */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26FC0A840875C7B200E6366F /* Build configuration list for PBXNativeTarget "MongoHub" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				7905130A0DDD0A660070760D /* CopyFiles */,
+				1D79923911872E12009C187F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				790512FC0DDD0A100070760D /* PBXTargetDependency */,
+			);
+			name = MongoHub;
+			productInstallPath = "$(HOME)/Applications";
+			productName = MongoHub;
+			productReference = 8D1107320486CEB800E47090 /* MongoHub.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = ThePeppersStudio.COM;
+			};
+			buildConfigurationList = 26FC0A880875C7B200E6366F /* Build configuration list for PBXProject "MongoHub" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* MongoHub */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* MongoHub */,
+				797A78380DDCFADE0050D0C2 /* MongoHub Spotlight Importer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		797A78350DDCFADE0050D0C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				2F7446990DB6B7EA00F9684A /* MainMenu.xib in Resources */,
+				1D93C27211833A19003216F7 /* database.png in Resources */,
+				1D93C2A0118343EF003216F7 /* NewConnection.xib in Resources */,
+				1D93C38A11835FB8003216F7 /* EditConnection.xib in Resources */,
+				1D93C3B111836510003216F7 /* connecticon.png in Resources */,
+				1D93C3B211836510003216F7 /* editicon.png in Resources */,
+				1D93C3D11183690E003216F7 /* ConnectionWindow.xib in Resources */,
+				1D93C42C1183744D003216F7 /* collectionicon.png in Resources */,
+				1D93C42D1183744D003216F7 /* dbicon.png in Resources */,
+				1D79945711875E7A009C187F /* NewDB.xib in Resources */,
+				1DF96E3D11881EB400C35AB8 /* NewCollection.xib in Resources */,
+				1DF96F9411883D5E00C35AB8 /* QueryWindow.xib in Resources */,
+				1DA68047118875B300DFDD29 /* findmenu.png in Resources */,
+				1DA68048118875B300DFDD29 /* insertmenu.png in Resources */,
+				1DA68049118875B300DFDD29 /* removemenu.png in Resources */,
+				1DA6804A118875B300DFDD29 /* runmenu.png in Resources */,
+				1DA6804B118875B300DFDD29 /* updatemenu.png in Resources */,
+				1D8A624E11897C6800D55937 /* indexmenu.png in Resources */,
+				1D1D65541189C5E000582917 /* collectionmenu.png in Resources */,
+				1D1D65551189C5E000582917 /* dbmenu.png in Resources */,
+				1D1D65561189C5E000582917 /* querymenu.png in Resources */,
+				1D1D65571189C5E000582917 /* servermenu.png in Resources */,
+				1D1D65651189C93400582917 /* supportmenu.png in Resources */,
+				1D1D65A31189F05600582917 /* Icon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		797A78360DDCFADE0050D0C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				797A78450DDCFB3E0050D0C2 /* GetMetadataForFile.c in Sources */,
+				797A78480DDCFB3E0050D0C2 /* main.c in Sources */,
+				797A78490DDCFB3E0050D0C2 /* MySpotlightImporter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				77C8280E06725ACE000B614F /* MongoHub_AppDelegate.m in Sources */,
+				770B37ED0679A11B001EADE2 /* MongoHub_DataModel.xcdatamodel in Sources */,
+				1D93C1DA11832C1D003216F7 /* Connection.m in Sources */,
+				1D93C1E411833342003216F7 /* ConnectionsCollectionView.m in Sources */,
+				1D93C1E511833342003216F7 /* IconCollectionItem.m in Sources */,
+				1D93C1E611833342003216F7 /* IconViewBox.m in Sources */,
+				1D93C24F11833599003216F7 /* ConnectionsArrayController.m in Sources */,
+				1D93C29A11833F26003216F7 /* Database.m in Sources */,
+				1D93C29E118341D4003216F7 /* AddConnectionController.m in Sources */,
+				1D93C38711835D2A003216F7 /* EditConnectionController.m in Sources */,
+				1D93C3CF11836863003216F7 /* ConnectionWindowController.mm in Sources */,
+				1D93C40211836DC2003216F7 /* ConnectionWindowTitleTransformer.m in Sources */,
+				1D93C45311837668003216F7 /* Sidebar.m in Sources */,
+				1D93C45411837668003216F7 /* SidebarBadgeCell.m in Sources */,
+				1D93C45511837668003216F7 /* SidebarNode.m in Sources */,
+				1D93C60B11841865003216F7 /* MongoDB.mm in Sources */,
+				1D93C7491184369D003216F7 /* DatabasesArrayController.m in Sources */,
+				1D93CB5C1184C243003216F7 /* ResultsOutlineViewController.m in Sources */,
+				1D799455118755EE009C187F /* AddDBController.m in Sources */,
+				1DF96E3B11881AED00C35AB8 /* AddCollectionController.m in Sources */,
+				1DF96F9211883B3800C35AB8 /* QueryWindowController.mm in Sources */,
+				1DA6806C11888BDD00DFDD29 /* NSString+Extras.m in Sources */,
+				1D20AC8F1188B28000D9D4C5 /* NSObject+SBJSON.m in Sources */,
+				1D20AC901188B28000D9D4C5 /* NSString+SBJSON.m in Sources */,
+				1D20AC911188B28000D9D4C5 /* SBJSON.m in Sources */,
+				1D20AC921188B28000D9D4C5 /* SBJsonBase.m in Sources */,
+				1D20AC931188B28000D9D4C5 /* SBJsonParser.m in Sources */,
+				1D20AC941188B28000D9D4C5 /* SBJsonWriter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		790512FC0DDD0A100070760D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 797A78380DDCFADE0050D0C2 /* MongoHub Spotlight Importer */;
+			targetProxy = 790512FB0DDD0A100070760D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2F7446970DB6B7EA00F9684A /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F7446980DB6B7EA00F9684A /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		26FC0A850875C7B200E6366F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(LOCAL_LIBRARY_DIR)/PrivateFrameWorks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MongoHub_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/local/include/;
+				INFOPLIST_FILE = "MongoHub-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)/usr/lib/gcc/i686-apple-darwin10/4.0.1\"",
+				);
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = MongoHub;
+				SDKROOT = macosx10.6;
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		26FC0A860875C7B200E6366F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(LOCAL_LIBRARY_DIR)/PrivateFrameWorks\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MongoHub_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/local/include/;
+				INFOPLIST_FILE = "MongoHub-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)/usr/lib/gcc/i686-apple-darwin10/4.0.1\"",
+				);
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = MongoHub;
+				SDKROOT = macosx10.6;
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		26FC0A890875C7B200E6366F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include/;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "";
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Debug;
+		};
+		26FC0A8A0875C7B200E6366F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include/;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "";
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Release;
+		};
+		797A783B0DDCFADE0050D0C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				INFOPLIST_FILE = "Importer/Importer-Info.plist";
+				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
+				LIBRARY_STYLE = BUNDLE;
+				OTHER_LDFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = MongoHub;
+				SDKROOT = "";
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "i386 x86_64";
+				WRAPPER_EXTENSION = mdimporter;
+			};
+			name = Debug;
+		};
+		797A783C0DDCFADE0050D0C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				INFOPLIST_FILE = "Importer/Importer-Info.plist";
+				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
+				LIBRARY_STYLE = BUNDLE;
+				OTHER_LDFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = MongoHub;
+				SDKROOT = "";
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "i386 x86_64";
+				WRAPPER_EXTENSION = mdimporter;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		26FC0A840875C7B200E6366F /* Build configuration list for PBXNativeTarget "MongoHub" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26FC0A850875C7B200E6366F /* Debug */,
+				26FC0A860875C7B200E6366F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26FC0A880875C7B200E6366F /* Build configuration list for PBXProject "MongoHub" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26FC0A890875C7B200E6366F /* Debug */,
+				26FC0A8A0875C7B200E6366F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		797A783D0DDCFADE0050D0C2 /* Build configuration list for PBXNativeTarget "MongoHub Spotlight Importer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				797A783B0DDCFADE0050D0C2 /* Debug */,
+				797A783C0DDCFADE0050D0C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
