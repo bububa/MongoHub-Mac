@@ -46,6 +46,16 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
+	1D1B546E118ADFBB006DFD88 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 77C8280C06725ACE000B614F /* MongoHub_AppDelegate.m */;
+		name = "MongoHub_AppDelegate.m: 364";
+		rLen = 0;
+		rLoc = 14290;
+		rType = 0;
+		vrLen = 918;
+		vrLoc = 13766;
+	};
 	1D1BCC801189F47300242899 /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 8D1107310486CEB800E47090 /* MongoHub-Info.plist */;
@@ -954,10 +964,11 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 294312618;
-			PBXWorkspaceStateSaveDate = 294312618;
+			PBXPerProjectTemplateStateSaveDate = 294313898;
+			PBXWorkspaceStateSaveDate = 294313898;
 		};
 		perUserProjectItems = {
+			1D1B546E118ADFBB006DFD88 /* PBXTextBookmark */ = 1D1B546E118ADFBB006DFD88 /* PBXTextBookmark */;
 			1D1BCC801189F47300242899 = 1D1BCC801189F47300242899 /* PlistBookmark */;
 			1D1BCC811189F47300242899 = 1D1BCC811189F47300242899 /* PBXTextBookmark */;
 			1D1BCCAA118A0A6800242899 = 1D1BCCAA118A0A6800242899 /* PBXTextBookmark */;
@@ -997,7 +1008,7 @@
 			1D93C90C11845A58003216F7 = 1D93C90C11845A58003216F7 /* PBXTextBookmark */;
 			1D93C93111845C19003216F7 = 1D93C93111845C19003216F7 /* PBXTextBookmark */;
 			1DA680A81188913400DFDD29 = 1DA680A81188913400DFDD29 /* PBXTextBookmark */;
-			1DF7B8B4118ADAC6004417BB /* PBXTextBookmark */ = 1DF7B8B4118ADAC6004417BB /* PBXTextBookmark */;
+			1DF7B8B4118ADAC6004417BB = 1DF7B8B4118ADAC6004417BB /* PBXTextBookmark */;
 			1DF96E261188181600C35AB8 = 1DF96E261188181600C35AB8 /* PBXTextBookmark */;
 			1DF96E281188181600C35AB8 = 1DF96E281188181600C35AB8 /* PBXTextBookmark */;
 			1DF96E291188181600C35AB8 = 1DF96E291188181600C35AB8 /* PBXTextBookmark */;
@@ -1191,9 +1202,9 @@
 	};
 	77C8280C06725ACE000B614F /* MongoHub_AppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {751, 5044}}";
+			sepNavIntBoundsRect = "{{0, 0}, {751, 5057}}";
 			sepNavSelRange = "{14290, 0}";
-			sepNavVisRange = "{13677, 1007}";
+			sepNavVisRange = "{13766, 918}";
 		};
 	};
 	797A78380DDCFADE0050D0C2 /* MongoHub Spotlight Importer */ = {
