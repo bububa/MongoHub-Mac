@@ -19,6 +19,7 @@
 		1D20AC921188B28000D9D4C5 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC8A1188B28000D9D4C5 /* SBJsonBase.m */; };
 		1D20AC931188B28000D9D4C5 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC8C1188B28000D9D4C5 /* SBJsonParser.m */; };
 		1D20AC941188B28000D9D4C5 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC8E1188B28000D9D4C5 /* SBJsonWriter.m */; };
+		1D3FF7AC118ADA63004D3CCE /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D93C24A118334F6003216F7 /* BWToolkitFramework.framework */; };
 		1D79923011872DE4009C187F /* SSHTunnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D79922F11872DE4009C187F /* SSHTunnel.framework */; };
 		1D79923611872DF4009C187F /* SSHTunnel.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D79922F11872DE4009C187F /* SSHTunnel.framework */; };
 		1D799455118755EE009C187F /* AddDBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D799454118755EE009C187F /* AddDBController.m */; };
@@ -92,6 +93,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		1D3FF7EC118ADA74004D3CCE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1D3FF7AC118ADA63004D3CCE /* BWToolkitFramework.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D79923911872E12009C187F /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -543,6 +554,7 @@
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				7905130A0DDD0A660070760D /* CopyFiles */,
 				1D79923911872E12009C187F /* CopyFiles */,
+				1D3FF7EC118ADA74004D3CCE /* CopyFiles */,
 			);
 			buildRules = (
 			);
