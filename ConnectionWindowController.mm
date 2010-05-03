@@ -36,6 +36,7 @@
 @synthesize addDBController;
 @synthesize addCollectionController;
 @synthesize resultsTitle;
+@synthesize bundleVersion;
 
 - (id)init {
     if (![super initWithWindowNibName:@"ConnectionWindow"]) return nil;
@@ -44,6 +45,9 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+    NSString *appVersion = [[NSString alloc] initWithFormat:@"version(%@)", [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey] ];
+    [bundleVersion setStringValue: appVersion];
+    [appVersion release];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addDB:) name:kNewDBWindowWillClose object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addCollection:) name:kNewCollectionWindowWillClose object:nil];
     NSString *hostaddress;
@@ -81,6 +85,7 @@
     [addDBController release];
     [addCollectionController release];
     [resultsTitle release];
+    [bundleVersion release];
     [super dealloc];
 }
 

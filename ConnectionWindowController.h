@@ -32,6 +32,7 @@
     SSHTunnel *sshTunnel;
     AddDBController *addDBController;
     AddCollectionController *addCollectionController;
+    IBOutlet NSTextField *bundleVersion;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -48,6 +49,7 @@
 @property (nonatomic, retain) NSTextField *resultsTitle;
 @property (nonatomic, retain) AddDBController *addDBController;
 @property (nonatomic, retain) AddCollectionController *addCollectionController;
+@property (nonatomic, retain) NSTextField *bundleVersion;
 
 - (void)reloadSidebar;
 - (void)reloadDBList;
