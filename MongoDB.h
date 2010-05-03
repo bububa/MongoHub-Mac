@@ -87,6 +87,14 @@
              user:(NSString *)user 
          password:(NSString *)password 
          critical:(NSString *)critical;
+- (NSMutableArray *)mapReduceInDB:dbname 
+                       collection:collectionname 
+                             user:user 
+                         password:password 
+                            mapJs:mapFunction 
+                         reduceJs:reduceFunction 
+                         critical:critical 
+                           output:output;
 - (NSMutableArray *) bsonDictWrapper:(mongo::BSONObj)retval;
 - (NSMutableArray *) bsonArrayWrapper:(mongo::BSONObj)retval;
 @end

@@ -415,8 +415,8 @@
                 NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
                 return;
             }
+            conn->remove(std::string([col UTF8String]), criticalBSON);
         }
-        conn->remove(std::string([col UTF8String]), criticalBSON);
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
@@ -454,8 +454,8 @@
                 NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
                 return;
             }
+            conn->insert(std::string([col UTF8String]), insertDataBSON);
         }
-        conn->insert(std::string([col UTF8String]), insertDataBSON);
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
@@ -621,6 +621,53 @@
     return 0;
 }
 
+- (NSMutableArray *)mapReduceInDB:dbname 
+                       collection:collectionname 
+                             user:user 
+                         password:password 
+                            mapJs:mapJs 
+                         reduceJs:reduceJs 
+                         critical:critical 
+                           output:output
+{
+    try {
+        if ([user length]>0 && [password length]>0) {
+            std::string errmsg;
+            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            if (!ok) {
+                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
+                return nil;
+            }
+        }
+        if (![mapJs isPresent] || ![reduceJs isPresent]) {
+            return nil;
+        }
+        NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
+        mongo::BSONObj criticalBSON;
+        if ([critical isPresent]) {
+            NSError *error = nil;
+            SBJSON *json = [SBJSON new];
+            [json objectWithString:critical error:&error];
+            [json release];
+            if (error) {
+                NSRunAlertPanel(@"Error", [error localizedDescription], @"OK", nil, nil);
+                return nil;
+            }
+            try{
+                criticalBSON = mongo::fromjson([critical UTF8String]);
+            }catch (mongo::MsgAssertionException &e) {
+                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
+                return nil;
+            }
+        }
+        mongo::BSONObj retval = conn->mapreduce(std::string([col UTF8String]), std::string([mapJs UTF8String]), std::string([reduceJs UTF8String]), criticalBSON, std::string([output UTF8String]));
+        return [self bsonDictWrapper:retval];
+    }catch (mongo::DBException &e) {
+        NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
+    }
+    return nil;
+}
+
 #pragma mark BSON to NSMutableArray
 - (NSMutableArray *) bsonDictWrapper:(mongo::BSONObj)retval
 {
@@ -746,4 +793,5 @@
     }
     return nil;
 }
+
 @end
