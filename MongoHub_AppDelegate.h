@@ -25,6 +25,7 @@
     IBOutlet ConnectionsArrayController *connectionsArrayController;
     AddConnectionController *addConnectionController;
     EditConnectionController *editConnectionController;
+    IBOutlet NSTextField *bundleVersion;
 }
 
 @property (nonatomic, retain) IBOutlet NSWindow *window;
@@ -37,6 +38,7 @@
 @property (nonatomic, retain) ConnectionsArrayController *connectionsArrayController;
 @property (nonatomic, retain) AddConnectionController *addConnectionController;
 @property (nonatomic, retain) EditConnectionController *editConnectionController;
+@property (nonatomic, retain) NSTextField *bundleVersion;
 
 - (IBAction)saveAction:sender;
 - (IBAction)showAddConnectionPanel:(id)sender;

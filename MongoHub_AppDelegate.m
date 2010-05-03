@@ -25,6 +25,7 @@
 @synthesize connectionsArrayController;
 @synthesize addConnectionController;
 @synthesize editConnectionController;
+@synthesize bundleVersion;
 
 /**
     Returns the support directory for the application, used to store the Core Data
@@ -277,12 +278,17 @@
 	[addConnectionController release];
     [editConnectionController release];
     
+    [bundleVersion release];
+    
     [super dealloc];
 }
 
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addConection:) name:kNewConnectionWindowWillClose object:nil];
+    NSString *appVersion = [[NSString alloc] initWithFormat:@"version(%@)", [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey] ];
+    [bundleVersion setStringValue: appVersion];
+    [appVersion release];
 }
 
 #pragma mark connections related method
