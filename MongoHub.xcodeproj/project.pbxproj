@@ -19,9 +19,10 @@
 		1D20AC921188B28000D9D4C5 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC8A1188B28000D9D4C5 /* SBJsonBase.m */; };
 		1D20AC931188B28000D9D4C5 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC8C1188B28000D9D4C5 /* SBJsonParser.m */; };
 		1D20AC941188B28000D9D4C5 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC8E1188B28000D9D4C5 /* SBJsonWriter.m */; };
-		1D3FF7AC118ADA63004D3CCE /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D93C24A118334F6003216F7 /* BWToolkitFramework.framework */; };
+		1D58BE0B118ED8D20045A044 /* mapreducemenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D58BE0A118ED8D20045A044 /* mapreducemenu.png */; };
+		1D58BE37118EFF810045A044 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D93C24A118334F6003216F7 /* BWToolkitFramework.framework */; };
+		1D58BE40118EFF9F0045A044 /* SSHTunnel.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D79922F11872DE4009C187F /* SSHTunnel.framework */; };
 		1D79923011872DE4009C187F /* SSHTunnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D79922F11872DE4009C187F /* SSHTunnel.framework */; };
-		1D79923611872DF4009C187F /* SSHTunnel.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D79922F11872DE4009C187F /* SSHTunnel.framework */; };
 		1D799455118755EE009C187F /* AddDBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D799454118755EE009C187F /* AddDBController.m */; };
 		1D79945711875E7A009C187F /* NewDB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D79945611875E7A009C187F /* NewDB.xib */; };
 		1D8A624E11897C6800D55937 /* indexmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D8A624D11897C6800D55937 /* indexmenu.png */; };
@@ -93,23 +94,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		1D3FF7EC118ADA74004D3CCE /* CopyFiles */ = {
+		1D58BE3A118EFF840045A044 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1D3FF7AC118ADA63004D3CCE /* BWToolkitFramework.framework in CopyFiles */,
+				1D58BE37118EFF810045A044 /* BWToolkitFramework.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1D79923911872E12009C187F /* CopyFiles */ = {
+		1D58BE45118EFFBD0045A044 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1D79923611872DF4009C187F /* SSHTunnel.framework in CopyFiles */,
+				1D58BE40118EFF9F0045A044 /* SSHTunnel.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +148,7 @@
 		1D20AC8C1188B28000D9D4C5 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonParser.m; path = JSON/SBJsonParser.m; sourceTree = SOURCE_ROOT; };
 		1D20AC8D1188B28000D9D4C5 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonWriter.h; path = JSON/SBJsonWriter.h; sourceTree = SOURCE_ROOT; };
 		1D20AC8E1188B28000D9D4C5 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonWriter.m; path = JSON/SBJsonWriter.m; sourceTree = SOURCE_ROOT; };
+		1D58BE0A118ED8D20045A044 /* mapreducemenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mapreducemenu.png; path = Resourses/images/mapreducemenu.png; sourceTree = SOURCE_ROOT; };
 		1D79922F11872DE4009C187F /* SSHTunnel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSHTunnel.framework; path = /Library/PrivateFrameWorks/SSHTunnel.framework; sourceTree = "<absolute>"; };
 		1D799453118755EE009C187F /* AddDBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDBController.h; sourceTree = "<group>"; };
 		1D799454118755EE009C187F /* AddDBController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDBController.m; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 		1D93C27011833A19003216F7 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				1D58BE0A118ED8D20045A044 /* mapreducemenu.png */,
 				1D1D65A21189F05600582917 /* Icon.icns */,
 				1D1D65641189C93400582917 /* supportmenu.png */,
 				1D1D65501189C5E000582917 /* collectionmenu.png */,
@@ -553,8 +556,8 @@
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				7905130A0DDD0A660070760D /* CopyFiles */,
-				1D79923911872E12009C187F /* CopyFiles */,
-				1D3FF7EC118ADA74004D3CCE /* CopyFiles */,
+				1D58BE3A118EFF840045A044 /* CopyFiles */,
+				1D58BE45118EFFBD0045A044 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -625,6 +628,7 @@
 				1D1D65571189C5E000582917 /* servermenu.png in Resources */,
 				1D1D65651189C93400582917 /* supportmenu.png in Resources */,
 				1D1D65A31189F05600582917 /* Icon.icns in Resources */,
+				1D58BE0B118ED8D20045A044 /* mapreducemenu.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,6 +783,7 @@
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "i386 x86_64";
 			};
@@ -796,6 +801,7 @@
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "i386 x86_64";
 			};
