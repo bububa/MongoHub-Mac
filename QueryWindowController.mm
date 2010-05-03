@@ -13,6 +13,7 @@
 #import "Connection.h"
 #import "MongoDB.h"
 #import <BWToolkitFramework/BWToolkitFramework.h>
+#import "NSString+Extras.h"
 
 @implementation QueryWindowController
 
@@ -30,20 +31,29 @@
 @synthesize limitTextField;
 @synthesize sortTextField;
 @synthesize totalResultsTextField;
+@synthesize findQueryTextField;
 
 @synthesize updateCriticalTextField;
 @synthesize updateSetTextField;
 @synthesize upsetCheckBox;
 @synthesize updateResultsTextField;
+@synthesize updateQueryTextField;
 
 @synthesize removeCriticalTextField;
 @synthesize removeResultsTextField;
+@synthesize removeQueryTextField;
 
 @synthesize insertDataTextView;
 @synthesize insertResultsTextField;
 
 @synthesize indexTextField;
 @synthesize indexesOutlineViewController;
+
+@synthesize mapFunctionTextView;
+@synthesize reduceFunctionTextView;
+@synthesize mrcriticalTextField;
+@synthesize mroutputTextField;
+@synthesize mrOutlineViewController;
 
 
 - (id)init {
@@ -66,20 +76,29 @@
     [limitTextField release];
     [sortTextField release];
     [totalResultsTextField release];
+    [findQueryTextField release];
     
     [updateCriticalTextField release];
     [updateSetTextField release];
     [upsetCheckBox release];
     [updateResultsTextField release];
+    [updateQueryTextField release];
     
     [removeCriticalTextField release];
     [removeResultsTextField release];
+    [removeQueryTextField release];
     
     [insertDataTextView release];
     [insertResultsTextField release];
     
     [indexTextField release];
     [indexesOutlineViewController release];
+    
+    [mapFunctionTextView release];
+    [reduceFunctionTextView release];
+    [mrcriticalTextField release];
+    [mroutputTextField release];
+    [mrOutlineViewController release];
     [super dealloc];
 }
 
@@ -279,4 +298,131 @@
     [self indexQuery:nil];
 }
 
+- (IBAction) mapReduce:(id)sender
+{
+    NSString *user=nil;
+    NSString *password=nil;
+    Database *db = [databasesArrayController dbInfo:conn name:dbname];
+    if (db) {
+        user = db.user;
+        password = db.password;
+    }
+    [db release];
+    NSString *mapFunction = [mapFunctionTextView string];
+    NSString *reduceFunction = [reduceFunctionTextView string];
+    NSString *critical = [mrcriticalTextField stringValue];
+    NSString *output = [mroutputTextField stringValue];
+    NSMutableArray *results = [[NSMutableArray alloc] initWithArray:[mongoDB mapReduceInDB:dbname 
+                                                                                collection:collectionname 
+                                                                                      user:user 
+                                                                                  password:password 
+                                                                                     mapJs:mapFunction 
+                                                                                  reduceJs:reduceFunction 
+                                                                                  critical:critical 
+                                                                                    output:output]];
+    mrOutlineViewController.results = results;
+    [mrOutlineViewController.myOutlineView reloadData];
+    [results release];
+}
+
+- (void)controlTextDidChange:(NSNotification *)nd
+{
+	NSTextField *ed = [nd object];
+    
+	if (ed == criticalTextField || ed == fieldsTextField || ed == sortTextField || ed == skipTextField || ed == limitTextField)
+    {
+        [self findQueryComposer:nil];
+    }else if (ed == updateCriticalTextField || ed == updateSetTextField) {
+        [self updateQueryComposer:nil];
+    }else if (ed == removeCriticalTextField) {
+        [self removeQueryComposer:nil];
+    }
+
+}
+
+- (IBAction) findQueryComposer:(id)sender
+{
+    NSString *critical;
+    if ([[criticalTextField stringValue] isPresent]) {
+        critical = [[NSString alloc] initWithString:[criticalTextField stringValue]];
+    }else {
+        critical = [[NSString alloc] initWithString:@""];
+    }
+    
+    NSString *jsFields;
+    if ([[fieldsTextField stringValue] isPresent]) {
+        NSArray *keys = [[NSArray alloc] initWithArray:[[fieldsTextField stringValue] componentsSeparatedByString:@","]];
+        NSMutableArray *tmpstr = [[NSMutableArray alloc] initWithCapacity:[keys count]];
+        for (NSString *str in keys) {
+            [tmpstr addObject:[NSString stringWithFormat:@"%@:1", str]];
+        }
+        jsFields = [[NSString alloc] initWithFormat:@", {%@}", [tmpstr componentsJoinedByString:@","] ];
+        [keys release];
+        [tmpstr release];
+    }else {
+        jsFields = [[NSString alloc] initWithString:@""];
+    }
+    
+    NSString *sort;
+    if ([[sortTextField stringValue] isPresent]) {
+        sort = [[NSString alloc] initWithFormat:@".sort(%@)"];
+    }else {
+        sort = [[NSString alloc] initWithString:@""];
+    }
+    
+    NSString *skip = [[NSString alloc] initWithFormat:@".skip(%d)", [skipTextField intValue]];
+    NSString *limit = [[NSString alloc] initWithFormat:@".limit(%d)", [limitTextField intValue]];
+    NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
+    
+    NSString *query = [NSString stringWithFormat:@"db.%@.find(%@%@)%@%@%@", col, critical, jsFields, sort, skip, limit];
+    [critical release];
+    [jsFields release];
+    [sort release];
+    [skip release];
+    [limit release];
+    [findQueryTextField setStringValue:query];
+}
+
+- (IBAction)updateQueryComposer:(id)sender
+{
+    NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
+    NSString *critical;
+    if ([[updateCriticalTextField stringValue] isPresent]) {
+        critical = [[NSString alloc] initWithString:[updateCriticalTextField stringValue]];
+    }else {
+        critical = [[NSString alloc] initWithString:@""];
+    }
+    NSString *sets;
+    if ([[updateSetTextField stringValue] isPresent]) {
+        sets = [[NSString alloc] initWithFormat:@", {$set:%@}", [updateSetTextField stringValue]];
+    }else {
+        sets = [[NSString alloc] initWithString:@""];
+    }
+    NSString *upset;
+    if ([upsetCheckBox state] == 1) {
+        upset = [[NSString alloc] initWithString:@", true"];
+    }else {
+        upset = [[NSString alloc] initWithString:@", false"];
+    }
+
+    NSString *query = [NSString stringWithFormat:@"db.%@.update(%@%@%@)", col, critical, sets, upset];
+    [critical release];
+    [sets release];
+    [upset release];
+    [updateQueryTextField setStringValue:query];
+}
+
+- (IBAction)removeQueryComposer:(id)sender
+{
+    NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
+    NSString *critical;
+    if ([[removeCriticalTextField stringValue] isPresent]) {
+        critical = [[NSString alloc] initWithString:[removeCriticalTextField stringValue]];
+    }else {
+        critical = [[NSString alloc] initWithString:@""];
+    }
+    NSString *query = [NSString stringWithFormat:@"db.%@.remove(%@)", col, critical];
+    [critical release];
+    [removeQueryTextField setStringValue:query];
+}
 @end
