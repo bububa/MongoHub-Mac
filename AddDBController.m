@@ -8,6 +8,10 @@
 
 #import "Configure.h"
 #import "AddDBController.h"
+#import "DatabasesArrayController.h"
+#import "Database.h"
+#import "Connection.h"
+#import "NSString+Extras.h"
 
 @implementation AddDBController
 
@@ -15,6 +19,9 @@
 @synthesize user;
 @synthesize password;
 @synthesize dbInfo;
+@synthesize conn;
+@synthesize managedObjectContext;
+@synthesize databasesArrayController;
 
 - (id)init {
     if (![super initWithWindowNibName:@"NewDB"]) return nil;
@@ -26,6 +33,9 @@
     [user release];
     [password release];
     [dbInfo release];
+    [managedObjectContext release];
+    [databasesArrayController release];
+    [conn release];
     [super dealloc];
 }
 
@@ -58,6 +68,30 @@
     dbInfo = [NSMutableDictionary dictionaryWithObjects:objs forKeys:keys];
     [objs release];
     [keys release];
+    if ([[dbInfo objectForKey:@"user"] isPresent] || [[dbInfo objectForKey:@"password"] isPresent]) {
+        Database *dbobj = [databasesArrayController dbInfo:conn name:[dbname stringValue]];
+        if (!dbobj) {
+            [dbobj release];
+            dbobj = [databasesArrayController newObjectWithConn:conn name:[dbname stringValue] user:[dbInfo objectForKey:@"user"] password:[dbInfo objectForKey:@"password"]];
+            [databasesArrayController addObject:dbobj];
+        }
+        [self saveAction];
+        [dbobj release];
+    }
     [self close];
 }
+
+- (void) saveAction {
+    
+    NSError *error = nil;
+    
+    if (![[self managedObjectContext] commitEditing]) {
+        NSLog(@"%@:%s unable to commit editing before saving", [self class], _cmd);
+    }
+    
+    if (![[self managedObjectContext] save:&error]) {
+        [[NSApplication sharedApplication] presentError:error];
+    }
+}
+
 @end

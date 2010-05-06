@@ -12,6 +12,7 @@
 #import "QueryWindowController.h"
 #import "AddDBController.h";
 #import "AddCollectionController.h"
+#import "AuthWindowController.h"
 #import "ResultsOutlineViewController.h"
 #import "DatabasesArrayController.h"
 #import "Connection.h"
@@ -37,6 +38,7 @@
 @synthesize addCollectionController;
 @synthesize resultsTitle;
 @synthesize bundleVersion;
+@synthesize authWindowController;
 
 - (id)init {
     if (![super initWithWindowNibName:@"ConnectionWindow"]) return nil;
@@ -66,6 +68,9 @@
         hostaddress = [NSString stringWithFormat:@"%@:%@", conn.host, conn.hostport];
     }
     mongoDB = [[MongoDB alloc] initWithConn:hostaddress];
+    if ([conn.adminuser isPresent]) {
+        [mongoDB authUser:conn.adminuser pass:conn.adminpass];
+    }
     [self reloadSidebar];
     [self showServerStatus:nil];
 }
@@ -86,6 +91,7 @@
     [addCollectionController release];
     [resultsTitle release];
     [bundleVersion release];
+    [authWindowController release];
     [super dealloc];
 }
 
@@ -257,6 +263,8 @@
     {
         addDBController = [[AddDBController alloc] init];
     }
+    addDBController.managedObjectContext = self.managedObjectContext;
+    addDBController.conn = self.conn;
     [addDBController showWindow:self];
 }
 
@@ -370,4 +378,30 @@
     queryWindowController.mongoDB = mongoDB;
     [queryWindowController showWindow:sender];
 }
+
+- (IBAction)showAuth:(id)sender
+{
+    if (!selectedDB) 
+    {
+        NSRunAlertPanel(@"Error", @"Please choose a database!", @"OK", nil, nil);
+        return;
+    }
+    if (!authWindowController)
+    {
+        authWindowController = [[AuthWindowController alloc] init];
+    }
+    Database *db = [databaseArrayController dbInfo:conn name:[selectedDB caption]];
+    if (db) {
+        [authWindowController.userTextField setStringValue:db.user];
+        [authWindowController.passwordTextField setStringValue:db.password];
+    }else {
+        [authWindowController.userTextField setStringValue:@""];
+        [authWindowController.passwordTextField setStringValue:@""];
+    }
+    authWindowController.managedObjectContext = self.managedObjectContext;
+    authWindowController.conn = self.conn;
+    authWindowController.dbname = [selectedDB caption];
+    [authWindowController showWindow:self];
+}
+
 @end

@@ -10,3 +10,4 @@
 #define kEditConnectionWindowWillClose @"EditConnectionWindowWillClose"
 #define kNewDBWindowWillClose @"NewDBWindowWillClose"
 #define kNewCollectionWindowWillClose @"NewCollectionWindowWillClose"
+#define kAuthWindowWillClose @"AuthWindowWillClose"

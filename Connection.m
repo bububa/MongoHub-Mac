@@ -14,6 +14,8 @@
 @dynamic host;
 @dynamic hostport;
 @dynamic alias;
+@dynamic adminuser;
+@dynamic adminpass;
 @dynamic databases;
 
 @dynamic usessh;

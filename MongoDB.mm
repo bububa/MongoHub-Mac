@@ -42,6 +42,20 @@
     return false;
 }
 
+- (void)authUser:(NSString *)user 
+            pass:(NSString *)pass
+{
+    try {
+        std::string errmsg;
+        bool ok = conn->auth(std::string("admin"), std::string([user UTF8String]), std::string([pass UTF8String]), errmsg);
+        if (!ok) {
+            NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
+        }
+    }catch (mongo::DBException &e) {
+        NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
+    }
+}
+
 - (NSArray *)listDatabases {
     try {
         std::list<std::string> dbs = conn->getDatabaseNames();

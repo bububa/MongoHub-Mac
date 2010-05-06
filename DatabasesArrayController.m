@@ -28,8 +28,6 @@
     [newObj setValue:name forKey:@"name"];
     [newObj setValue:user forKey:@"user"];
     [newObj setValue:password forKey:@"password"];
-    //NSDate *now = [NSDate date];
-    //[newObj setValue:now forKey:@"createdDatetime"];
     return newObj;
 }
 

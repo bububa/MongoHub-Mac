@@ -15,6 +15,8 @@
 
 - (id)initWithConn:(NSString *)host;
 - (bool)connect:(NSString *)host;
+- (void)authUser:(NSString *)user 
+            pass:(NSString *)pass;
 - (NSArray *)listDatabases;
 - (NSArray *)listCollections:(NSString *)db 
                         user:(NSString *)user 

@@ -19,6 +19,9 @@
 		1D20AC921188B28000D9D4C5 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC8A1188B28000D9D4C5 /* SBJsonBase.m */; };
 		1D20AC931188B28000D9D4C5 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC8C1188B28000D9D4C5 /* SBJsonParser.m */; };
 		1D20AC941188B28000D9D4C5 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC8E1188B28000D9D4C5 /* SBJsonWriter.m */; };
+		1D210BFB1192FF06000EF41C /* key.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D210BFA1192FF06000EF41C /* key.png */; };
+		1D210BFE119301BA000EF41C /* AuthWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D210BFD119301BA000EF41C /* AuthWindowController.m */; };
+		1D210C0011930E18000EF41C /* Auth.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D210BFF11930E18000EF41C /* Auth.xib */; };
 		1D58BE0B118ED8D20045A044 /* mapreducemenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D58BE0A118ED8D20045A044 /* mapreducemenu.png */; };
 		1D58BE37118EFF810045A044 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D93C24A118334F6003216F7 /* BWToolkitFramework.framework */; };
 		1D58BE40118EFF9F0045A044 /* SSHTunnel.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D79922F11872DE4009C187F /* SSHTunnel.framework */; };
@@ -148,6 +151,10 @@
 		1D20AC8C1188B28000D9D4C5 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonParser.m; path = JSON/SBJsonParser.m; sourceTree = SOURCE_ROOT; };
 		1D20AC8D1188B28000D9D4C5 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonWriter.h; path = JSON/SBJsonWriter.h; sourceTree = SOURCE_ROOT; };
 		1D20AC8E1188B28000D9D4C5 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonWriter.m; path = JSON/SBJsonWriter.m; sourceTree = SOURCE_ROOT; };
+		1D210BFA1192FF06000EF41C /* key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = key.png; path = Resourses/images/key.png; sourceTree = SOURCE_ROOT; };
+		1D210BFC119301BA000EF41C /* AuthWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthWindowController.h; sourceTree = "<group>"; };
+		1D210BFD119301BA000EF41C /* AuthWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthWindowController.m; sourceTree = "<group>"; };
+		1D210BFF11930E18000EF41C /* Auth.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Auth.xib; sourceTree = "<group>"; };
 		1D58BE0A118ED8D20045A044 /* mapreducemenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mapreducemenu.png; path = Resourses/images/mapreducemenu.png; sourceTree = SOURCE_ROOT; };
 		1D79922F11872DE4009C187F /* SSHTunnel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSHTunnel.framework; path = /Library/PrivateFrameWorks/SSHTunnel.framework; sourceTree = "<absolute>"; };
 		1D799453118755EE009C187F /* AddDBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDBController.h; sourceTree = "<group>"; };
@@ -371,6 +378,7 @@
 		1D93C27011833A19003216F7 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				1D210BFA1192FF06000EF41C /* key.png */,
 				1D58BE0A118ED8D20045A044 /* mapreducemenu.png */,
 				1D1D65A21189F05600582917 /* Icon.icns */,
 				1D1D65641189C93400582917 /* supportmenu.png */,
@@ -418,6 +426,8 @@
 				1D93CB5B1184C243003216F7 /* ResultsOutlineViewController.m */,
 				1DF96F9011883B3800C35AB8 /* QueryWindowController.h */,
 				1DF96F9111883B3800C35AB8 /* QueryWindowController.mm */,
+				1D210BFC119301BA000EF41C /* AuthWindowController.h */,
+				1D210BFD119301BA000EF41C /* AuthWindowController.m */,
 			);
 			name = ConnectionWindow;
 			sourceTree = "<group>";
@@ -492,6 +502,7 @@
 				1D79945611875E7A009C187F /* NewDB.xib */,
 				1DF96E3C11881EB400C35AB8 /* NewCollection.xib */,
 				1DF96F9311883D5E00C35AB8 /* QueryWindow.xib */,
+				1D210BFF11930E18000EF41C /* Auth.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -629,6 +640,8 @@
 				1D1D65651189C93400582917 /* supportmenu.png in Resources */,
 				1D1D65A31189F05600582917 /* Icon.icns in Resources */,
 				1D58BE0B118ED8D20045A044 /* mapreducemenu.png in Resources */,
+				1D210BFB1192FF06000EF41C /* key.png in Resources */,
+				1D210C0011930E18000EF41C /* Auth.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,6 +691,7 @@
 				1D20AC921188B28000D9D4C5 /* SBJsonBase.m in Sources */,
 				1D20AC931188B28000D9D4C5 /* SBJsonParser.m in Sources */,
 				1D20AC941188B28000D9D4C5 /* SBJsonWriter.m in Sources */,
+				1D210BFE119301BA000EF41C /* AuthWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

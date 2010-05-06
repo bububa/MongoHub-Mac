@@ -3,6 +3,12 @@ This repository is a mac native version of MongoHub. If you are using windows or
 
 This project is very new. Any issues or bug reports are welcome.
 
+*If you are using the version less than 2.0.5, you need to remove ~/Library/Application\ Support/MongoHub directory and restart the new version.
+
+[Last Update (2.0.6)]
+1. fixed some UI bugs;
+2. add admin auth support.
+
 Syd
 prof.syd.xu@gmail.com
 http://twitter.com/bububa

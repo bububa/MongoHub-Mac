@@ -13,6 +13,8 @@
     IBOutlet NSTextField *hostTextField;
     IBOutlet NSTextField *hostportTextField;
     IBOutlet NSTextField *aliasTextField;
+    IBOutlet NSTextField *adminuserTextField;
+    IBOutlet NSSecureTextField *adminpassTextField;
     IBOutlet NSButton *usesshCheckBox;
     IBOutlet NSTextField *bindaddressTextField;
     IBOutlet NSTextField *bindportTextField;
@@ -28,6 +30,8 @@
 @property (nonatomic, retain) NSTextField *hostTextField;
 @property (nonatomic, retain) NSTextField *hostportTextField;
 @property (nonatomic, retain) NSTextField *aliasTextField;
+@property (nonatomic, retain) NSTextField *adminuserTextField;
+@property (nonatomic, retain) NSSecureTextField *adminpassTextField;
 @property (nonatomic, retain) NSButton *usesshCheckBox;
 @property (nonatomic, retain) NSTextField *bindaddressTextField;
 @property (nonatomic, retain) NSTextField *bindportTextField;

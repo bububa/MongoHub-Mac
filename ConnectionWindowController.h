@@ -11,6 +11,7 @@
 @class DatabasesArrayController;
 @class AddDBController;
 @class AddCollectionController;
+@class AuthWindowController;
 @class ResultsOutlineViewController;
 @class Connection;
 @class Sidebar;
@@ -32,6 +33,7 @@
     SSHTunnel *sshTunnel;
     AddDBController *addDBController;
     AddCollectionController *addCollectionController;
+    AuthWindowController *authWindowController;
     IBOutlet NSTextField *bundleVersion;
 }
 
@@ -50,6 +52,7 @@
 @property (nonatomic, retain) AddDBController *addDBController;
 @property (nonatomic, retain) AddCollectionController *addCollectionController;
 @property (nonatomic, retain) NSTextField *bundleVersion;
+@property (nonatomic, retain) AuthWindowController *authWindowController;
 
 - (void)reloadSidebar;
 - (void)reloadDBList;
@@ -66,4 +69,5 @@
 - (IBAction)dropDBorCollection:(id)sender;
 - (void)dropDB;
 - (IBAction)query:(id)sender;
+- (IBAction)showAuth:(id)sender;
 @end

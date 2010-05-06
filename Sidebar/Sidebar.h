@@ -8,7 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface Sidebar : NSOutlineView <NSOutlineViewDelegate, NSOutlineViewDataSource>{
+@interface Sidebar : NSOutlineView <NSOutlineViewDelegate, NSOutlineViewDataSource>
+{
 	@private
 		NSArray *dragNodesArray;
 		

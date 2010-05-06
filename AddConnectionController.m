@@ -15,6 +15,8 @@
 @synthesize hostTextField;
 @synthesize hostportTextField;
 @synthesize aliasTextField;
+@synthesize adminuserTextField;
+@synthesize adminpassTextField;
 @synthesize usesshCheckBox;
 @synthesize bindaddressTextField;
 @synthesize bindportTextField;
@@ -35,6 +37,8 @@
     [hostTextField release];
     [hostportTextField release];
     [aliasTextField release];
+    [adminuserTextField release];
+    [adminpassTextField release];
     [usesshCheckBox release];
     [bindaddressTextField release];
     [bindportTextField release];
@@ -66,6 +70,8 @@
     NSString *host;
     NSUInteger hostport;
     NSString *alias;
+    NSString *adminuser = [adminuserTextField stringValue];
+    NSString *adminpass = [adminpassTextField stringValue];
     NSUInteger usessh = 0;
     NSString *bindaddress;
     NSUInteger bindport;
@@ -118,10 +124,10 @@
         sshuser = @"";
         sshpassword = @"";
     }
-    NSArray *keys = [[NSArray alloc] initWithObjects:@"host", @"hostport", @"alias", @"usessh", @"bindaddress", @"bindport", @"sshhost", @"sshport", @"sshuser", @"sshpassword", nil];
-    NSArray *objs = [[NSArray alloc] initWithObjects:host, [NSNumber numberWithInt:hostport], alias, [NSNumber numberWithInt:usessh], bindaddress, [NSNumber numberWithInt:bindport], sshhost, [NSNumber numberWithInt:sshport], sshuser, sshpassword, nil];
+    NSArray *keys = [[NSArray alloc] initWithObjects:@"host", @"hostport", @"alias", @"adminuser", @"adminpass", @"usessh", @"bindaddress", @"bindport", @"sshhost", @"sshport", @"sshuser", @"sshpassword", nil];
+    NSArray *objs = [[NSArray alloc] initWithObjects:host, [NSNumber numberWithInt:hostport], alias, adminuser, adminpass, [NSNumber numberWithInt:usessh], bindaddress, [NSNumber numberWithInt:bindport], sshhost, [NSNumber numberWithInt:sshport], sshuser, sshpassword, nil];
     if (!connectionInfo) {
-        connectionInfo = [[NSMutableDictionary alloc] initWithCapacity:10]; 
+        connectionInfo = [[NSMutableDictionary alloc] initWithCapacity:12]; 
     }
     connectionInfo = [NSMutableDictionary dictionaryWithObjects:objs forKeys:keys];
     [keys release];
