@@ -70,6 +70,9 @@
 		1DF96E3D11881EB400C35AB8 /* NewCollection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DF96E3C11881EB400C35AB8 /* NewCollection.xib */; };
 		1DF96F9211883B3800C35AB8 /* QueryWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1DF96F9111883B3800C35AB8 /* QueryWindowController.mm */; };
 		1DF96F9411883D5E00C35AB8 /* QueryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DF96F9311883D5E00C35AB8 /* QueryWindow.xib */; };
+		1DFC2A7C11970A1E006AA167 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFC2A7B11970A1E006AA167 /* Sparkle.framework */; };
+		1DFC2A8211970A35006AA167 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1DFC2A7B11970A1E006AA167 /* Sparkle.framework */; };
+		1DFC2A8D11970BD0006AA167 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1DFC2A8C11970BD0006AA167 /* dsa_pub.pem */; };
 		2F7446990DB6B7EA00F9684A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7446970DB6B7EA00F9684A /* MainMenu.xib */; };
 		770B37ED0679A11B001EADE2 /* MongoHub_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* MongoHub_DataModel.xcdatamodel */; };
 		77C8280E06725ACE000B614F /* MongoHub_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8280C06725ACE000B614F /* MongoHub_AppDelegate.m */; };
@@ -114,6 +117,16 @@
 			dstSubfolderSpec = 10;
 			files = (
 				1D58BE40118EFF9F0045A044 /* SSHTunnel.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1DFC2A8B11970A4A006AA167 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1DFC2A8211970A35006AA167 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +235,8 @@
 		1DF96F9011883B3800C35AB8 /* QueryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryWindowController.h; sourceTree = "<group>"; };
 		1DF96F9111883B3800C35AB8 /* QueryWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QueryWindowController.mm; sourceTree = "<group>"; };
 		1DF96F9311883D5E00C35AB8 /* QueryWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QueryWindow.xib; sourceTree = "<group>"; };
+		1DFC2A7B11970A1E006AA167 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = /Library/PrivateFrameWorks/Sparkle.framework; sourceTree = "<absolute>"; };
+		1DFC2A8C11970BD0006AA167 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Resourses/dsa_pub.pem; sourceTree = SOURCE_ROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -269,6 +284,7 @@
 				1D93C5F411839959003216F7 /* libboost_filesystem.a in Frameworks */,
 				1D93C5F611839970003216F7 /* libboost_program_options.a in Frameworks */,
 				1D79923011872DE4009C187F /* SSHTunnel.framework in Frameworks */,
+				1DFC2A7C11970A1E006AA167 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +321,7 @@
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				1D93C24A118334F6003216F7 /* BWToolkitFramework.framework */,
 				1D79922F11872DE4009C187F /* SSHTunnel.framework */,
+				1DFC2A7B11970A1E006AA167 /* Sparkle.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -491,6 +508,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1DFC2A8C11970BD0006AA167 /* dsa_pub.pem */,
 				1D93C27011833A19003216F7 /* images */,
 				8D1107310486CEB800E47090 /* MongoHub-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -569,6 +587,7 @@
 				7905130A0DDD0A660070760D /* CopyFiles */,
 				1D58BE3A118EFF840045A044 /* CopyFiles */,
 				1D58BE45118EFFBD0045A044 /* CopyFiles */,
+				1DFC2A8B11970A4A006AA167 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -642,6 +661,7 @@
 				1D58BE0B118ED8D20045A044 /* mapreducemenu.png in Resources */,
 				1D210BFB1192FF06000EF41C /* key.png in Resources */,
 				1D210C0011930E18000EF41C /* Auth.xib in Resources */,
+				1DFC2A8D11970BD0006AA167 /* dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
