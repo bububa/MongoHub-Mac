@@ -1,4 +1,4 @@
-MongoHub is a mongodb(http://mongodb.org) GUI application.
+MongoHub (http://mongohub.todayclose.com/) is a mongodb(http://mongodb.org) GUI application.
 This repository is a mac native version of MongoHub. If you are using windows or linux please download use the source from http://github.com/bububa/MongoHub which is made by Titanium Desktop.
 
 This project is very new. Any issues or bug reports are welcome.
