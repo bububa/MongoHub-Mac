@@ -5,7 +5,16 @@ This project is very new. Any issues or bug reports are welcome.
 
 *If you are using the version less than 2.0.5, you need to remove ~/Library/Application\ Support/MongoHub directory and restart the new version.
 
-[Last Update (2.0.6)]
+[Last Update 2.0.8]
+1. Fix several UI bugs in Query Window;
+2. Fix bugs in Find Query and Update Query;
+3. Fix bugs related to ObjectId;
+4. Fix copy&paste bugs.
+
+[2.0.7]
+Add sparkle framework to check application updates.
+
+[2.0.6]
 1. fixed some UI bugs;
 2. add admin auth support.
 
