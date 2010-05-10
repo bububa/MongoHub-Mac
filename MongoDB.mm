@@ -316,20 +316,24 @@
             mongo::BSONElement e;
             b.getObjectID (e);
             NSString *oid;
-            if (e.type() == mongo::Object)
+            NSString *oidType;
+            if (e.type() == mongo::jstOID)
             {
+                oidType = [[NSString alloc] initWithString:@"ObjectId"];
                 oid = [[NSString alloc] initWithUTF8String:e.__oid().str().c_str()];
             }else {
+                oidType = [[NSString alloc] initWithString:@"String"];
                 oid = [[NSString alloc] initWithUTF8String:e.str().c_str()];
             }
-
+            
             NSMutableDictionary *item = [[NSMutableDictionary alloc] initWithCapacity:4];
             [item setObject:@"_id" forKey:@"name"];
-            [item setObject:@"Item" forKey:@"type"];
+            [item setObject:oidType forKey:@"type"];
             [item setObject:oid forKey:@"value"];
             [item setObject:[self bsonDictWrapper:b] forKey:@"child"];
             [response addObject:item];
             [oid release];
+            [oidType release];
             [item release];
         }
         return response;
@@ -385,7 +389,7 @@
                 return;
             }
             try{
-                fieldsBSON = mongo::fromjson([fields UTF8String]);
+                fieldsBSON = mongo::fromjson([[NSString stringWithFormat:@"{$set:%@}", fields] UTF8String]);
             }catch (mongo::MsgAssertionException &e) {
                 NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
                 return;
@@ -740,6 +744,15 @@
                     int binlen;
                     fieldType = @"BinData";
                     value = [NSString stringWithUTF8String:e.binData(binlen)];
+                }else if ([fieldName isEqualToString:@"_id" ]) {
+                    if (e.type() == mongo::jstOID)
+                    {
+                        fieldType = @"ObjectId";
+                        value = [NSString stringWithUTF8String:e.__oid().str().c_str()];
+                    }else {
+                        fieldType = @"String";
+                        value = [NSString stringWithUTF8String:e.str().c_str()];
+                    }
                 }else {
                     fieldType = @"String";
                     value = [NSString stringWithUTF8String:e.str().c_str()];
