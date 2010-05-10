@@ -128,10 +128,10 @@
     NSString *sort = [sortTextField stringValue];
     NSNumber *skip = [NSNumber numberWithInt:[skipTextField intValue]];
     NSNumber *limit;
-    if ([skipTextField intValue] == 0) {
+    if ([limitTextField intValue] == 0) {
         limit = [NSNumber numberWithInt:30];
     }else {
-        limit = [NSNumber numberWithInt:[skipTextField intValue]];
+        limit = [NSNumber numberWithInt:[limitTextField intValue]];
     }
     NSMutableArray *results = [[NSMutableArray alloc] initWithArray:[mongoDB findInDB:dbname 
                                                                            collection:collectionname 
