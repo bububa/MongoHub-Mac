@@ -310,6 +310,7 @@
     [newObj setValue:[[sender object] objectForKey:@"alias"] forKey:@"alias"];
     [newObj setValue:[[sender object] objectForKey:@"adminuser"] forKey:@"adminuser"];
     [newObj setValue:[[sender object] objectForKey:@"adminpass"] forKey:@"adminpass"];
+    [newObj setValue:[[sender object] objectForKey:@"defaultdb"] forKey:@"defaultdb"];
     [newObj setValue:[[sender object] objectForKey:@"usessh"] forKey:@"usessh"];
     [newObj setValue:[[sender object] objectForKey:@"bindaddress"] forKey:@"bindaddress"];
     [newObj setValue:[[sender object] objectForKey:@"bindport"] forKey:@"bindport"];

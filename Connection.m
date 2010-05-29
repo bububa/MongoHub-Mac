@@ -16,6 +16,7 @@
 @dynamic alias;
 @dynamic adminuser;
 @dynamic adminpass;
+@dynamic defaultdb;
 @dynamic databases;
 
 @dynamic usessh;

@@ -19,6 +19,7 @@
 @synthesize aliasTextField;
 @synthesize adminuserTextField;
 @synthesize adminpassTextField;
+@synthesize defaultdbTextField;
 @synthesize usesshCheckBox;
 @synthesize bindaddressTextField;
 @synthesize bindportTextField;
@@ -41,6 +42,7 @@
     [aliasTextField release];
     [adminuserTextField release];
     [adminpassTextField release];
+    [defaultdbTextField release];
     [usesshCheckBox release];
     [bindaddressTextField release];
     [bindportTextField release];
@@ -65,6 +67,7 @@
     [aliasTextField bind:@"value" toObject:connection withKeyPath:@"alias"  options:nil];
     [adminuserTextField bind:@"value" toObject:connection withKeyPath:@"adminuser"  options:nil];
     [adminpassTextField bind:@"value" toObject:connection withKeyPath:@"adminpass"  options:nil];
+    [defaultdbTextField bind:@"value" toObject:connection withKeyPath:@"defaultdb" options:nil];
     [bindaddressTextField bind:@"value" toObject:connection withKeyPath:@"bindaddress"  options:nil];
     [bindportTextField bind:@"value" toObject:connection withKeyPath:@"bindport"  options:nil];
     [sshhostTextField bind:@"value" toObject:connection withKeyPath:@"sshhost"  options:nil];
@@ -85,6 +88,7 @@
     NSString *alias;
     NSString *adminuser = [[NSString alloc] initWithString:[adminuserTextField stringValue]];
     NSString *adminpass = [[NSString alloc] initWithString:[adminpassTextField stringValue]];
+    NSString *defaultdb = [[NSString alloc] initWithString:[defaultdbTextField stringValue]];
     NSUInteger usessh = 0;
     NSString *bindaddress;
     NSUInteger bindport;
@@ -136,8 +140,8 @@
         sshport = 22;
         sshpassword = @"";
     }
-    NSArray *keys = [[NSArray alloc] initWithObjects:@"host", @"hostport", @"alias", @"adminuser", @"adminpass", @"usessh", @"bindaddress", @"bindport", @"sshhost", @"sshport", @"sshuser", @"sshpassword", nil];
-    NSArray *objs = [[NSArray alloc] initWithObjects:host, [NSNumber numberWithInt:hostport], alias, adminuser, adminpass, [NSNumber numberWithInt:usessh], bindaddress, [NSNumber numberWithInt:bindport], sshhost, [NSNumber numberWithInt:sshport], sshuser, sshpassword, nil];
+    NSArray *keys = [[NSArray alloc] initWithObjects:@"host", @"hostport", @"alias", @"adminuser", @"adminpass", @"defaultdb", @"usessh", @"bindaddress", @"bindport", @"sshhost", @"sshport", @"sshuser", @"sshpassword", nil];
+    NSArray *objs = [[NSArray alloc] initWithObjects:host, [NSNumber numberWithInt:hostport], alias, adminuser, adminpass, defaultdb, [NSNumber numberWithInt:usessh], bindaddress, [NSNumber numberWithInt:bindport], sshhost, [NSNumber numberWithInt:sshport], sshuser, sshpassword, nil];
     NSDictionary *connectionInfo = [[NSDictionary alloc] initWithObjects:objs forKeys:keys];
     [keys release];
     [objs release];
@@ -145,6 +149,7 @@
     [alias release];
     [adminuser release];
     [adminpass release];
+    [defaultdb release];
     if (usessh == 1)
     {
         [sshhost release];
@@ -158,6 +163,7 @@
         connection.alias = [connectionInfo objectForKey:@"alias"];
         connection.adminuser = [connectionInfo objectForKey:@"adminuser"];
         connection.adminpass = [connectionInfo objectForKey:@"adminpass"];
+        connection.defaultdb = [connectionInfo objectForKey:@"defaultdb"];
         connection.usessh = [connectionInfo objectForKey:@"usessh"];
         connection.bindaddress = [connectionInfo objectForKey:@"bindaddress"];
         connection.bindport = [connectionInfo objectForKey:@"bindport"];
@@ -174,6 +180,10 @@
 {
     if ([[connectionInfo objectForKey:@"host"] length] == 0) {
         NSRunAlertPanel(@"Error", @"Connection host should not be empty", @"OK", nil, nil);
+        return NO;
+    }
+    if ([[connectionInfo objectForKey:@"host"] isEqualToString:@"flame.mongohq.com"] && [[connectionInfo objectForKey:@"defaultdb"] length] == 0) {
+        NSRunAlertPanel(@"Error", @"DB should not be empty if you are using mongohq", @"OK", nil, nil);
         return NO;
     }
     if ([[connectionInfo objectForKey:@"alias"] length]<3) {

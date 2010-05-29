@@ -14,6 +14,7 @@
     NSString *alias;
     NSString *adminuser;
     NSString *adminpass;
+    NSString *defaultdb;
     NSString *sshhost;
     NSNumber *sshport;
     NSString *sshuser;
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) NSString *alias;
 @property (nonatomic, retain) NSString *adminuser;
 @property (nonatomic, retain) NSString *adminpass;
+@property (nonatomic, retain) NSString *defaultdb;
 @property (nonatomic, retain) NSSet *databases;
 @property (nonatomic, retain) NSString *sshhost;
 @property (nonatomic, retain) NSNumber *sshport;

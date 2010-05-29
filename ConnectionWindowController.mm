@@ -50,8 +50,7 @@
     NSString *appVersion = [[NSString alloc] initWithFormat:@"version(%@)", [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey] ];
     [bundleVersion setStringValue: appVersion];
     [appVersion release];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addDB:) name:kNewDBWindowWillClose object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addCollection:) name:kNewCollectionWindowWillClose object:nil];
+    
     NSString *hostaddress;
     if ([conn.usessh intValue]==1) {
         sshTunnel = [SSHTunnel sshTunnelWithHostname:conn.sshhost 
@@ -64,13 +63,22 @@
                                          hostPort:[conn.hostport intValue]];
         [sshTunnel launch];
         hostaddress = [NSString stringWithFormat:@"%@:%@", conn.bindaddress, conn.bindport];
+    }else if ([conn.host isEqualToString:@"flame.mongohq.com"]) {
+        hostaddress = [NSString stringWithFormat:@"%@:%@/%@", conn.host, conn.hostport, conn.defaultdb];
     }else {
         hostaddress = [NSString stringWithFormat:@"%@:%@", conn.host, conn.hostport];
     }
     mongoDB = [[MongoDB alloc] initWithConn:hostaddress];
     if ([conn.adminuser isPresent]) {
-        [mongoDB authUser:conn.adminuser pass:conn.adminpass];
+        [mongoDB authUser:conn.adminuser pass:conn.adminpass database:conn.defaultdb];
     }
+    
+    if (![conn.defaultdb isPresent]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addDB:) name:kNewDBWindowWillClose object:nil];
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addCollection:) name:kNewCollectionWindowWillClose object:nil];
+    
     [self reloadSidebar];
     [self showServerStatus:nil];
 }
@@ -118,7 +126,12 @@
     [collections release];
     collections = [[NSMutableArray alloc] init];
     [databases release];
-    databases = [[NSMutableArray alloc ] initWithArray:[mongoDB listDatabases]];
+    if ([conn.defaultdb isPresent]) {
+        databases = [[NSMutableArray alloc] initWithObjects:conn.defaultdb, nil];
+    }else {
+        databases = [[NSMutableArray alloc ] initWithArray:[mongoDB listDatabases]];
+    }
+    
     [databaseArrayController clean:conn databases:databases];
     [sidebar removeItem:@"2"];
     unsigned int i=1;
@@ -259,6 +272,10 @@
 
 - (void)createDB
 {
+    if ([conn.defaultdb isPresent]) {
+        NSRunAlertPanel(@"Error", @"Could not create database!", @"OK", nil, nil);
+        return;
+    }
     if (!addDBController)
     {
         addDBController = [[AddDBController alloc] init];
@@ -347,6 +364,10 @@
 
 - (void)dropDB
 {
+    if ([conn.defaultdb isPresent]) {
+        NSRunAlertPanel(@"Error", @"Could not drop database!", @"OK", nil, nil);
+        return;
+    }
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSString *user=nil;
     NSString *password=nil;
@@ -381,6 +402,11 @@
 
 - (IBAction)showAuth:(id)sender
 {
+    if ([conn.defaultdb isPresent]) {
+        NSRunAlertPanel(@"Error", @"Could not auth for database!", @"OK", nil, nil);
+        return;
+    }
+    
     if (!selectedDB) 
     {
         NSRunAlertPanel(@"Error", @"Please choose a database!", @"OK", nil, nil);
