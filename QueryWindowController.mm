@@ -394,7 +394,8 @@
     }
     NSString *sets;
     if ([[updateSetTextField stringValue] isPresent]) {
-        sets = [[NSString alloc] initWithFormat:@", {$set:%@}", [updateSetTextField stringValue]];
+        //sets = [[NSString alloc] initWithFormat:@", {$set:%@}", [updateSetTextField stringValue]];
+        sets = [[NSString alloc] initWithFormat:@", %@", [updateSetTextField stringValue]];
     }else {
         sets = [[NSString alloc] initWithString:@""];
     }
