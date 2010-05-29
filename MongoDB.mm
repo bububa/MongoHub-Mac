@@ -43,11 +43,19 @@
 }
 
 - (void)authUser:(NSString *)user 
-            pass:(NSString *)pass
+            pass:(NSString *)pass 
+        database:(NSString *)db
 {
     try {
         std::string errmsg;
-        bool ok = conn->auth(std::string("admin"), std::string([user UTF8String]), std::string([pass UTF8String]), errmsg);
+        std::string dbname;
+        if ([db isPresent]) {
+            dbname = [db UTF8String];
+        }else {
+            dbname = "admin";
+        }
+
+        bool ok = conn->auth(dbname, std::string([user UTF8String]), std::string([pass UTF8String]), errmsg);
         if (!ok) {
             NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
         }
@@ -389,7 +397,8 @@
                 return;
             }
             try{
-                fieldsBSON = mongo::fromjson([[NSString stringWithFormat:@"{$set:%@}", fields] UTF8String]);
+                //fieldsBSON = mongo::fromjson([[NSString stringWithFormat:@"{$set:%@}", fields] UTF8String]);
+                fieldsBSON = mongo::fromjson([fields UTF8String]);
             }catch (mongo::MsgAssertionException &e) {
                 NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
                 return;
@@ -744,6 +753,9 @@
                     int binlen;
                     fieldType = @"BinData";
                     value = [NSString stringWithUTF8String:e.binData(binlen)];
+                }else if (e.type() == mongo::NumberLong) {
+                    fieldType = @"Long";
+                    value = [NSString stringWithFormat:@"%d", (long long int)(e.number())];
                 }else if ([fieldName isEqualToString:@"_id" ]) {
                     if (e.type() == mongo::jstOID)
                     {
@@ -778,43 +790,111 @@
     if (!retval.isEmpty())
     {
         NSMutableArray *arr = [[NSMutableArray alloc] init];
+        mongo::BSONElement idElm;
+        bool hasId = retval.getObjectID(idElm);
         mongo::BSONObjIterator it (retval);
+        unsigned int i=0;
         while(it.more())
         {
             mongo::BSONElement e = it.next();
+            NSString *fieldName = [[NSString alloc] initWithFormat:@"%d", i];
+            NSString *value;
+            NSString *fieldType;
+            NSMutableArray *child = [[NSMutableArray alloc] init];
             if (e.type() == mongo::Array) {
                 mongo::BSONObj b = e.embeddedObject();
                 NSMutableArray *tmp = [self bsonArrayWrapper:b];
                 if (tmp == nil) {
-                    [arr addObject:@"[ ]"];
+                    value = @"[ ]";
+                    if (hasId) {
+                        [arr addObject:@"[ ]"];
+                    }
                 }else {
-                    [arr addObject:tmp];
+                    child = tmp;
+                    value = @"";
+                    if (hasId) {
+                        [arr addObject:tmp];
+                    }
                 }
+                fieldType = @"Array";
             }else if (e.type() == mongo::Object) {
                 mongo::BSONObj b = e.embeddedObject();
                 NSMutableArray *tmp = [self bsonDictWrapper:b];
                 if (tmp == nil) {
-                    [arr addObject:@"{ }"];
+                    value = @"";
+                    if (hasId) {
+                        [arr addObject:@"{ }"];
+                    }
                 }else {
-                    [arr addObject:tmp];
+                    child = tmp;
+                    value = @"{ }";
+                    if (hasId) {
+                        [arr addObject:tmp];
+                    }
                 }
-
+                fieldType = @"Object";
             }else{
                 if (e.type() == mongo::Bool) {
-                    [arr addObject:[NSNumber numberWithBool:e.boolean()]];
+                    fieldType = @"Bool";
+                    if (e.boolean()) {
+                        value = @"YES";
+                    }else {
+                        value = @"NO";
+                    }
+                    if (hasId) {
+                        [arr addObject:[NSNumber numberWithBool:e.boolean()]];
+                    }
                 }else if (e.type() == mongo::NumberDouble) {
-                    [arr addObject:[NSNumber numberWithDouble:e.number()]];
+                    fieldType = @"Double";
+                    value = [NSString stringWithFormat:@"%f", e.number()];
+                    if (hasId) {
+                        [arr addObject:[NSNumber numberWithDouble:e.number()]];
+                    }
                 }else if (e.type() == mongo::NumberInt) {
-                    [arr addObject:[NSNumber numberWithInt:e.number()]];
+                    fieldType = @"Int";
+                    value = [NSString stringWithFormat:@"%d", (int)(e.number())];
+                    if (hasId) {
+                        [arr addObject:[NSNumber numberWithInt:e.number()]];
+                    }
                 }else if (e.type() == mongo::Date) {
-                    [arr addObject:[NSNumber numberWithInt:e.date()]];
+                    fieldType = @"Date";
+                    value = [NSString stringWithFormat:@"%d", (int)e.date()];
+                    if (hasId) {
+                        [arr addObject:[NSNumber numberWithInt:e.date()]];
+                    }
                 }else if (e.type() == mongo::BinData) {
+                    fieldType = @"BinData";
                     int binlen;
-                    [arr addObject:[NSString stringWithUTF8String:e.binData(binlen)]];
+                    value = [NSString stringWithUTF8String:e.binData(binlen)];
+                    if (hasId) {
+                        [arr addObject:[NSString stringWithUTF8String:e.binData(binlen)]];
+                    }
+                }else if (e.type() == mongo::NumberLong) {
+                    fieldType = @"Long";
+                    value = [NSString stringWithFormat:@"%d", (long long int)(e.number())];
+                    if (hasId) {
+                        [arr addObject:[NSString stringWithFormat:@"%d", (long long int)(e.number())]];
+                    }
                 }else {
-                    [arr addObject:[NSString stringWithUTF8String:e.str().c_str()]];
+                    fieldType = @"String";
+                    value = [NSString stringWithUTF8String:e.str().c_str()];
+                    if (hasId) {
+                        [arr addObject:[NSString stringWithUTF8String:e.str().c_str()]];
+                    }
                 }
             }
+            if (!hasId) {
+                NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:4];
+                [dict setObject:fieldName forKey:@"name"];
+                [dict setObject:fieldType forKey:@"type"];
+                [dict setObject:value forKey:@"value"];
+                [dict setObject:child forKey:@"child"];
+                [arr addObject:dict];
+                [dict release];
+            }
+            [fieldName release];
+            [child release];
+            i ++;
         }
         return arr;
     }
