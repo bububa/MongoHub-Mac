@@ -3,7 +3,13 @@ This repository is a mac native version of MongoHub. If you are using windows or
 
 This project is very new. Any issues or bug reports are welcome.
 
-*If you are using the version less than 2.0.5, you need to remove ~/Library/Application\ Support/MongoHub directory and restart the new version.
+*If you are using the version less than 2.0.8, you need to remove ~/Library/Application\ Support/MongoHub directory and restart the new version.
+
+[Last Update 2.0.9]
+Add support for mongohq.com;
+Changed update behavior;
+Fixed a bug to detect NumberLong type of BSONElement;
+Fixed a bug in Array type of BSONElement.
 
 [Last Update 2.0.8]
 1. Fix several UI bugs in Query Window;
