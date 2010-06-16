@@ -875,6 +875,15 @@
                     if (hasId) {
                         [arr addObject:[NSString stringWithFormat:@"%d", (long long int)(e.number())]];
                     }
+                }else if ([fieldName isEqualToString:@"_id" ]) {
+                    if (e.type() == mongo::jstOID)
+                    {
+                        fieldType = @"ObjectId";
+                        value = [NSString stringWithUTF8String:e.__oid().str().c_str()];
+                    }else {
+                        fieldType = @"String";
+                        value = [NSString stringWithUTF8String:e.str().c_str()];
+                    }
                 }else {
                     fieldType = @"String";
                     value = [NSString stringWithUTF8String:e.str().c_str()];
