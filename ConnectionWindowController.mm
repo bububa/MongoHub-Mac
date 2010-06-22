@@ -13,6 +13,8 @@
 #import "AddDBController.h";
 #import "AddCollectionController.h"
 #import "AuthWindowController.h"
+#import "ImportWindowController.h"
+#import "ExportWindowController.h"
 #import "ResultsOutlineViewController.h"
 #import "DatabasesArrayController.h"
 #import "Connection.h"
@@ -39,6 +41,8 @@
 @synthesize resultsTitle;
 @synthesize bundleVersion;
 @synthesize authWindowController;
+@synthesize importWindowController;
+@synthesize exportWindowController;
 
 - (id)init {
     if (![super initWithWindowNibName:@"ConnectionWindow"]) return nil;
@@ -100,6 +104,8 @@
     [resultsTitle release];
     [bundleVersion release];
     [authWindowController release];
+    [importWindowController release];
+    [exportWindowController release];
     [super dealloc];
 }
 
@@ -428,6 +434,40 @@
     authWindowController.conn = self.conn;
     authWindowController.dbname = [selectedDB caption];
     [authWindowController showWindow:self];
+}
+
+- (IBAction)importFromMySQL:(id)sender
+{
+    if (selectedDB==nil) {
+        NSRunAlertPanel(@"Error", @"Please specify a database!", @"OK", nil, nil);
+        return;
+    }
+    if (!importWindowController)
+    {
+        importWindowController = [[ImportWindowController alloc] init];
+    }
+    importWindowController.managedObjectContext = self.managedObjectContext;
+    importWindowController.conn = self.conn;
+    importWindowController.mongoDB = mongoDB;
+    importWindowController.dbname = [selectedDB caption];
+    [importWindowController showWindow:self];
+}
+
+- (IBAction)exportToMySQL:(id)sender
+{
+    if (selectedDB==nil) {
+        NSRunAlertPanel(@"Error", @"Please specify a database!", @"OK", nil, nil);
+        return;
+    }
+    if (!exportWindowController)
+    {
+        exportWindowController = [[ExportWindowController alloc] init];
+    }
+    exportWindowController.managedObjectContext = self.managedObjectContext;
+    exportWindowController.conn = self.conn;
+    exportWindowController.mongoDB = mongoDB;
+    exportWindowController.dbname = [selectedDB caption];
+    [exportWindowController showWindow:self];
 }
 
 @end

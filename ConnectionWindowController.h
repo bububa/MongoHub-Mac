@@ -12,6 +12,8 @@
 @class AddDBController;
 @class AddCollectionController;
 @class AuthWindowController;
+@class ImportWindowController;
+@class ExportWindowController;
 @class ResultsOutlineViewController;
 @class Connection;
 @class Sidebar;
@@ -34,6 +36,8 @@
     AddDBController *addDBController;
     AddCollectionController *addCollectionController;
     AuthWindowController *authWindowController;
+    ImportWindowController *importWindowController;
+    ExportWindowController *exportWindowController;
     IBOutlet NSTextField *bundleVersion;
 }
 
@@ -53,6 +57,8 @@
 @property (nonatomic, retain) AddCollectionController *addCollectionController;
 @property (nonatomic, retain) NSTextField *bundleVersion;
 @property (nonatomic, retain) AuthWindowController *authWindowController;
+@property (nonatomic, retain) ImportWindowController *importWindowController;
+@property (nonatomic, retain) ExportWindowController *exportWindowController;
 
 - (void)reloadSidebar;
 - (void)reloadDBList;
@@ -62,6 +68,8 @@
 - (IBAction)showDBStats:(id)sender;
 - (IBAction)showCollStats:(id)sender;
 - (IBAction)createDBorCollection:(id)sender;
+- (IBAction)importFromMySQL:(id)sender;
+- (IBAction)exportToMySQL:(id)sender;
 - (void)dropCollection:(NSString *)collectionname 
                  ForDB:(NSString *)dbname;
 - (void)createDB;
