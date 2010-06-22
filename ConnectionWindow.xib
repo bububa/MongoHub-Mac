@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
-		<string key="IBDocument.SystemVersion">10D573</string>
+		<string key="IBDocument.SystemVersion">10F569</string>
 		<string key="IBDocument.InterfaceBuilderVersion">762</string>
 		<string key="IBDocument.AppKitVersion">1038.29</string>
-		<string key="IBDocument.HIToolboxVersion">460.00</string>
+		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
@@ -21,7 +21,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="153"/>
+			<integer value="154"/>
 			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -76,6 +76,8 @@
 							<string>4D4E3568-E902-4DC1-ABF9-F65CE1FF5413</string>
 							<string>7570D86F-BDDE-452B-AFBE-39E3FF3575EC</string>
 							<string>895D0A60-1B01-483E-AD74-ACC9B8C8D993</string>
+							<string>C119880A-AA1D-4455-B962-E5BDAEF3CE4A</string>
+							<string>E5F27936-36E8-4B49-BDE3-2B693E8F1265</string>
 							<string>NSToolbarFlexibleSpaceItem</string>
 							<string>NSToolbarSeparatorItem</string>
 							<string>NSToolbarSpaceItem</string>
@@ -192,6 +194,50 @@
 								<bool key="NSToolbarIsUserRemovable">YES</bool>
 								<int key="NSToolbarItemVisibilityPriority">0</int>
 							</object>
+							<object class="NSToolbarItem" id="222554848">
+								<object class="NSMutableString" key="NSToolbarItemIdentifier">
+									<characters key="NS.bytes">C119880A-AA1D-4455-B962-E5BDAEF3CE4A</characters>
+								</object>
+								<string key="NSToolbarItemLabel">Import(MySQL)</string>
+								<string key="NSToolbarItemPaletteLabel">Import</string>
+								<string key="NSToolbarItemToolTip"/>
+								<nil key="NSToolbarItemView"/>
+								<object class="NSCustomResource" key="NSToolbarItemImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">importbox</string>
+								</object>
+								<nil key="NSToolbarItemTarget"/>
+								<nil key="NSToolbarItemAction"/>
+								<string key="NSToolbarItemMinSize">{0, 0}</string>
+								<string key="NSToolbarItemMaxSize">{0, 0}</string>
+								<bool key="NSToolbarItemEnabled">YES</bool>
+								<bool key="NSToolbarItemAutovalidates">YES</bool>
+								<int key="NSToolbarItemTag">-1</int>
+								<bool key="NSToolbarIsUserRemovable">YES</bool>
+								<int key="NSToolbarItemVisibilityPriority">0</int>
+							</object>
+							<object class="NSToolbarItem" id="902418656">
+								<object class="NSMutableString" key="NSToolbarItemIdentifier">
+									<characters key="NS.bytes">E5F27936-36E8-4B49-BDE3-2B693E8F1265</characters>
+								</object>
+								<string key="NSToolbarItemLabel">Export(MySQL)</string>
+								<string key="NSToolbarItemPaletteLabel">Export</string>
+								<string key="NSToolbarItemToolTip"/>
+								<nil key="NSToolbarItemView"/>
+								<object class="NSCustomResource" key="NSToolbarItemImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">exportbox</string>
+								</object>
+								<nil key="NSToolbarItemTarget"/>
+								<nil key="NSToolbarItemAction"/>
+								<string key="NSToolbarItemMinSize">{0, 0}</string>
+								<string key="NSToolbarItemMaxSize">{0, 0}</string>
+								<bool key="NSToolbarItemEnabled">YES</bool>
+								<bool key="NSToolbarItemAutovalidates">YES</bool>
+								<int key="NSToolbarItemTag">-1</int>
+								<bool key="NSToolbarIsUserRemovable">YES</bool>
+								<int key="NSToolbarItemVisibilityPriority">0</int>
+							</object>
 							<object class="NSToolbarFlexibleSpaceItem" id="365292971">
 								<string key="NSToolbarItemIdentifier">NSToolbarFlexibleSpaceItem</string>
 								<string key="NSToolbarItemLabel"/>
@@ -281,12 +327,14 @@
 							</object>
 						</object>
 					</object>
-					<object class="NSArray" key="NSToolbarIBAllowedItems">
+					<object class="NSMutableArray" key="NSToolbarIBAllowedItems">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<reference ref="838176927"/>
 						<reference ref="963579168"/>
 						<reference ref="370571819"/>
 						<reference ref="977418043"/>
+						<reference ref="222554848"/>
+						<reference ref="902418656"/>
 						<reference ref="1047209720"/>
 						<reference ref="289019918"/>
 						<reference ref="365292971"/>
@@ -298,7 +346,8 @@
 						<reference ref="963579168"/>
 						<reference ref="370571819"/>
 						<reference ref="977418043"/>
-						<reference ref="289019918"/>
+						<reference ref="222554848"/>
+						<reference ref="902418656"/>
 						<reference ref="365292971"/>
 						<reference ref="309246053"/>
 					</object>
@@ -941,7 +990,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="472174064">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">138413056</int>
-								<string key="NSContents">version 2.0 beta</string>
+								<string key="NSContents">version 2.1.0</string>
 								<reference key="NSSupport" ref="669454261"/>
 								<reference key="NSControlView" ref="1021248625"/>
 								<reference key="NSBackgroundColor" ref="21817620"/>
@@ -1202,6 +1251,22 @@ Y2xvc2UuY29tLwpUd2l0dGVyOiBodHRwOi8vdHdpdHRlci5jb20vYnVidWJhLw</string>
 					</object>
 					<int key="connectionID">179</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">importFromMySQL:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="222554848"/>
+					</object>
+					<int key="connectionID">182</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">exportToMySQL:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="902418656"/>
+					</object>
+					<int key="connectionID">183</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1395,6 +1460,8 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moFaAoF2AYaGA</bytes>
 							<reference ref="963579168"/>
 							<reference ref="370571819"/>
 							<reference ref="309246053"/>
+							<reference ref="222554848"/>
+							<reference ref="902418656"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
@@ -1647,6 +1714,16 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moFaAoF2AYaGA</bytes>
 						<reference key="object" ref="151528941"/>
 						<reference key="parent" ref="340130358"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">180</int>
+						<reference key="object" ref="222554848"/>
+						<reference key="parent" ref="815393006"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">181</int>
+						<reference key="object" ref="902418656"/>
+						<reference key="parent" ref="815393006"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1697,6 +1774,8 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moFaAoF2AYaGA</bytes>
 					<string>168.IBPluginDependency</string>
 					<string>177.IBPluginDependency</string>
 					<string>178.IBPluginDependency</string>
+					<string>180.IBPluginDependency</string>
+					<string>181.IBPluginDependency</string>
 					<string>2.IBPluginDependency</string>
 					<string>29.IBPluginDependency</string>
 					<string>30.IBPluginDependency</string>
@@ -1724,9 +1803,9 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moFaAoF2AYaGA</bytes>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{{53, 56}, {602, 374}}</string>
+					<string>{{49, 313}, {602, 374}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{53, 56}, {602, 374}}</string>
+					<string>{{49, 313}, {602, 374}}</string>
 					<integer value="1"/>
 					<string>{196, 240}</string>
 					<string>{{202, 428}, {480, 270}}</string>
@@ -1775,6 +1854,8 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moFaAoF2AYaGA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
@@ -1788,7 +1869,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moFaAoF2AYaGA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>SidebarBadgeCell</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{38, 680}, {616, 0}}</string>
+					<string>{{42, 687}, {616, 0}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1813,7 +1894,7 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moFaAoF2AYaGA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">179</int>
+			<int key="maxID">183</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1827,6 +1908,8 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moFaAoF2AYaGA</bytes>
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>createDBorCollection:</string>
 							<string>dropDBorCollection:</string>
+							<string>exportToMySQL:</string>
+							<string>importFromMySQL:</string>
 							<string>query:</string>
 							<string>showAuth:</string>
 							<string>showCollStats:</string>
@@ -1837,6 +1920,8 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moFaAoF2AYaGA</bytes>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -2373,6 +2458,13 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moFaAoF2AYaGA</bytes>
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">MCPKit_bundled.framework/Headers/MCPNull.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">QuartzCore.framework/Headers/CAAnimation.h</string>
 					</object>
 				</object>
@@ -2613,6 +2705,8 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moFaAoF2AYaGA</bytes>
 				<string>NSRemoveTemplate</string>
 				<string>collectionmenu</string>
 				<string>dbmenu</string>
+				<string>exportbox</string>
+				<string>importbox</string>
 				<string>key</string>
 				<string>querymenu</string>
 				<string>servermenu</string>
@@ -2624,6 +2718,8 @@ ZQCUhAEqhIQMe19OU1NpemU9ZmZ9moFaAoF2AYaGA</bytes>
 				<string>{9, 8}</string>
 				<string>{7, 2}</string>
 				<string>{8, 8}</string>
+				<string>{32, 32}</string>
+				<string>{32, 32}</string>
 				<string>{32, 32}</string>
 				<string>{32, 32}</string>
 				<string>{24, 24}</string>
