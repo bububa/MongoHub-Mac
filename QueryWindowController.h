@@ -17,6 +17,7 @@
     NSManagedObjectContext *managedObjectContext;
     DatabasesArrayController *databasesArrayController;
     IBOutlet ResultsOutlineViewController *findResultsViewController;
+    IBOutlet NSOutlineView *findResultsOutlineView;
     MongoDB *mongoDB;
     NSString *dbname;
     NSString *collectionname;
@@ -68,6 +69,7 @@
 @property (nonatomic, retain) NSTextField *sortTextField;
 @property (nonatomic, retain) BWInsetTextField *totalResultsTextField;
 @property (nonatomic, retain) NSTextField *findQueryTextField;
+@property (nonatomic, retain) NSOutlineView *findResultsOutlineView;
 
 @property (nonatomic, retain) NSTextField *updateCriticalTextField;
 @property (nonatomic, retain) NSTextField *updateSetTextField;
@@ -92,6 +94,8 @@
 @property (nonatomic, retain) ResultsOutlineViewController *mrOutlineViewController;
 
 - (IBAction)findQuery:(id)sender;
+- (IBAction)expandFindResults:(id)sender;
+- (IBAction)collapseFindResults:(id)sender;
 - (IBAction)updateQuery:(id)sender;
 - (IBAction)removeQuery:(id)sender;
 - (IBAction)insertQuery:(id)sender;

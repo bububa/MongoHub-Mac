@@ -32,6 +32,7 @@
 @synthesize sortTextField;
 @synthesize totalResultsTextField;
 @synthesize findQueryTextField;
+@synthesize findResultsOutlineView;
 
 @synthesize updateCriticalTextField;
 @synthesize updateSetTextField;
@@ -77,6 +78,7 @@
     [sortTextField release];
     [totalResultsTextField release];
     [findQueryTextField release];
+    [findResultsOutlineView release];
     
     [updateCriticalTextField release];
     [updateSetTextField release];
@@ -142,7 +144,7 @@
                                                                                  skip:skip 
                                                                                 limit:limit
                                                                                  sort:sort]];
-    int total = [mongoDB countInDB:dbname 
+    long long int total = [mongoDB countInDB:dbname 
                        collection:collectionname 
                              user:user 
                          password:password 
@@ -151,6 +153,16 @@
     findResultsViewController.results = results;
     [findResultsViewController.myOutlineView reloadData];
     [results release];
+}
+
+- (IBAction)expandFindResults:(id)sender
+{
+    [findResultsOutlineView expandItem:nil expandChildren:YES];
+}
+
+- (IBAction)collapseFindResults:(id)sender
+{
+    [findResultsOutlineView collapseItem:nil collapseChildren:YES];
 }
 
 - (IBAction)updateQuery:(id)sender

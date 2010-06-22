@@ -114,27 +114,23 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 	
 	return nil;
 }
-/*
+
 #pragma mark -
 #pragma mark NSOutlineView delegate methods
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification
 {
-	switch([outlineView selectedRow])
+	switch([myOutlineView selectedRow])
 	{
 		case -1:
-			// If nothing is now selected, disable the "Remove" button
-			if([outlineView selectedRow] == -1)
-				[removeButton setEnabled:NO];
 			break;
-            
-		case 1:
-			// If an email is selected, display the message body in the field
-			[mailText setString:[[mailOutlineView itemAtRow:[mailOutlineView selectedRow]] messageBody]];
-			
 		default:
-			[removeButton setEnabled:YES];
+            if ([myOutlineView isItemExpanded:[myOutlineView itemAtRow:[myOutlineView selectedRow]]]) {
+                [myOutlineView collapseItem:[myOutlineView itemAtRow:[myOutlineView selectedRow]] collapseChildren:YES];
+            }else {
+                [myOutlineView expandItem:[myOutlineView itemAtRow:[myOutlineView selectedRow]] expandChildren:YES];
+            }
 			break;
 	}
 }
-*/
+
 @end
