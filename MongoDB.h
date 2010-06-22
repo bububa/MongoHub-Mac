@@ -12,6 +12,7 @@
 @interface MongoDB : NSObject {
     mongo::DBClientConnection *conn;
 }
+- (mongo::DBClientConnection *)mongoConnection;
 
 - (id)initWithConn:(NSString *)host;
 - (bool)connect:(NSString *)host;
@@ -67,6 +68,13 @@
                user:(NSString *)user 
            password:(NSString *)password 
            insertData:(NSString *)insertData;
+- (void) insertInDB:(NSString *)dbname 
+         collection:(NSString *)collectionname 
+               user:(NSString *)user 
+           password:(NSString *)password 
+               data:(NSDictionary *)insertData 
+             fields:(NSArray *)fields 
+         fieldTypes:(NSDictionary *)fieldTypes;
 - (NSMutableArray *) indexInDB:(NSString *)dbname 
                     collection:(NSString *)collectionname 
                           user:(NSString *)user 
@@ -85,7 +93,7 @@
                   user:(NSString *)user 
               password:(NSString *)password 
              indexName:(NSString *)indexName;
-- (int) countInDB:(NSString *)dbname 
+- (long long int) countInDB:(NSString *)dbname 
        collection:(NSString *)collectionname 
              user:(NSString *)user 
          password:(NSString *)password 
@@ -100,4 +108,7 @@
                            output:output;
 - (NSMutableArray *) bsonDictWrapper:(mongo::BSONObj)retval;
 - (NSMutableArray *) bsonArrayWrapper:(mongo::BSONObj)retval;
+
+- (std::auto_ptr<mongo::DBClientCursor>) findAllCursorInDB:(NSString *)dbname collection:(NSString *)collectionname user:(NSString *)user password:(NSString *)password fields:(mongo::BSONObj) fields;
+
 @end

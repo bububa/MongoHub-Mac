@@ -13,10 +13,14 @@
 
 @implementation MongoDB
 
-
 - (id)init {
     self = [super init];
     return self;
+}
+
+- (mongo::DBClientConnection *)mongoConnection
+{
+    return conn;
 }
 
 - (id)initWithConn:(NSString *)host {
@@ -231,7 +235,6 @@
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
 }
-
 
 - (NSMutableArray *) findInDB:(NSString *)dbname 
                    collection:(NSString *)collectionname 
@@ -488,6 +491,80 @@
     }
 }
 
+- (void) insertInDB:(NSString *)dbname 
+         collection:(NSString *)collectionname 
+               user:(NSString *)user 
+           password:(NSString *)password 
+               data:(NSDictionary *)insertData 
+             fields:(NSArray *)fields 
+         fieldTypes:(NSDictionary *)fieldTypes 
+{
+    try {
+        if ([user length]>0 && [password length]>0) {
+            std::string errmsg;
+            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            if (!ok) {
+                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
+                return;
+            }
+        }
+        NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
+        mongo::BSONObjBuilder b;
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        for (int i=0; i<[fields count]; i++) {
+            NSString *fieldName = [fields objectAtIndex:i];
+            NSString *ft = [fieldTypes objectForKey:fieldName];
+            id aValue = [insertData objectForKey:fieldName];
+            if (aValue == [NSString nullValue])
+                b.appendNull([fieldName UTF8String]);
+            else if ([ft isEqualToString:@"varstring"] || [ft isEqualToString:@"string"])
+                b.append([fieldName UTF8String], [aValue UTF8String]);
+            else if ([ft isEqualToString:@"float"])
+                b.append([fieldName UTF8String], [aValue floatValue]);
+            else if ([ft isEqualToString:@"double"] || [ft isEqualToString:@"decimal"])
+                b.append([fieldName UTF8String], [aValue doubleValue]);
+            else if ([ft isEqualToString:@"longlong"])
+                b.append([fieldName UTF8String], [aValue longLongValue]);
+            else if ([ft isEqualToString:@"bool"])
+                b.append([fieldName UTF8String], [aValue boolValue]);
+            else if ([ft isEqualToString:@"int24"] || [ft isEqualToString:@"long"])
+                b.append([fieldName UTF8String], [aValue intValue]);
+            else if ([ft isEqualToString:@"tiny"] || [ft isEqualToString:@"short"])
+                b.append([fieldName UTF8String], [aValue shortValue]);
+            else if ([ft isEqualToString:@"date"]) {
+                time_t timestamp = [aValue timeIntervalSince1970];
+                b.appendDate([fieldName UTF8String], mongo::Date_t(timestamp));
+            }else if ([ft isEqualToString:@"datetime"] || [ft isEqualToString:@"timestamp"] || [ft isEqualToString:@"year"]) {
+                time_t timestamp = [aValue timeIntervalSince1970];
+                b.appendTimeT([fieldName UTF8String], timestamp);
+            }else if ([ft isEqualToString:@"time"]) {
+                [dateFormatter setDateFormat:@"HH:mm:ss"];
+                NSDate *dateFromString = [dateFormatter dateFromString:aValue];
+                time_t timestamp = [dateFromString timeIntervalSince1970];
+                b.appendTimeT([fieldName UTF8String], timestamp);
+            }else if ([ft isEqualToString:@"blob"]) {
+                if ([aValue isKindOfClass:[NSString class]]) {
+                    b.append([fieldName UTF8String], [aValue UTF8String]);
+                }else {
+                    int bLen = [aValue length];
+                    mongo::BinDataType binType = (mongo::BinDataType)0;
+                    const char *bData = (char *)[aValue bytes];
+                    b.appendBinData([fieldName UTF8String], bLen, binType, bData);
+                }
+            }
+        }
+        [dateFormatter release];
+        mongo::BSONObj insertDataBSON = b.obj();
+        mongo::BSONObj emptyBSON;
+        if (insertDataBSON == emptyBSON) {
+            return;
+        }
+        conn->insert(std::string([col UTF8String]), insertDataBSON);
+    }catch (mongo::DBException &e) {
+        NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
+    }
+}
+
 - (NSMutableArray *) indexInDB:(NSString *)dbname 
          collection:(NSString *)collectionname 
                user:(NSString *)user 
@@ -607,7 +684,7 @@
     }
 }
 
-- (int) countInDB:(NSString *)dbname 
+- (long long int) countInDB:(NSString *)dbname 
                    collection:(NSString *)collectionname 
                          user:(NSString *)user 
                      password:(NSString *)password 
@@ -640,7 +717,7 @@
                 return nil;
             }
         }
-        int counter = conn->count(std::string([col UTF8String]), criticalBSON);
+        long long int counter = conn->count(std::string([col UTF8String]), criticalBSON);
         return counter;
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
@@ -733,7 +810,10 @@
 
                 fieldType = @"Object";
             }else{
-                if (e.type() == mongo::Bool) {
+                if (e.type() == mongo::jstNULL) {
+                    fieldType = @"NULL";
+                    value = @"NULL";
+                }else if (e.type() == mongo::Bool) {
                     fieldType = @"Bool";
                     if (e.boolean()) {
                         value = @"YES";
@@ -742,20 +822,29 @@
                     }
                 }else if (e.type() == mongo::NumberDouble) {
                     fieldType = @"Double";
-                    value = [NSString stringWithFormat:@"%f", e.number()];
+                    value = [NSString stringWithFormat:@"%f", e.numberDouble()];
                 }else if (e.type() == mongo::NumberInt) {
                     fieldType = @"Int";
-                    value = [NSString stringWithFormat:@"%d", (int)(e.number())];
+                    value = [NSString stringWithFormat:@"%d", (int)(e.numberInt())];
                 }else if (e.type() == mongo::Date) {
                     fieldType = @"Date";
-                    value = [NSString stringWithFormat:@"%d", (int)e.date()];
+                    mongo::Date_t dt = (time_t)e.date();
+                    time_t timestamp = dt / 1000;
+                    NSDate *someDate = [NSDate dateWithTimeIntervalSince1970:timestamp];
+                    value = [someDate description];
+                }else if (e.type() == mongo::Timestamp) {
+                    fieldType = @"Timestamp";
+                    time_t timestamp = (time_t)e.timestampTime();
+                    NSDate *someDate = [NSDate dateWithTimeIntervalSince1970:timestamp];
+                    value = [someDate description];
                 }else if (e.type() == mongo::BinData) {
-                    int binlen;
+                    //int binlen;
                     fieldType = @"BinData";
-                    value = [NSString stringWithUTF8String:e.binData(binlen)];
+                    //value = [NSString stringWithUTF8String:e.binData(binlen)];
+                    value = @"binary";
                 }else if (e.type() == mongo::NumberLong) {
                     fieldType = @"Long";
-                    value = [NSString stringWithFormat:@"%d", (long long int)(e.number())];
+                    value = [NSString stringWithFormat:@"%d", e.numberLong()];
                 }else if ([fieldName isEqualToString:@"_id" ]) {
                     if (e.type() == mongo::jstOID)
                     {
@@ -834,7 +923,10 @@
                 }
                 fieldType = @"Object";
             }else{
-                if (e.type() == mongo::Bool) {
+                if (e.type() == mongo::jstNULL) {
+                    fieldType = @"NULL";
+                    value = @"NULL";
+                }else if (e.type() == mongo::Bool) {
                     fieldType = @"Bool";
                     if (e.boolean()) {
                         value = @"YES";
@@ -846,34 +938,47 @@
                     }
                 }else if (e.type() == mongo::NumberDouble) {
                     fieldType = @"Double";
-                    value = [NSString stringWithFormat:@"%f", e.number()];
+                    value = [NSString stringWithFormat:@"%f", e.numberDouble()];
                     if (hasId) {
-                        [arr addObject:[NSNumber numberWithDouble:e.number()]];
+                        [arr addObject:[NSNumber numberWithDouble:e.numberDouble()]];
                     }
                 }else if (e.type() == mongo::NumberInt) {
                     fieldType = @"Int";
-                    value = [NSString stringWithFormat:@"%d", (int)(e.number())];
+                    value = [NSString stringWithFormat:@"%d", (int)(e.numberInt())];
                     if (hasId) {
-                        [arr addObject:[NSNumber numberWithInt:e.number()]];
+                        [arr addObject:[NSNumber numberWithInt:e.numberInt()]];
                     }
                 }else if (e.type() == mongo::Date) {
                     fieldType = @"Date";
-                    value = [NSString stringWithFormat:@"%d", (int)e.date()];
+                    mongo::Date_t dt = (time_t)e.date();
+                    time_t timestamp = dt / 1000;
+                    NSDate *someDate = [NSDate dateWithTimeIntervalSince1970:timestamp];
+                    value = [someDate description];
                     if (hasId) {
-                        [arr addObject:[NSNumber numberWithInt:e.date()]];
+                        [arr addObject:[someDate description]];
+                    }
+                }else if (e.type() == mongo::Timestamp) {
+                    fieldType = @"Timestamp";
+                    time_t timestamp = (time_t)e.timestampTime();
+                    NSDate *someDate = [NSDate dateWithTimeIntervalSince1970:timestamp];
+                    value = [someDate description];
+                    if (hasId) {
+                        [arr addObject:[someDate description]];
                     }
                 }else if (e.type() == mongo::BinData) {
                     fieldType = @"BinData";
-                    int binlen;
-                    value = [NSString stringWithUTF8String:e.binData(binlen)];
+                    //int binlen;
+                    //value = [NSString stringWithUTF8String:e.binData(binlen)];
+                    value = @"binary";
                     if (hasId) {
-                        [arr addObject:[NSString stringWithUTF8String:e.binData(binlen)]];
+                        //[arr addObject:[NSString stringWithUTF8String:e.binData(binlen)]];
+                        [arr addObject:@"binary"];
                     }
                 }else if (e.type() == mongo::NumberLong) {
                     fieldType = @"Long";
-                    value = [NSString stringWithFormat:@"%d", (long long int)(e.number())];
+                    value = [NSString stringWithFormat:@"%d", e.numberLong()];
                     if (hasId) {
-                        [arr addObject:[NSString stringWithFormat:@"%d", (long long int)(e.number())]];
+                        [arr addObject:[NSString stringWithFormat:@"%d", e.numberLong()]];
                     }
                 }else if (e.type() == mongo::jstOID) {
                     fieldType = @"ObjectId";
@@ -902,6 +1007,27 @@
         return arr;
     }
     return nil;
+}
+
+- (std::auto_ptr<mongo::DBClientCursor>) findAllCursorInDB:(NSString *)dbname collection:(NSString *)collectionname user:(NSString *)user password:(NSString *)password fields:(mongo::BSONObj) fields
+{
+    std::auto_ptr<mongo::DBClientCursor> cursor;
+    try {
+        if ([user length]>0 && [password length]>0) {
+            std::string errmsg;
+            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            if (!ok) {
+                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
+                return cursor;
+            }
+        }
+        NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
+        std::auto_ptr<mongo::DBClientCursor> cursor = conn->query(std::string([col UTF8String]), mongo::Query(), 0, 0, &fields);
+        return cursor;
+    }catch (mongo::DBException &e) {
+        NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
+    }
+    return cursor;
 }
 
 @end
