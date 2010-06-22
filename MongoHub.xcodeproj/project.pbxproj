@@ -22,9 +22,19 @@
 		1D210BFB1192FF06000EF41C /* key.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D210BFA1192FF06000EF41C /* key.png */; };
 		1D210BFE119301BA000EF41C /* AuthWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D210BFD119301BA000EF41C /* AuthWindowController.m */; };
 		1D210C0011930E18000EF41C /* Auth.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D210BFF11930E18000EF41C /* Auth.xib */; };
+		1D26614E11CFC47C0092C6B5 /* ExportWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D26614D11CFC47C0092C6B5 /* ExportWindowController.mm */; };
+		1D26615211CFC5BE0092C6B5 /* Export.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D26615111CFC5BE0092C6B5 /* Export.xib */; };
+		1D26619111CFD1640092C6B5 /* FieldMapDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D26619011CFD1640092C6B5 /* FieldMapDataObject.m */; };
+		1D26619411CFD2560092C6B5 /* FieldMapTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D26619311CFD2560092C6B5 /* FieldMapTableController.m */; };
 		1D58BE0B118ED8D20045A044 /* mapreducemenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D58BE0A118ED8D20045A044 /* mapreducemenu.png */; };
 		1D58BE37118EFF810045A044 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D93C24A118334F6003216F7 /* BWToolkitFramework.framework */; };
 		1D58BE40118EFF9F0045A044 /* SSHTunnel.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D79922F11872DE4009C187F /* SSHTunnel.framework */; };
+		1D601B3811C8E13000C86274 /* exportmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B3611C8E13000C86274 /* exportmenu.png */; };
+		1D601B3911C8E13000C86274 /* importmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B3711C8E13000C86274 /* importmenu.png */; };
+		1D601B3D11C8E7F900C86274 /* exportbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B3B11C8E7F900C86274 /* exportbox.png */; };
+		1D601B3E11C8E7F900C86274 /* importbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B3C11C8E7F900C86274 /* importbox.png */; };
+		1D601B5211C8F08C00C86274 /* ImportWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D601B5111C8F08C00C86274 /* ImportWindowController.mm */; };
+		1D601B5611C8F24300C86274 /* Import.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B5511C8F24300C86274 /* Import.xib */; };
 		1D79923011872DE4009C187F /* SSHTunnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D79922F11872DE4009C187F /* SSHTunnel.framework */; };
 		1D799455118755EE009C187F /* AddDBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D799454118755EE009C187F /* AddDBController.m */; };
 		1D79945711875E7A009C187F /* NewDB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D79945611875E7A009C187F /* NewDB.xib */; };
@@ -66,6 +76,8 @@
 		1DA6804A118875B300DFDD29 /* runmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DA68045118875B300DFDD29 /* runmenu.png */; };
 		1DA6804B118875B300DFDD29 /* updatemenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DA68046118875B300DFDD29 /* updatemenu.png */; };
 		1DA6806C11888BDD00DFDD29 /* NSString+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA6806B11888BDD00DFDD29 /* NSString+Extras.m */; };
+		1DF865D811C8FEF000DF7493 /* MCPKit_bundled.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF865D711C8FEF000DF7493 /* MCPKit_bundled.framework */; };
+		1DF8660F11C8FF1D00DF7493 /* MCPKit_bundled.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1DF865D711C8FEF000DF7493 /* MCPKit_bundled.framework */; };
 		1DF96E3B11881AED00C35AB8 /* AddCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF96E3A11881AED00C35AB8 /* AddCollectionController.m */; };
 		1DF96E3D11881EB400C35AB8 /* NewCollection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DF96E3C11881EB400C35AB8 /* NewCollection.xib */; };
 		1DF96F9211883B3800C35AB8 /* QueryWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1DF96F9111883B3800C35AB8 /* QueryWindowController.mm */; };
@@ -120,6 +132,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1DF8661511C8FF2600DF7493 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1DF8660F11C8FF1D00DF7493 /* MCPKit_bundled.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1DFC2A8B11970A4A006AA167 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -168,7 +190,21 @@
 		1D210BFC119301BA000EF41C /* AuthWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthWindowController.h; sourceTree = "<group>"; };
 		1D210BFD119301BA000EF41C /* AuthWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthWindowController.m; sourceTree = "<group>"; };
 		1D210BFF11930E18000EF41C /* Auth.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Auth.xib; sourceTree = "<group>"; };
+		1D26614C11CFC47C0092C6B5 /* ExportWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportWindowController.h; sourceTree = "<group>"; };
+		1D26614D11CFC47C0092C6B5 /* ExportWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ExportWindowController.mm; sourceTree = "<group>"; };
+		1D26615111CFC5BE0092C6B5 /* Export.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Export.xib; sourceTree = "<group>"; };
+		1D26618F11CFD1640092C6B5 /* FieldMapDataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldMapDataObject.h; sourceTree = "<group>"; };
+		1D26619011CFD1640092C6B5 /* FieldMapDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldMapDataObject.m; sourceTree = "<group>"; };
+		1D26619211CFD2560092C6B5 /* FieldMapTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldMapTableController.h; sourceTree = "<group>"; };
+		1D26619311CFD2560092C6B5 /* FieldMapTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldMapTableController.m; sourceTree = "<group>"; };
 		1D58BE0A118ED8D20045A044 /* mapreducemenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mapreducemenu.png; path = Resourses/images/mapreducemenu.png; sourceTree = SOURCE_ROOT; };
+		1D601B3611C8E13000C86274 /* exportmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = exportmenu.png; path = Resourses/images/exportmenu.png; sourceTree = SOURCE_ROOT; };
+		1D601B3711C8E13000C86274 /* importmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = importmenu.png; path = Resourses/images/importmenu.png; sourceTree = SOURCE_ROOT; };
+		1D601B3B11C8E7F900C86274 /* exportbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = exportbox.png; path = Resourses/images/exportbox.png; sourceTree = SOURCE_ROOT; };
+		1D601B3C11C8E7F900C86274 /* importbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = importbox.png; path = Resourses/images/importbox.png; sourceTree = SOURCE_ROOT; };
+		1D601B5011C8F08C00C86274 /* ImportWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportWindowController.h; sourceTree = "<group>"; };
+		1D601B5111C8F08C00C86274 /* ImportWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImportWindowController.mm; sourceTree = "<group>"; };
+		1D601B5511C8F24300C86274 /* Import.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Import.xib; sourceTree = "<group>"; };
 		1D79922F11872DE4009C187F /* SSHTunnel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSHTunnel.framework; path = /Library/PrivateFrameWorks/SSHTunnel.framework; sourceTree = "<absolute>"; };
 		1D799453118755EE009C187F /* AddDBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDBController.h; sourceTree = "<group>"; };
 		1D799454118755EE009C187F /* AddDBController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDBController.m; sourceTree = "<group>"; };
@@ -229,6 +265,7 @@
 		1DA68046118875B300DFDD29 /* updatemenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = updatemenu.png; path = Resourses/images/updatemenu.png; sourceTree = SOURCE_ROOT; };
 		1DA6806A11888BDD00DFDD29 /* NSString+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extras.h"; sourceTree = "<group>"; };
 		1DA6806B11888BDD00DFDD29 /* NSString+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extras.m"; sourceTree = "<group>"; };
+		1DF865D711C8FEF000DF7493 /* MCPKit_bundled.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MCPKit_bundled.framework; path = /Library/PrivateFrameWorks/MCPKit_bundled.framework; sourceTree = "<absolute>"; };
 		1DF96E3911881AED00C35AB8 /* AddCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCollectionController.h; sourceTree = "<group>"; };
 		1DF96E3A11881AED00C35AB8 /* AddCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCollectionController.m; sourceTree = "<group>"; };
 		1DF96E3C11881EB400C35AB8 /* NewCollection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCollection.xib; sourceTree = "<group>"; };
@@ -285,6 +322,7 @@
 				1D93C5F611839970003216F7 /* libboost_program_options.a in Frameworks */,
 				1D79923011872DE4009C187F /* SSHTunnel.framework in Frameworks */,
 				1DFC2A7C11970A1E006AA167 /* Sparkle.framework in Frameworks */,
+				1DF865D811C8FEF000DF7493 /* MCPKit_bundled.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +360,7 @@
 				1D93C24A118334F6003216F7 /* BWToolkitFramework.framework */,
 				1D79922F11872DE4009C187F /* SSHTunnel.framework */,
 				1DFC2A7B11970A1E006AA167 /* Sparkle.framework */,
+				1DF865D711C8FEF000DF7493 /* MCPKit_bundled.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -388,6 +427,8 @@
 				1D93C24E11833599003216F7 /* ConnectionsArrayController.m */,
 				1D93C7471184369D003216F7 /* DatabasesArrayController.h */,
 				1D93C7481184369D003216F7 /* DatabasesArrayController.m */,
+				1D26619211CFD2560092C6B5 /* FieldMapTableController.h */,
+				1D26619311CFD2560092C6B5 /* FieldMapTableController.m */,
 			);
 			name = ArrayControllers;
 			sourceTree = "<group>";
@@ -395,6 +436,10 @@
 		1D93C27011833A19003216F7 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				1D601B3B11C8E7F900C86274 /* exportbox.png */,
+				1D601B3C11C8E7F900C86274 /* importbox.png */,
+				1D601B3611C8E13000C86274 /* exportmenu.png */,
+				1D601B3711C8E13000C86274 /* importmenu.png */,
 				1D210BFA1192FF06000EF41C /* key.png */,
 				1D58BE0A118ED8D20045A044 /* mapreducemenu.png */,
 				1D1D65A21189F05600582917 /* Icon.icns */,
@@ -445,6 +490,10 @@
 				1DF96F9111883B3800C35AB8 /* QueryWindowController.mm */,
 				1D210BFC119301BA000EF41C /* AuthWindowController.h */,
 				1D210BFD119301BA000EF41C /* AuthWindowController.m */,
+				1D601B5011C8F08C00C86274 /* ImportWindowController.h */,
+				1D601B5111C8F08C00C86274 /* ImportWindowController.mm */,
+				1D26614C11CFC47C0092C6B5 /* ExportWindowController.h */,
+				1D26614D11CFC47C0092C6B5 /* ExportWindowController.mm */,
 			);
 			name = ConnectionWindow;
 			sourceTree = "<group>";
@@ -478,6 +527,8 @@
 				1D93C60A11841865003216F7 /* MongoDB.mm */,
 				1DA6806A11888BDD00DFDD29 /* NSString+Extras.h */,
 				1DA6806B11888BDD00DFDD29 /* NSString+Extras.m */,
+				1D26618F11CFD1640092C6B5 /* FieldMapDataObject.h */,
+				1D26619011CFD1640092C6B5 /* FieldMapDataObject.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -521,6 +572,8 @@
 				1DF96E3C11881EB400C35AB8 /* NewCollection.xib */,
 				1DF96F9311883D5E00C35AB8 /* QueryWindow.xib */,
 				1D210BFF11930E18000EF41C /* Auth.xib */,
+				1D601B5511C8F24300C86274 /* Import.xib */,
+				1D26615111CFC5BE0092C6B5 /* Export.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -588,6 +641,7 @@
 				1D58BE3A118EFF840045A044 /* CopyFiles */,
 				1D58BE45118EFFBD0045A044 /* CopyFiles */,
 				1DFC2A8B11970A4A006AA167 /* CopyFiles */,
+				1DF8661511C8FF2600DF7493 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -662,6 +716,12 @@
 				1D210BFB1192FF06000EF41C /* key.png in Resources */,
 				1D210C0011930E18000EF41C /* Auth.xib in Resources */,
 				1DFC2A8D11970BD0006AA167 /* dsa_pub.pem in Resources */,
+				1D601B3811C8E13000C86274 /* exportmenu.png in Resources */,
+				1D601B3911C8E13000C86274 /* importmenu.png in Resources */,
+				1D601B3D11C8E7F900C86274 /* exportbox.png in Resources */,
+				1D601B3E11C8E7F900C86274 /* importbox.png in Resources */,
+				1D601B5611C8F24300C86274 /* Import.xib in Resources */,
+				1D26615211CFC5BE0092C6B5 /* Export.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,6 +772,10 @@
 				1D20AC931188B28000D9D4C5 /* SBJsonParser.m in Sources */,
 				1D20AC941188B28000D9D4C5 /* SBJsonWriter.m in Sources */,
 				1D210BFE119301BA000EF41C /* AuthWindowController.m in Sources */,
+				1D601B5211C8F08C00C86274 /* ImportWindowController.mm in Sources */,
+				1D26614E11CFC47C0092C6B5 /* ExportWindowController.mm in Sources */,
+				1D26619111CFD1640092C6B5 /* FieldMapDataObject.m in Sources */,
+				1D26619411CFD2560092C6B5 /* FieldMapTableController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
