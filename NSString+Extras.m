@@ -68,4 +68,9 @@
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
++ (NSNull *)nullValue
+{
+    return [NSNull null];
+}
+
 @end

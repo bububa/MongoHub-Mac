@@ -24,4 +24,6 @@
 - (int)countSubstring:(NSString *)aString ignoringCase:(BOOL)flag;
 - (NSString *)stringByTrimmingWhitespace;
 
++ (NSNull *)nullValue;
+
 @end
