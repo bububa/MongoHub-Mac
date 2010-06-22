@@ -11,3 +11,5 @@
 #define kNewDBWindowWillClose @"NewDBWindowWillClose"
 #define kNewCollectionWindowWillClose @"NewCollectionWindowWillClose"
 #define kAuthWindowWillClose @"AuthWindowWillClose"
+#define kImportWindowWillClose @"ImportWindowWillClose"
+#define kExportWindowWillClose @"ExportWindowWillClose"
