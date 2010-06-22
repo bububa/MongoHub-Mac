@@ -5,6 +5,13 @@ This project is very new. Any issues or bug reports are welcome.
 
 *If you are using the version less than 2.0.8, you need to remove ~/Library/Application\ Support/MongoHub directory and restart the new version.
 
+[Last Update 2.1.0]
+Auto expand and collaspe finding results;
+Display Date_t or Timestamp as GMT time format;
+Fixed a bug in display ObjectIds in Array element;
+Import data from mysql database to mongodb;
+Export data from mongodb to mysql database.
+
 [Last Update 2.0.9]
 Add support for mongohq.com;
 Changed update behavior;
