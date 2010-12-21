@@ -21,7 +21,7 @@
 #import "Sidebar.h"
 #import "SidebarNode.h"
 #import "MongoDB.h"
-#import <SSHTunnel/SSHTunnel.h>
+#import "Tunnel.h"
 
 @implementation ConnectionWindowController
 
@@ -44,9 +44,14 @@
 @synthesize importWindowController;
 @synthesize exportWindowController;
 
+
 - (id)init {
     if (![super initWithWindowNibName:@"ConnectionWindow"]) return nil;
     return self;
+}
+
+- (void)sshConnected:(NSNotification*)aNotification {
+    NSLog(@"connected");
 }
 
 - (void)windowDidLoad {
@@ -57,16 +62,18 @@
     
     NSString *hostaddress;
     if ([conn.usessh intValue]==1) {
-        sshTunnel = [SSHTunnel sshTunnelWithHostname:conn.sshhost 
-                                                port:[conn.sshport intValue] 
-                                            username:conn.sshpassword 
-                                            password:conn.sshpassword];
-        [sshTunnel addLocalForwardWithBindAddress:conn.bindaddress 
-                                         bindPort:[conn.bindport intValue] 
-                                             host:conn.host 
-                                         hostPort:[conn.hostport intValue]];
-        [sshTunnel launch];
-        hostaddress = [NSString stringWithFormat:@"%@:%@", conn.bindaddress, conn.bindport];
+        NSString *portForward = [[NSString alloc] initWithFormat:@"L %d:%@:%d", conn.hostport, conn.bindaddress, conn.bindport];
+        NSMutableArray *portForwardings = [NSMutableArray arrayWithObjects:portForward, nil];
+        [portForward release];
+        [sshTunnel setUser:conn.sshuser];
+        [sshTunnel setPort:[conn.sshport intValue]];
+        [sshTunnel setPortForwardings:portForwardings];
+        [sshTunnel setAliveCountMax:3];
+        [sshTunnel setAliveInterval:30];
+        [sshTunnel setTcpKeepAlive:YES];
+        [sshTunnel setCompression:YES];NSLog(@"here");
+        [sshTunnel start];
+        hostaddress = [NSString stringWithFormat:@"%@:%@", conn.host, conn.hostport];
     }else if ([conn.host isEqualToString:@"flame.mongohq.com"]) {
         hostaddress = [NSString stringWithFormat:@"%@:%@/%@", conn.host, conn.hostport, conn.defaultdb];
     }else {

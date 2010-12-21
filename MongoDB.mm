@@ -533,7 +533,7 @@
                 b.append([fieldName UTF8String], [aValue shortValue]);
             else if ([ft isEqualToString:@"date"]) {
                 time_t timestamp = [aValue timeIntervalSince1970];
-                b.appendDate([fieldName UTF8String], mongo::Date_t(timestamp));
+                b.appendDate([fieldName UTF8String], timestamp);
             }else if ([ft isEqualToString:@"datetime"] || [ft isEqualToString:@"timestamp"] || [ft isEqualToString:@"year"]) {
                 time_t timestamp = [aValue timeIntervalSince1970];
                 b.appendTimeT([fieldName UTF8String], timestamp);
@@ -854,6 +854,9 @@
                         fieldType = @"String";
                         value = [NSString stringWithUTF8String:e.str().c_str()];
                     }
+                }else if (e.type() == mongo::jstOID) {
+                    fieldType = @"ObjectId";
+                    value = [NSString stringWithUTF8String:e.__oid().str().c_str()];
                 }else {
                     fieldType = @"String";
                     value = [NSString stringWithUTF8String:e.str().c_str()];

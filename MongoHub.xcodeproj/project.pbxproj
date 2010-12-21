@@ -28,14 +28,12 @@
 		1D26619411CFD2560092C6B5 /* FieldMapTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D26619311CFD2560092C6B5 /* FieldMapTableController.m */; };
 		1D58BE0B118ED8D20045A044 /* mapreducemenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D58BE0A118ED8D20045A044 /* mapreducemenu.png */; };
 		1D58BE37118EFF810045A044 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D93C24A118334F6003216F7 /* BWToolkitFramework.framework */; };
-		1D58BE40118EFF9F0045A044 /* SSHTunnel.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D79922F11872DE4009C187F /* SSHTunnel.framework */; };
 		1D601B3811C8E13000C86274 /* exportmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B3611C8E13000C86274 /* exportmenu.png */; };
 		1D601B3911C8E13000C86274 /* importmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B3711C8E13000C86274 /* importmenu.png */; };
 		1D601B3D11C8E7F900C86274 /* exportbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B3B11C8E7F900C86274 /* exportbox.png */; };
 		1D601B3E11C8E7F900C86274 /* importbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B3C11C8E7F900C86274 /* importbox.png */; };
 		1D601B5211C8F08C00C86274 /* ImportWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D601B5111C8F08C00C86274 /* ImportWindowController.mm */; };
 		1D601B5611C8F24300C86274 /* Import.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B5511C8F24300C86274 /* Import.xib */; };
-		1D79923011872DE4009C187F /* SSHTunnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D79922F11872DE4009C187F /* SSHTunnel.framework */; };
 		1D799455118755EE009C187F /* AddDBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D799454118755EE009C187F /* AddDBController.m */; };
 		1D79945711875E7A009C187F /* NewDB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D79945611875E7A009C187F /* NewDB.xib */; };
 		1D8A624E11897C6800D55937 /* indexmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D8A624D11897C6800D55937 /* indexmenu.png */; };
@@ -76,6 +74,9 @@
 		1DA6804A118875B300DFDD29 /* runmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DA68045118875B300DFDD29 /* runmenu.png */; };
 		1DA6804B118875B300DFDD29 /* updatemenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DA68046118875B300DFDD29 /* updatemenu.png */; };
 		1DA6806C11888BDD00DFDD29 /* NSString+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA6806B11888BDD00DFDD29 /* NSString+Extras.m */; };
+		1DEC7F3B12B7ECAD00FC804E /* Tunnel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DEC7F3A12B7ECAC00FC804E /* Tunnel.m */; };
+		1DEC7FF112B7EDB900FC804E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEC7FF012B7EDB900FC804E /* Security.framework */; };
+		1DEC803512B7EE2100FC804E /* SSHCommand.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1DEC803412B7EE2100FC804E /* SSHCommand.sh */; };
 		1DF865D811C8FEF000DF7493 /* MCPKit_bundled.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF865D711C8FEF000DF7493 /* MCPKit_bundled.framework */; };
 		1DF8660F11C8FF1D00DF7493 /* MCPKit_bundled.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1DF865D711C8FEF000DF7493 /* MCPKit_bundled.framework */; };
 		1DF96E3B11881AED00C35AB8 /* AddCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF96E3A11881AED00C35AB8 /* AddCollectionController.m */; };
@@ -128,7 +129,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1D58BE40118EFF9F0045A044 /* SSHTunnel.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,12 +205,11 @@
 		1D601B5011C8F08C00C86274 /* ImportWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportWindowController.h; sourceTree = "<group>"; };
 		1D601B5111C8F08C00C86274 /* ImportWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImportWindowController.mm; sourceTree = "<group>"; };
 		1D601B5511C8F24300C86274 /* Import.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Import.xib; sourceTree = "<group>"; };
-		1D79922F11872DE4009C187F /* SSHTunnel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSHTunnel.framework; path = /Library/PrivateFrameWorks/SSHTunnel.framework; sourceTree = "<absolute>"; };
 		1D799453118755EE009C187F /* AddDBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDBController.h; sourceTree = "<group>"; };
 		1D799454118755EE009C187F /* AddDBController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDBController.m; sourceTree = "<group>"; };
 		1D79945611875E7A009C187F /* NewDB.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewDB.xib; sourceTree = "<group>"; };
 		1D8A624D11897C6800D55937 /* indexmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = indexmenu.png; path = Resourses/images/indexmenu.png; sourceTree = SOURCE_ROOT; };
-		1D93C1AD11832A71003216F7 /* libmongoclient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmongoclient.a; path = ../../../../../../usr/local/lib/libmongoclient.a; sourceTree = SOURCE_ROOT; };
+		1D93C1AD11832A71003216F7 /* libmongoclient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmongoclient.a; path = /usr/local/lib/libmongoclient.a; sourceTree = "<absolute>"; };
 		1D93C1D811832C1D003216F7 /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
 		1D93C1D911832C1D003216F7 /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
 		1D93C1DE11833342003216F7 /* ConnectionsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsCollectionView.h; sourceTree = "<group>"; };
@@ -248,10 +247,10 @@
 		1D93C45011837668003216F7 /* SidebarBadgeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SidebarBadgeCell.m; path = Sidebar/SidebarBadgeCell.m; sourceTree = SOURCE_ROOT; };
 		1D93C45111837668003216F7 /* SidebarNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SidebarNode.h; path = Sidebar/SidebarNode.h; sourceTree = SOURCE_ROOT; };
 		1D93C45211837668003216F7 /* SidebarNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SidebarNode.m; path = Sidebar/SidebarNode.m; sourceTree = SOURCE_ROOT; };
-		1D93C5EF1183992E003216F7 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = ../../../../../../usr/local/lib/libboost_system.a; sourceTree = SOURCE_ROOT; };
-		1D93C5F111839940003216F7 /* libboost_thread.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_thread.a; path = ../../../../../../usr/local/lib/libboost_thread.a; sourceTree = SOURCE_ROOT; };
-		1D93C5F311839959003216F7 /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = ../../../../../../usr/local/lib/libboost_filesystem.a; sourceTree = SOURCE_ROOT; };
-		1D93C5F511839970003216F7 /* libboost_program_options.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_program_options.a; path = ../../../../../../usr/local/lib/libboost_program_options.a; sourceTree = SOURCE_ROOT; };
+		1D93C5EF1183992E003216F7 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = /usr/local/lib/libboost_system.a; sourceTree = "<absolute>"; };
+		1D93C5F111839940003216F7 /* libboost_thread.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_thread.a; path = /usr/local/lib/libboost_thread.a; sourceTree = "<absolute>"; };
+		1D93C5F311839959003216F7 /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = /usr/local/lib/libboost_filesystem.a; sourceTree = "<absolute>"; };
+		1D93C5F511839970003216F7 /* libboost_program_options.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_program_options.a; path = /usr/local/lib/libboost_program_options.a; sourceTree = "<absolute>"; };
 		1D93C60911841865003216F7 /* MongoDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MongoDB.h; sourceTree = "<group>"; };
 		1D93C60A11841865003216F7 /* MongoDB.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MongoDB.mm; sourceTree = "<group>"; };
 		1D93C7471184369D003216F7 /* DatabasesArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabasesArrayController.h; sourceTree = "<group>"; };
@@ -265,6 +264,10 @@
 		1DA68046118875B300DFDD29 /* updatemenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = updatemenu.png; path = Resourses/images/updatemenu.png; sourceTree = SOURCE_ROOT; };
 		1DA6806A11888BDD00DFDD29 /* NSString+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extras.h"; sourceTree = "<group>"; };
 		1DA6806B11888BDD00DFDD29 /* NSString+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extras.m"; sourceTree = "<group>"; };
+		1DEC7F3912B7ECAC00FC804E /* Tunnel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tunnel.h; sourceTree = "<group>"; };
+		1DEC7F3A12B7ECAC00FC804E /* Tunnel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tunnel.m; sourceTree = "<group>"; };
+		1DEC7FF012B7EDB900FC804E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		1DEC803412B7EE2100FC804E /* SSHCommand.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = SSHCommand.sh; sourceTree = "<group>"; };
 		1DF865D711C8FEF000DF7493 /* MCPKit_bundled.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MCPKit_bundled.framework; path = /Library/PrivateFrameWorks/MCPKit_bundled.framework; sourceTree = "<absolute>"; };
 		1DF96E3911881AED00C35AB8 /* AddCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCollectionController.h; sourceTree = "<group>"; };
 		1DF96E3A11881AED00C35AB8 /* AddCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCollectionController.m; sourceTree = "<group>"; };
@@ -320,9 +323,9 @@
 				1D93C5F211839940003216F7 /* libboost_thread.a in Frameworks */,
 				1D93C5F411839959003216F7 /* libboost_filesystem.a in Frameworks */,
 				1D93C5F611839970003216F7 /* libboost_program_options.a in Frameworks */,
-				1D79923011872DE4009C187F /* SSHTunnel.framework in Frameworks */,
 				1DFC2A7C11970A1E006AA167 /* Sparkle.framework in Frameworks */,
 				1DF865D811C8FEF000DF7493 /* MCPKit_bundled.framework in Frameworks */,
+				1DEC7FF112B7EDB900FC804E /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +361,6 @@
 				1D93C1AD11832A71003216F7 /* libmongoclient.a */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				1D93C24A118334F6003216F7 /* BWToolkitFramework.framework */,
-				1D79922F11872DE4009C187F /* SSHTunnel.framework */,
 				1DFC2A7B11970A1E006AA167 /* Sparkle.framework */,
 				1DF865D711C8FEF000DF7493 /* MCPKit_bundled.framework */,
 			);
@@ -368,6 +370,7 @@
 		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1DEC7FF012B7EDB900FC804E /* Security.framework */,
 				797A7AE30DDCFCF40050D0C2 /* CoreServices.framework */,
 				797A7AE10DDCFCE80050D0C2 /* CoreFoundation.framework */,
 				77C82804067257F0000B614F /* CoreData.framework */,
@@ -529,6 +532,8 @@
 				1DA6806B11888BDD00DFDD29 /* NSString+Extras.m */,
 				1D26618F11CFD1640092C6B5 /* FieldMapDataObject.h */,
 				1D26619011CFD1640092C6B5 /* FieldMapDataObject.m */,
+				1DEC7F3912B7ECAC00FC804E /* Tunnel.h */,
+				1DEC7F3A12B7ECAC00FC804E /* Tunnel.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -560,6 +565,7 @@
 			isa = PBXGroup;
 			children = (
 				1DFC2A8C11970BD0006AA167 /* dsa_pub.pem */,
+				1DEC803412B7EE2100FC804E /* SSHCommand.sh */,
 				1D93C27011833A19003216F7 /* images */,
 				8D1107310486CEB800E47090 /* MongoHub-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -664,7 +670,14 @@
 			};
 			buildConfigurationList = 26FC0A880875C7B200E6366F /* Build configuration list for PBXProject "MongoHub" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* MongoHub */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -722,6 +735,7 @@
 				1D601B3E11C8E7F900C86274 /* importbox.png in Resources */,
 				1D601B5611C8F24300C86274 /* Import.xib in Resources */,
 				1D26615211CFC5BE0092C6B5 /* Export.xib in Resources */,
+				1DEC803512B7EE2100FC804E /* SSHCommand.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,6 +790,7 @@
 				1D26614E11CFC47C0092C6B5 /* ExportWindowController.mm in Sources */,
 				1D26619111CFD1640092C6B5 /* FieldMapDataObject.m in Sources */,
 				1D26619411CFD2560092C6B5 /* FieldMapTableController.m in Sources */,
+				1DEC7F3B12B7ECAD00FC804E /* Tunnel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -843,7 +858,7 @@
 		26FC0A860875C7B200E6366F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -876,7 +891,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include/;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
@@ -890,7 +905,7 @@
 		26FC0A8A0875C7B200E6366F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -909,7 +924,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;

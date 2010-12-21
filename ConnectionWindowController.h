@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <SSHTunnel/SSHTunnel.h>
+#import "Tunnel.h"
 @class DatabasesArrayController;
 @class AddDBController;
 @class AddCollectionController;
@@ -32,7 +32,7 @@
     NSMutableArray *collections;
     SidebarNode *selectedDB;
     SidebarNode *selectedCollection;
-    SSHTunnel *sshTunnel;
+    Tunnel *sshTunnel;
     AddDBController *addDBController;
     AddCollectionController *addCollectionController;
     AuthWindowController *authWindowController;
@@ -51,7 +51,7 @@
 @property (nonatomic, retain) NSMutableArray *collections;
 @property (nonatomic, retain) SidebarNode *selectedDB;
 @property (nonatomic, retain) SidebarNode *selectedCollection;
-@property (nonatomic, retain) SSHTunnel *sshTunnel;
+@property (nonatomic, retain) Tunnel *sshTunnel;
 @property (nonatomic, retain) NSTextField *resultsTitle;
 @property (nonatomic, retain) AddDBController *addDBController;
 @property (nonatomic, retain) AddCollectionController *addCollectionController;
@@ -60,6 +60,7 @@
 @property (nonatomic, retain) ImportWindowController *importWindowController;
 @property (nonatomic, retain) ExportWindowController *exportWindowController;
 
+- (void)sshConnected:(NSNotification*)aNotification;
 - (void)reloadSidebar;
 - (void)reloadDBList;
 - (void)useDB:(id)sender;
