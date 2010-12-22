@@ -330,7 +330,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1DBFFB4512C207CC00B643CA</string>
+										<string>1DBFFB9812C20F8200B643CA</string>
 										<key>history</key>
 										<array>
 											<string>1D93C27E11833DE7003216F7</string>
@@ -417,7 +417,6 @@
 											<string>1DCC9C7212C0FFB3003B101E</string>
 											<string>1DBFF8F312C11A3A00B643CA</string>
 											<string>1DBFF8F412C11A3A00B643CA</string>
-											<string>1DBFFA5112C1F00E00B643CA</string>
 											<string>1DBFFA5212C1F00E00B643CA</string>
 											<string>1DBFFA5B12C1F0E800B643CA</string>
 											<string>1DBFFAC012C1F51700B643CA</string>
@@ -426,9 +425,10 @@
 											<string>1DBFFAF912C1FEE600B643CA</string>
 											<string>1DBFFAFA12C1FEE600B643CA</string>
 											<string>1DBFFAFB12C1FEE600B643CA</string>
-											<string>1DBFFB3212C2062100B643CA</string>
 											<string>1DBFFB4312C207CC00B643CA</string>
-											<string>1DBFFB4412C207CC00B643CA</string>
+											<string>1DBFFB4F12C20A9900B643CA</string>
+											<string>1DBFFB5012C20A9900B643CA</string>
+											<string>1DBFFB9312C20F3900B643CA</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -626,12 +626,13 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1DBFFB9912C20F8200B643CA</string>
 		<string>1DBFF8D512C118C200B643CA</string>
 		<string>1DBFF8D612C118C200B643CA</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1D93C1AB118329FB003216F7</string>
 		<string>/Users/syd/Documents/Works/codes/MongoHub/MongoHub.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 73 1129 705 0 0 1280 778 </string>
@@ -650,12 +651,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Tunnel.m</string>
+								<string>ConnectionWindowController.mm</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -672,8 +675,6 @@
 							<string>365pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

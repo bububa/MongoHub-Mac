@@ -176,6 +176,7 @@
 
 - (void)reloadDBList {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    [loaderIndicator start];
     //[selectedDB release];
     selectedDB = nil;
     //[selectedCollection release];
@@ -198,6 +199,7 @@
     }
     [sidebar reloadData];
     [sidebar expandItem:@"1"];
+    [loaderIndicator stop];
     [pool release];
 }
 
@@ -219,7 +221,9 @@
     }
     [db release];
     [collections release];
+    [loaderIndicator start];
     collections = [[NSMutableArray alloc] initWithArray:[mongoDB listCollections:dbname user:user password:password]];
+    [loaderIndicator stop];
     [dbname release];
     
     [sidebar removeItem:@"2"];
@@ -267,6 +271,7 @@
         NSRunAlertPanel(@"Error", @"Please specify a database!", @"OK", nil, nil);
         return;
     }
+    [loaderIndicator start];
     [resultsTitle setStringValue:[NSString stringWithFormat:@"Database %@ stats", [selectedDB caption]]];
     NSString *user=nil;
     NSString *password=nil;
@@ -282,6 +287,7 @@
     resultsOutlineViewController.results = results;
     [resultsOutlineViewController.myOutlineView reloadData];
     [results release];
+    [loaderIndicator stop];
     //NSLog(@"STATUS: %@", results);
 }
 
@@ -291,6 +297,7 @@
         NSRunAlertPanel(@"Error", @"Please specify a collection!", @"OK", nil, nil);
         return;
     }
+    [loaderIndicator start];
     [resultsTitle setStringValue:[NSString stringWithFormat:@"Collection %@.%@ stats", [selectedDB caption], [selectedCollection caption]]];
     NSString *user=nil;
     NSString *password=nil;
@@ -308,6 +315,7 @@
     resultsOutlineViewController.results = results;
     [resultsOutlineViewController.myOutlineView reloadData];
     [results release];
+    [loaderIndicator stop];
 }
 
 - (IBAction)createDBorCollection:(id)sender
@@ -394,9 +402,9 @@
 - (IBAction)dropDBorCollection:(id)sender
 {
     if (selectedCollection) {
-        [self dropCollection:[selectedCollection caption] ForDB:[selectedDB caption]];
+        [self dropWarning:[NSString stringWithFormat:@"COLLECTION:%@", [selectedCollection caption]]];
     }else {
-        [self dropDB];
+        [self dropWarning:[NSString stringWithFormat:@"DB:%@", [selectedDB caption]]];
     }
 }
 
@@ -411,10 +419,12 @@
         password = db.password;
     }
     [db release];
+    [loaderIndicator start];
     [mongoDB dropCollection:collectionname 
                       forDB:dbname 
                        user:user 
                    password:password];
+    [loaderIndicator stop];
     if ([[selectedDB caption] isEqualToString:dbname]) {
         [sidebar selectItem:[selectedDB nodeKey]];
     }
@@ -436,9 +446,11 @@
         password = db.password;
     }
     [db release];
+    [loaderIndicator start];
     [mongoDB dropDB:[selectedDB caption] 
                 user:user 
             password:password];
+    [loaderIndicator stop];
     [self reloadSidebar];
     [pool release];
 }
@@ -521,6 +533,31 @@
     exportWindowController.mongoDB = mongoDB;
     exportWindowController.dbname = [selectedDB caption];
     [exportWindowController showWindow:self];
+}
+
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+    if (returnCode == NSAlertFirstButtonReturn)
+    {
+        if (selectedCollection) {
+            [self dropCollection:[selectedCollection caption] ForDB:[selectedDB caption]];
+        }else {
+            [self dropDB];
+        }
+    }
+}
+
+- (void)dropWarning:(NSString *)msg
+{
+    NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+    [alert addButtonWithTitle:@"OK"];
+    [alert addButtonWithTitle:@"Cancel"];
+    [alert setMessageText:[NSString stringWithFormat:@"Drop this %@?", msg]];
+    [alert setInformativeText:[NSString stringWithFormat:@"Dropped %@ cannot be restored.", msg]];
+    [alert setAlertStyle:NSWarningAlertStyle];
+    [alert beginSheetModalForWindow:[self window] modalDelegate:self
+                     didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
+                        contextInfo:nil];
 }
 
 @end

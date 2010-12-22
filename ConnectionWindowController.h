@@ -84,4 +84,5 @@
 -(void) checkTunnel;
 - (void) connect:(BOOL)haveHostAddress;
 - (void) tunnelStatusChanged: (Tunnel*) tunnel status: (NSString*) status;
+- (void)dropWarning:(NSString *)msg;
 @end
