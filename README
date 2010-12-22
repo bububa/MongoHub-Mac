@@ -5,6 +5,15 @@ This project is very new. Any issues or bug reports are welcome.
 
 *If you are using the version less than 2.0.8, you need to remove ~/Library/Application\ Support/MongoHub directory and restart the new version.
 
+[Last Update 2.2.0]
+SSH Tunnel connection support;
+Fixed a bug in display ObjectID type fields;
+Fixed some UI bugs;
+Fixed some memory leaks and random crashes;
+Add confirm panel before drop database or collection;
+Run queries in a seperate thread so that won't block the UI;
+Fixed a bug to install on some 10.6.x(64bit) system.
+
 [Last Update 2.1.0]
 Auto expand and collaspe finding results;
 Display Date_t or Timestamp as GMT time format;
