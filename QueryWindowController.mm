@@ -7,6 +7,7 @@
 //
 
 #import "Configure.h"
+#import "NSProgressIndicator+Extras.h"
 #import "QueryWindowController.h"
 #import "DatabasesArrayController.h"
 #import "ResultsOutlineViewController.h"
@@ -33,28 +34,34 @@
 @synthesize totalResultsTextField;
 @synthesize findQueryTextField;
 @synthesize findResultsOutlineView;
+@synthesize findQueryLoaderIndicator;
 
 @synthesize updateCriticalTextField;
 @synthesize updateSetTextField;
 @synthesize upsetCheckBox;
 @synthesize updateResultsTextField;
 @synthesize updateQueryTextField;
+@synthesize updateQueryLoaderIndicator;
 
 @synthesize removeCriticalTextField;
 @synthesize removeResultsTextField;
 @synthesize removeQueryTextField;
+@synthesize removeQueryLoaderIndicator;
 
 @synthesize insertDataTextView;
 @synthesize insertResultsTextField;
+@synthesize insertLoaderIndicator;
 
 @synthesize indexTextField;
 @synthesize indexesOutlineViewController;
+@synthesize indexLoaderIndicator;
 
 @synthesize mapFunctionTextView;
 @synthesize reduceFunctionTextView;
 @synthesize mrcriticalTextField;
 @synthesize mroutputTextField;
 @synthesize mrOutlineViewController;
+@synthesize mrLoaderIndicator;
 
 
 - (id)init {
@@ -79,28 +86,34 @@
     [totalResultsTextField release];
     [findQueryTextField release];
     [findResultsOutlineView release];
+    [findQueryLoaderIndicator release];
     
     [updateCriticalTextField release];
     [updateSetTextField release];
     [upsetCheckBox release];
     [updateResultsTextField release];
     [updateQueryTextField release];
+    [updateQueryLoaderIndicator release];
     
     [removeCriticalTextField release];
     [removeResultsTextField release];
     [removeQueryTextField release];
+    [removeQueryLoaderIndicator release];
     
     [insertDataTextView release];
     [insertResultsTextField release];
+    [insertLoaderIndicator release];
     
     [indexTextField release];
     [indexesOutlineViewController release];
+    [indexLoaderIndicator release];
     
     [mapFunctionTextView release];
     [reduceFunctionTextView release];
     [mrcriticalTextField release];
     [mroutputTextField release];
     [mrOutlineViewController release];
+    [mrLoaderIndicator release];
     [super dealloc];
 }
 
@@ -117,6 +130,12 @@
 
 - (IBAction)findQuery:(id)sender
 {
+    [NSThread detachNewThreadSelector:@selector(doFindQuery) toTarget:self withObject:nil];
+}
+
+- (void)doFindQuery {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    [findQueryLoaderIndicator start];
     NSString *user=nil;
     NSString *password=nil;
     Database *db = [databasesArrayController dbInfo:conn name:dbname];
@@ -145,14 +164,17 @@
                                                                                 limit:limit
                                                                                  sort:sort]];
     long long int total = [mongoDB countInDB:dbname 
-                       collection:collectionname 
-                             user:user 
-                         password:password 
-                         critical:critical];
+                                  collection:collectionname 
+                                        user:user 
+                                    password:password 
+                                    critical:critical];
     [totalResultsTextField setStringValue:[NSString stringWithFormat:@"Total Results: %d", total]];
     findResultsViewController.results = results;
     [findResultsViewController.myOutlineView reloadData];
     [results release];
+    [findQueryLoaderIndicator stop];
+    [NSThread exit];
+    [pool release];
 }
 
 - (IBAction)expandFindResults:(id)sender
@@ -167,6 +189,12 @@
 
 - (IBAction)updateQuery:(id)sender
 {
+    [NSThread detachNewThreadSelector:@selector(doUpdateQuery) toTarget:self withObject:nil];
+}
+
+- (void)doUpdateQuery {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    [updateQueryLoaderIndicator start];
     NSString *user=nil;
     NSString *password=nil;
     Database *db = [databasesArrayController dbInfo:conn name:dbname];
@@ -184,17 +212,26 @@
                           password:password 
                           critical:critical];
     [mongoDB updateInDB:dbname 
-           collection:collectionname 
-                 user:user 
-             password:password 
-             critical:critical 
-               fields:fields 
-                 upset:upset];
+             collection:collectionname 
+                   user:user 
+               password:password 
+               critical:critical 
+                 fields:fields 
+                  upset:upset];
     [updateResultsTextField setStringValue:[NSString stringWithFormat:@"Affected Rows: %d", total]];
+    [updateQueryLoaderIndicator stop];
+    [NSThread exit];
+    [pool release];
 }
 
 - (IBAction)removeQuery:(id)sender
 {
+    [NSThread detachNewThreadSelector:@selector(doRemoveQuery) toTarget:self withObject:nil];
+}
+
+- (IBAction)doRemoveQuery {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    [removeQueryLoaderIndicator start];
     NSString *user=nil;
     NSString *password=nil;
     Database *db = [databasesArrayController dbInfo:conn name:dbname];
@@ -215,10 +252,19 @@
                password:password 
                critical:critical];
     [removeResultsTextField setStringValue:[NSString stringWithFormat:@"Affected Rows: %d", total]];
+    [removeQueryLoaderIndicator stop];
+    [NSThread exit];
+    [pool release];
 }
 
 - (IBAction) insertQuery:(id)sender
 {
+    [NSThread detachNewThreadSelector:@selector(doInsertQuery) toTarget:self withObject:nil];
+}
+
+- (void)doInsertQuery {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    [insertLoaderIndicator start];
     NSString *user=nil;
     NSString *password=nil;
     Database *db = [databasesArrayController dbInfo:conn name:dbname];
@@ -232,12 +278,21 @@
              collection:collectionname 
                    user:user 
                password:password 
-               insertData:insertData];
+             insertData:insertData];
     [insertResultsTextField setStringValue:@"Completed!"];
+    [insertLoaderIndicator stop];
+    [NSThread exit];
+    [pool release];
 }
 
 - (IBAction) indexQuery:(id)sender
 {
+    [NSThread detachNewThreadSelector:@selector(doIndexQuery) toTarget:self withObject:nil];
+}
+
+- (void)doIndexQuery {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    [indexLoaderIndicator start];
     NSString *user=nil;
     NSString *password=nil;
     Database *db = [databasesArrayController dbInfo:conn name:dbname];
@@ -253,10 +308,19 @@
     indexesOutlineViewController.results = results;
     [indexesOutlineViewController.myOutlineView reloadData];
     [results release];
+    [indexLoaderIndicator stop];
+    [NSThread exit];
+    [pool release];
 }
 
 - (IBAction) ensureIndex:(id)sender
 {
+    [NSThread detachNewThreadSelector:@selector(doEnsureIndex) toTarget:self withObject:nil];
+}
+
+- (void) doEnsureIndex {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    [indexLoaderIndicator start];
     NSString *user=nil;
     NSString *password=nil;
     Database *db = [databasesArrayController dbInfo:conn name:dbname];
@@ -267,15 +331,25 @@
     [db release];
     NSString *indexData = [indexTextField stringValue];
     [mongoDB ensureIndexInDB:dbname 
-             collection:collectionname 
-                   user:user 
-               password:password 
-             indexData:indexData];
+                  collection:collectionname 
+                        user:user 
+                    password:password 
+                   indexData:indexData];
     [self indexQuery:nil];
+    [indexLoaderIndicator stop];
+    [NSThread exit];
+    [pool release];
 }
+
 
 - (IBAction) reIndex:(id)sender
 {
+    [NSThread detachNewThreadSelector:@selector(doReIndex) toTarget:self withObject:nil];
+}
+
+- (void) doReIndex {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    [indexLoaderIndicator start];
     NSString *user=nil;
     NSString *password=nil;
     Database *db = [databasesArrayController dbInfo:conn name:dbname];
@@ -285,14 +359,24 @@
     }
     [db release];
     [mongoDB reIndexInDB:dbname 
-                  collection:collectionname 
-                        user:user 
-                    password:password];
+              collection:collectionname 
+                    user:user 
+                password:password];
     [self indexQuery:nil];
+    [indexLoaderIndicator stop];
+    [NSThread exit];
+    [pool release];
 }
+
 
 - (IBAction) dropIndex:(id)sender
 {
+    [NSThread detachNewThreadSelector:@selector(doDropIndex) toTarget:self withObject:nil];
+}
+
+- (void) doDropIndex {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    [indexLoaderIndicator start];
     NSString *user=nil;
     NSString *password=nil;
     Database *db = [databasesArrayController dbInfo:conn name:dbname];
@@ -303,15 +387,24 @@
     [db release];
     NSString *indexName = [indexTextField stringValue];
     [mongoDB dropIndexInDB:dbname 
-                  collection:collectionname 
-                        user:user 
-                    password:password 
-                   indexName:indexName];
+                collection:collectionname 
+                      user:user 
+                  password:password 
+                 indexName:indexName];
     [self indexQuery:nil];
+    [indexLoaderIndicator stop];
+    [NSThread exit];
+    [pool release];
 }
 
 - (IBAction) mapReduce:(id)sender
 {
+    [NSThread detachNewThreadSelector:@selector(doMapReduce) toTarget:self withObject:nil];
+}
+
+- (void)doMapReduce {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    [mrLoaderIndicator start];
     NSString *user=nil;
     NSString *password=nil;
     Database *db = [databasesArrayController dbInfo:conn name:dbname];
@@ -335,6 +428,9 @@
     mrOutlineViewController.results = results;
     [mrOutlineViewController.myOutlineView reloadData];
     [results release];
+    [mrLoaderIndicator stop];
+    [NSThread exit];
+    [pool release];
 }
 
 - (void)controlTextDidChange:(NSNotification *)nd

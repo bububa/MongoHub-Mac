@@ -274,14 +274,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>19</integer>
+									<integer>22</integer>
 									<integer>17</integer>
 									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 75}, {245, 646}}</string>
+							<string>{{0, 256}, {245, 646}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -318,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ConnectionWindowController.mm</string>
+								<string>QueryWindowController.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ConnectionWindowController.mm</string>
+										<string>QueryWindowController.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1DBFFB9812C20F8200B643CA</string>
+										<string>1DBFFBAE12C21EC300B643CA</string>
 										<key>history</key>
 										<array>
 											<string>1D93C27E11833DE7003216F7</string>
@@ -395,9 +395,7 @@
 											<string>1D26616B11CFC9EC0092C6B5</string>
 											<string>1D26623411CFE0630092C6B5</string>
 											<string>1D26623511CFE0630092C6B5</string>
-											<string>1D26629D11CFEE1D0092C6B5</string>
 											<string>1D2662BD11CFF1150092C6B5</string>
-											<string>1D1EB62E11D0C61200891242</string>
 											<string>1D1EB63011D0C61200891242</string>
 											<string>1D1EB65911D0C98100891242</string>
 											<string>1D1EB71311D0E80800891242</string>
@@ -428,7 +426,9 @@
 											<string>1DBFFB4312C207CC00B643CA</string>
 											<string>1DBFFB4F12C20A9900B643CA</string>
 											<string>1DBFFB5012C20A9900B643CA</string>
-											<string>1DBFFB9312C20F3900B643CA</string>
+											<string>1DBFFBAB12C21EC300B643CA</string>
+											<string>1DBFFBAC12C21EC300B643CA</string>
+											<string>1DBFFBAD12C21EC300B643CA</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -626,13 +626,12 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1DBFFB9912C20F8200B643CA</string>
 		<string>1DBFF8D512C118C200B643CA</string>
 		<string>1DBFF8D612C118C200B643CA</string>
+		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1D93C1AB118329FB003216F7</string>
 		<string>/Users/syd/Documents/Works/codes/MongoHub/MongoHub.xcodeproj</string>
-		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 73 1129 705 0 0 1280 778 </string>
@@ -1008,7 +1007,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
