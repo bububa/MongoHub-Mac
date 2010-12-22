@@ -57,12 +57,11 @@
         db.user = [userTextField stringValue];
         db.password = [passwordTextField stringValue];
     }else {
-        [db release];
         db = [databasesArrayController newObjectWithConn:conn name:dbname user:[userTextField stringValue] password:[passwordTextField stringValue]];
         [databasesArrayController addObject:db];
+        [db release];
     }
     [self saveAction];
-    [db release];
     [self close];
 }
 

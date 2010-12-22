@@ -8,6 +8,7 @@
 
 #import "Tunnel.h"
 #import <Security/Security.h>
+#import "NSString+Extras.h"
 
 #include <assert.h>
 #include <errno.h>
@@ -140,16 +141,13 @@ static int GetFirstChildPID(int pid)
 @implementation Tunnel
 
 - (id) init {
-	if(self = [super	init]){
+	if(self = [super init]){
+        uid = [NSString UUIDString];
+        
+        lock = [NSLock new];
+        portForwardings = [NSMutableArray array];
+        isRunning = NO;
 	}
-	
-	CFUUIDRef uidref = CFUUIDCreate(nil);
-	uid = (NSString*)CFUUIDCreateString(nil, uidref);
-	CFRelease(uidref);
-	
-	lock = [NSLock new];
-	portForwardings = [NSMutableArray array];
-	isRunning = NO;
 	
 	return (self);
 }
@@ -176,7 +174,7 @@ static int GetFirstChildPID(int pid)
 }
 
 
--(void) start {NSLog(@"start");
+-(void) start {
 	[lock lock];
 	
 	isRunning = YES;
@@ -191,12 +189,15 @@ static int GetFirstChildPID(int pid)
 	[task setStandardInput:[NSPipe pipe]];
 	
 	[task launch];
+    /*NSData *output = [[pipe fileHandleForReading] readDataToEndOfFile];
+    NSString *string = [[[NSString alloc] initWithData: output encoding: NSUTF8StringEncoding] autorelease];
     
+    NSLog(@"\n%@\n", string);*/
 	pipeData = @"";
 	retStatus = @"";
 	startDate = [NSDate date];
-	
-	if ( [delegate respondsToSelector:@selector(tunnelStatusChanged: status:)] ) {
+	NSLog(@"%@", startDate);
+	if ( [delegate respondsToSelector:@selector(tunnelStatusChanged:status:)] ) {
 		[delegate tunnelStatusChanged: self status: @"START"];
 	}
 	
@@ -216,7 +217,7 @@ static int GetFirstChildPID(int pid)
 		task = nil;
 	}
 	
-	if ( [delegate respondsToSelector:@selector(tunnelStatusChanged: status:)] ) {
+	if ( [delegate respondsToSelector:@selector(tunnelStatusChanged:status:)] ) {
 		[delegate tunnelStatusChanged: self status: @"STOP"];
 	}
 	
@@ -236,8 +237,9 @@ static int GetFirstChildPID(int pid)
 -(void) readStatus {
 	[lock lock];
 	if(isRunning && [retStatus isEqualToString: @""]){
-		
-		pipeData = [pipeData stringByAppendingString:  [[NSString alloc] initWithData: [[pipe fileHandleForReading] availableData] encoding: NSASCIIStringEncoding]];
+		NSString *pipeStr = [[NSString alloc] initWithData: [[pipe fileHandleForReading] availableData] encoding: NSASCIIStringEncoding];
+		pipeData = [pipeData stringByAppendingString:  pipeStr];
+        [pipeStr release];
 		NSRange r = [pipeData rangeOfString: @"CONNECTED"];
 		if( r.location != NSNotFound ){
 			retStatus = @"CONNECTED";
@@ -281,8 +283,8 @@ static int GetFirstChildPID(int pid)
 			
 			return;
 		}
-		
-		if( [[NSDate date] timeIntervalSinceDate: startDate] > 30 ){
+		//NSLog(@"%@", startDate);
+		/*if( [[NSDate date] timeIntervalSinceDate: startDate] > 30 ){
 			retStatus = @"TIME_OUT";
 			
 			if ( [delegate respondsToSelector:@selector(tunnelStatusChanged: status:)] ) {
@@ -290,7 +292,7 @@ static int GetFirstChildPID(int pid)
 			}
 			
 			return;
-		}
+		}*/
 	}
 	[lock unlock];
 }
@@ -306,10 +308,9 @@ static int GetFirstChildPID(int pid)
 	return ret;
 }
 
--(NSArray*) prepareSSHCommandArgs {NSLog(@"prepare");
+-(NSArray*) prepareSSHCommandArgs {
 	
 	NSString* pfs = @"";
-	
 	for(NSString* pf in portForwardings){
 		NSArray* pfa = [pf componentsSeparatedByString: @":"];
 		pfs = [NSString stringWithFormat: @"%@ -%@ %@:%@:%@:%@", pfs, [pfa objectAtIndex: 0], [pfa objectAtIndex: 2], [pfa objectAtIndex: 1], [pfa objectAtIndex: 3], [pfa objectAtIndex: 4] ];
@@ -323,7 +324,7 @@ static int GetFirstChildPID(int pid)
 					 tcpKeepAlive == YES ? @"-o TCPKeepAlive=yes " : @"",
 					 compression == YES ? @"-C " : @"",
 					 port,user,host];
-	NSLog(@"%@", cmd);
+	NSLog(@"cmd: %@", cmd);
 	return [NSArray arrayWithObjects: cmd, password, nil];
 }
 
@@ -458,6 +459,7 @@ static int GetFirstChildPID(int pid)
 	list.attr = attributes;
 	
 	result = SecKeychainSearchCreateFromAttributes(NULL, kSecGenericPasswordItemClass, &list, &search);
+    NSLog(@"%@", result);
 	SecKeychainSearchCopyNext (search, &item);
     status = SecKeychainItemModifyContent(item, &list, [password length], [password UTF8String]);
 	
@@ -475,7 +477,7 @@ static int GetFirstChildPID(int pid)
 	
 	SecKeychainItemRef item;
 	SecKeychainSearchRef search;
-    OSStatus status;
+    OSStatus status = 0;
 	OSErr result;
 	SecKeychainAttributeList list;
 	SecKeychainAttribute attributes[3];
@@ -500,6 +502,7 @@ static int GetFirstChildPID(int pid)
 	list.attr = attributes;
 	
 	result = SecKeychainSearchCreateFromAttributes(NULL, kSecGenericPasswordItemClass, &list, &search);
+    NSLog(@"%@", result);
 	while (SecKeychainSearchCopyNext (search, &item) == noErr) {
         itemsFound++;
     }

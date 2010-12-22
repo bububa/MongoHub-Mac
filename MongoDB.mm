@@ -80,6 +80,7 @@
         }
         NSArray *response = [NSArray arrayWithArray:dblist];
         [dblist release];
+        NSLog(@"List Databases");
         return response;
     }catch( mongo::DBException &e ) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
@@ -123,6 +124,7 @@
     try {
         mongo::BSONObj retval;
         conn->runCommand("admin", BSON("serverStatus"<<1), retval);
+        NSLog(@"Show Server Status");
         return [self bsonDictWrapper:retval];
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);

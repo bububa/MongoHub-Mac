@@ -50,31 +50,37 @@
     return self;
 }
 
-- (void)sshConnected:(NSNotification*)aNotification {
-    NSLog(@"connected");
+- (void) tunnelStatusChanged: (Tunnel*) tunnel status: (NSString*) status {
+    NSLog(@"%@", status);
+    if( [status isEqualToString: @"CONNECTED"] ){
+        exitThread = YES;
+        [self connect:YES];
+    }
 }
 
-- (void)windowDidLoad {
-    [super windowDidLoad];
-    NSString *appVersion = [[NSString alloc] initWithFormat:@"version(%@)", [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey] ];
-    [bundleVersion setStringValue: appVersion];
-    [appVersion release];
-    
-    NSString *hostaddress;
-    if ([conn.usessh intValue]==1) {
-        NSString *portForward = [[NSString alloc] initWithFormat:@"L %d:%@:%d", conn.hostport, conn.bindaddress, conn.bindport];
-        NSMutableArray *portForwardings = [NSMutableArray arrayWithObjects:portForward, nil];
+- (void) connect:(BOOL)haveHostAddress {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    NSString *hostaddress = [[[NSString alloc] init] autorelease];
+    if (!haveHostAddress && [conn.usessh intValue]==1) {
+        NSString *portForward = [[NSString alloc] initWithFormat:@"L:%@:%@:%@:%@", conn.hostport, conn.host, conn.sshhost, conn.bindport];
+        NSMutableArray *portForwardings = [[NSMutableArray alloc] initWithObjects:portForward, nil];
         [portForward release];
+        sshTunnel =[[Tunnel alloc] init];
+        [sshTunnel setDelegate:self];
         [sshTunnel setUser:conn.sshuser];
+        [sshTunnel setHost:conn.sshhost];
+        [sshTunnel setPassword:conn.sshpassword];
         [sshTunnel setPort:[conn.sshport intValue]];
         [sshTunnel setPortForwardings:portForwardings];
         [sshTunnel setAliveCountMax:3];
         [sshTunnel setAliveInterval:30];
         [sshTunnel setTcpKeepAlive:YES];
-        [sshTunnel setCompression:YES];NSLog(@"here");
+        [sshTunnel setCompression:YES];
         [sshTunnel start];
+        [portForwardings release];
+        return;
         hostaddress = [NSString stringWithFormat:@"%@:%@", conn.host, conn.hostport];
-    }else if ([conn.host isEqualToString:@"flame.mongohq.com"]) {
+    }else if (!haveHostAddress && [conn.host isEqualToString:@"flame.mongohq.com"]) {
         hostaddress = [NSString stringWithFormat:@"%@:%@/%@", conn.host, conn.hostport, conn.defaultdb];
     }else {
         hostaddress = [NSString stringWithFormat:@"%@:%@", conn.host, conn.hostport];
@@ -92,6 +98,35 @@
     
     [self reloadSidebar];
     [self showServerStatus:nil];
+    [pool release];
+}
+
+- (void)windowDidLoad {
+    [super windowDidLoad];
+    exitThread = NO;
+    NSString *appVersion = [[NSString alloc] initWithFormat:@"version(%@)", [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey] ];
+    [bundleVersion setStringValue: appVersion];
+    [appVersion release];
+    [self connect:NO];
+    if ([conn.usessh intValue]==1) {NSLog(@"thread");
+        [NSThread detachNewThreadSelector: @selector(checkTunnel) toTarget:self withObject:nil ];
+    }
+}
+
+- (void)checkTunnel {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    while(!exitThread){
+		@synchronized(self){
+            [sshTunnel readStatus];
+            /*if( [sshTunnel running] == YES && [sshTunnel checkProcess] == NO ){
+                [sshTunnel stop];
+                [NSThread sleepForTimeInterval:2];
+                [sshTunnel start];
+            }*/
+		}
+		[NSThread sleepForTimeInterval:3];
+	}
+    [pool release];
 }
 
 - (void)dealloc {
@@ -117,8 +152,10 @@
 }
 
 - (void)windowWillClose:(NSNotification *)notification {
-    [sshTunnel terminate];
-    [sshTunnel waitUntilExit];
+    if ([sshTunnel running]) {
+        [sshTunnel stop];
+    }
+    //exitThread = YES;
     selectedDB = nil;
     selectedCollection = nil;
     [self release];
@@ -210,9 +247,9 @@
     [resultsTitle setStringValue:[NSString stringWithFormat:@"Server %@:%@ stats", conn.host, conn.hostport]];
     NSMutableArray *results = [[NSMutableArray alloc] initWithArray:[mongoDB serverStatus]];
     resultsOutlineViewController.results = results;
-    [resultsOutlineViewController.myOutlineView reloadData];
+    [resultsOutlineViewController.myOutlineView reloadData];//NSLog(@"STATUS: %@", results);
     [results release];
-    //NSLog(@"STATUS: %@", results);
+    
 }
 
 - (IBAction)showDBStats:(id)sender 

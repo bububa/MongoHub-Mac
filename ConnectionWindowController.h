@@ -39,6 +39,7 @@
     ImportWindowController *importWindowController;
     ExportWindowController *exportWindowController;
     IBOutlet NSTextField *bundleVersion;
+    BOOL exitThread;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -60,7 +61,6 @@
 @property (nonatomic, retain) ImportWindowController *importWindowController;
 @property (nonatomic, retain) ExportWindowController *exportWindowController;
 
-- (void)sshConnected:(NSNotification*)aNotification;
 - (void)reloadSidebar;
 - (void)reloadDBList;
 - (void)useDB:(id)sender;
@@ -79,4 +79,7 @@
 - (void)dropDB;
 - (IBAction)query:(id)sender;
 - (IBAction)showAuth:(id)sender;
+-(void) checkTunnel;
+- (void) connect:(BOOL)haveHostAddress;
+- (void) tunnelStatusChanged: (Tunnel*) tunnel status: (NSString*) status;
 @end

@@ -25,5 +25,6 @@
 - (NSString *)stringByTrimmingWhitespace;
 
 + (NSNull *)nullValue;
++ (NSString*)UUIDString;
 
 @end

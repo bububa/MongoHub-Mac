@@ -70,13 +70,13 @@
     [keys release];
     if ([[dbInfo objectForKey:@"user"] isPresent] || [[dbInfo objectForKey:@"password"] isPresent]) {
         Database *dbobj = [databasesArrayController dbInfo:conn name:[dbname stringValue]];
-        if (!dbobj) {
-            [dbobj release];
+        if (dbobj==nil) {
+            //[dbobj release];
             dbobj = [databasesArrayController newObjectWithConn:conn name:[dbname stringValue] user:[dbInfo objectForKey:@"user"] password:[dbInfo objectForKey:@"password"]];
             [databasesArrayController addObject:dbobj];
+            [dbobj release];
         }
         [self saveAction];
-        [dbobj release];
     }
     [self close];
 }
