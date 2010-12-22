@@ -208,7 +208,7 @@ static int GetFirstChildPID(int pid)
 	[lock lock];
 	
 	isRunning = NO;
-	
+    
 	if ( [task isRunning] ){
 		int chpid = GetFirstChildPID([task processIdentifier]);
 		if(chpid != -1)
@@ -216,7 +216,6 @@ static int GetFirstChildPID(int pid)
 		[task terminate];
 		task = nil;
 	}
-	
 	if ( [delegate respondsToSelector:@selector(tunnelStatusChanged:status:)] ) {
 		[delegate tunnelStatusChanged: self status: @"STOP"];
 	}
@@ -247,7 +246,7 @@ static int GetFirstChildPID(int pid)
 			if ( [delegate respondsToSelector:@selector(tunnelStatusChanged: status:)] ) {
 				[delegate tunnelStatusChanged: self status: retStatus];
 			}
-			
+			[lock unlock];
 			return;
 		}
 		
@@ -258,7 +257,7 @@ static int GetFirstChildPID(int pid)
 			if ( [delegate respondsToSelector:@selector(tunnelStatusChanged: status:)] ) {
 				[delegate tunnelStatusChanged: self status: retStatus];
 			}
-			
+			[lock unlock];
 			return;
 		}
 		
@@ -269,7 +268,7 @@ static int GetFirstChildPID(int pid)
 			if ( [delegate respondsToSelector:@selector(tunnelStatusChanged: status:)] ) {
 				[delegate tunnelStatusChanged: self status: retStatus];
 			}
-			
+			[lock unlock];
 			return;
 		}
 		
@@ -280,7 +279,7 @@ static int GetFirstChildPID(int pid)
 			if ( [delegate respondsToSelector:@selector(tunnelStatusChanged: status:)] ) {
 				[delegate tunnelStatusChanged: self status: retStatus];
 			}
-			
+			[lock unlock];
 			return;
 		}
 		//NSLog(@"%@", startDate);

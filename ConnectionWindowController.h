@@ -28,6 +28,7 @@
     MongoDB *mongoDB;
     IBOutlet Sidebar *sidebar;
     IBOutlet NSTextField *resultsTitle;
+    IBOutlet NSProgressIndicator *loaderIndicator;
     NSMutableArray *databases;
     NSMutableArray *collections;
     SidebarNode *selectedDB;
@@ -54,6 +55,7 @@
 @property (nonatomic, retain) SidebarNode *selectedCollection;
 @property (nonatomic, retain) Tunnel *sshTunnel;
 @property (nonatomic, retain) NSTextField *resultsTitle;
+@property (nonatomic, retain) NSProgressIndicator *loaderIndicator;
 @property (nonatomic, retain) AddDBController *addDBController;
 @property (nonatomic, retain) AddCollectionController *addCollectionController;
 @property (nonatomic, retain) NSTextField *bundleVersion;

@@ -8,6 +8,7 @@
 
 #import "Configure.h"
 #import "NSString+Extras.h"
+#import "NSProgressIndicator+Extras.h"
 #import "ConnectionWindowController.h"
 #import "QueryWindowController.h"
 #import "AddDBController.h";
@@ -31,6 +32,7 @@
 @synthesize conn;
 @synthesize mongoDB;
 @synthesize sidebar;
+@synthesize loaderIndicator;
 @synthesize databases;
 @synthesize collections;
 @synthesize selectedDB;
@@ -60,6 +62,7 @@
 
 - (void) connect:(BOOL)haveHostAddress {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    [loaderIndicator start];
     NSString *hostaddress = [[[NSString alloc] init] autorelease];
     if (!haveHostAddress && [conn.usessh intValue]==1) {
         NSString *portForward = [[NSString alloc] initWithFormat:@"L:%@:%@:%@:%@", conn.hostport, conn.host, conn.sshhost, conn.bindport];
@@ -95,7 +98,7 @@
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addCollection:) name:kNewCollectionWindowWillClose object:nil];
-    
+    [loaderIndicator stop];
     [self reloadSidebar];
     [self showServerStatus:nil];
     [pool release];
@@ -108,7 +111,7 @@
     [bundleVersion setStringValue: appVersion];
     [appVersion release];
     [self connect:NO];
-    if ([conn.usessh intValue]==1) {NSLog(@"thread");
+    if ([conn.usessh intValue]==1) {
         [NSThread detachNewThreadSelector: @selector(checkTunnel) toTarget:self withObject:nil ];
     }
 }
@@ -126,6 +129,7 @@
 		}
 		[NSThread sleepForTimeInterval:3];
 	}
+    [NSThread exit];
     [pool release];
 }
 
@@ -144,6 +148,7 @@
     [addDBController release];
     [addCollectionController release];
     [resultsTitle release];
+    [loaderIndicator release];
     [bundleVersion release];
     [authWindowController release];
     [importWindowController release];
@@ -162,9 +167,11 @@
 }
 
 - (void)reloadSidebar {
+    [loaderIndicator start];
     [sidebar addSection:@"1" caption:@"DATABASES"];
     [self reloadDBList];
     [sidebar reloadData];
+    [loaderIndicator stop];
 }
 
 - (void)reloadDBList {
@@ -244,11 +251,13 @@
 
 - (IBAction)showServerStatus:(id)sender 
 {
+    [loaderIndicator start];
     [resultsTitle setStringValue:[NSString stringWithFormat:@"Server %@:%@ stats", conn.host, conn.hostport]];
     NSMutableArray *results = [[NSMutableArray alloc] initWithArray:[mongoDB serverStatus]];
     resultsOutlineViewController.results = results;
     [resultsOutlineViewController.myOutlineView reloadData];//NSLog(@"STATUS: %@", results);
     [results release];
+    [loaderIndicator stop];
     
 }
 
