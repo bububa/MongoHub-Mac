@@ -21,7 +21,12 @@
 {
     if (value)
     {
-        return [NSString stringWithFormat:@"%@ [%@:%@]", [value alias], [value host], [value hostport] ];
+        if ([value userepl]) {
+            return [NSString stringWithFormat:@"%@ [%@]", [value alias], [value repl_name] ];
+        }else {
+            return [NSString stringWithFormat:@"%@ [%@:%@]", [value alias], [value host], [value hostport] ];
+        }
+
     }
 	return nil;
 }

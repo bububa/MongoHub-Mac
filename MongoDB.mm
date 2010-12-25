@@ -23,9 +23,21 @@
     return conn;
 }
 
+- (mongo::DBClientReplicaSet::DBClientReplicaSet *)mongoReplConnection
+{
+    return repl_conn;
+}
+
 - (id)initWithConn:(NSString *)host {
     self = [super init];
     [self connect:host];
+    return self;
+}
+
+- (id)initWithConn:(NSString *)name hosts:(NSArray *)hosts {
+    self = [super init];
+    isRepl = YES;
+    [self connect:name hosts:hosts];
     return self;
 }
 
@@ -46,7 +58,29 @@
     return false;
 }
 
-- (void)authUser:(NSString *)user 
+- (bool)connect:(NSString *)name hosts:(NSArray *)hosts {
+    try {
+        std::vector<mongo::HostAndPort> servers;NSLog(@"%@", hosts);
+        for (NSString *h in hosts) {
+            mongo::HostAndPort server([h UTF8String]);
+            servers.push_back(server);
+        }
+        repl_conn = new mongo::DBClientReplicaSet::DBClientReplicaSet([name UTF8String], servers);
+        bool ok = repl_conn->connect();
+        if (!ok) {
+            NSRunAlertPanel(@"Error", @"Connection Failed", @"OK", nil, nil);
+            return false;
+        }
+        NSLog(@"Connected to: %@", hosts);
+        return true;
+    }catch( mongo::DBException &e ) {
+        NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
+        return false;
+    }
+    return false;
+}
+
+- (bool)authUser:(NSString *)user 
             pass:(NSString *)pass 
         database:(NSString *)db
 {
@@ -58,19 +92,32 @@
         }else {
             dbname = "admin";
         }
-
-        bool ok = conn->auth(dbname, std::string([user UTF8String]), std::string([pass UTF8String]), errmsg);
+        bool ok;
+        if (isRepl) {
+            ok = repl_conn->auth(dbname, std::string([user UTF8String]), std::string([pass UTF8String]), errmsg);
+        }else {
+            ok = conn->auth(dbname, std::string([user UTF8String]), std::string([pass UTF8String]), errmsg);
+        }
+        
         if (!ok) {
             NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
         }
+        NSLog(@"authUser: %@, %@, %@", user, pass, db);
+        return ok;
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
+    return false;
 }
 
 - (NSArray *)listDatabases {
     try {
-        std::list<std::string> dbs = conn->getDatabaseNames();
+        std::list<std::string> dbs;
+        if (isRepl) {
+            dbs = repl_conn->getDatabaseNames();
+        }else {
+            dbs = conn->getDatabaseNames();
+        }
         NSMutableArray *dblist = [[NSMutableArray alloc] initWithCapacity:dbs.size() ];
         for (std::list<std::string>::iterator it=dbs.begin();it!=dbs.end();++it)
         {
@@ -93,15 +140,19 @@
                     password:(NSString *)password {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([db UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:db];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return nil;
             }
         }
         
-        std::list<std::string> collections = conn->getCollectionNames([db UTF8String]);
+        std::list<std::string> collections;
+        if (isRepl) {
+            collections = repl_conn->getCollectionNames([db UTF8String]);
+        }else {
+            collections = conn->getCollectionNames([db UTF8String]);
+        }
+        
         NSMutableArray *clist = [[NSMutableArray alloc] initWithCapacity:collections.size() ];
         unsigned int istartp = [db length] + 1;
         for (std::list<std::string>::iterator it=collections.begin();it!=collections.end();++it)
@@ -112,6 +163,7 @@
         }
         NSArray *response = [NSArray arrayWithArray:clist];
         [clist release];
+        NSLog(@"List Collections");
         return response;
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
@@ -123,7 +175,11 @@
 {
     try {
         mongo::BSONObj retval;
-        conn->runCommand("admin", BSON("serverStatus"<<1), retval);
+        if (isRepl) {
+            repl_conn->runCommand("admin", BSON("serverStatus"<<1), retval);
+        }else {
+            conn->runCommand("admin", BSON("serverStatus"<<1), retval);
+        }
         NSLog(@"Show Server Status");
         return [self bsonDictWrapper:retval];
     }catch (mongo::DBException &e) {
@@ -138,15 +194,18 @@
 {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return nil;
             }
         }
         mongo::BSONObj retval;
-        conn->runCommand([dbname UTF8String], BSON("dbstats"<<1), retval);
+        if (isRepl) {
+            repl_conn->runCommand([dbname UTF8String], BSON("dbstats"<<1), retval);
+        }else {
+            conn->runCommand([dbname UTF8String], BSON("dbstats"<<1), retval);
+        }
+        NSLog(@"Show DB Stats");
         return [self bsonDictWrapper:retval];
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
@@ -160,14 +219,17 @@
 {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return;
             }
         }
-        conn->dropDatabase([dbname UTF8String]);
+        if (isRepl) {
+            repl_conn->dropDatabase([dbname UTF8String]);
+        }else {
+            conn->dropDatabase([dbname UTF8String]);
+        }
+        NSLog(@"Drop DB: %@", dbname);
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
@@ -180,15 +242,18 @@
 {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return nil;
             }
         }
         mongo::BSONObj retval;
-        conn->runCommand([dbname UTF8String], BSON("collstats"<<[collectionname UTF8String]), retval);
+        if (isRepl) {
+            repl_conn->runCommand([dbname UTF8String], BSON("collstats"<<[collectionname UTF8String]), retval);
+        }else {
+            conn->runCommand([dbname UTF8String], BSON("collstats"<<[collectionname UTF8String]), retval);
+        }
+        NSLog(@"Show collection stats: %@.%@", dbname, collectionname);
         return [self bsonDictWrapper:retval];
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
@@ -203,15 +268,18 @@
 {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return;
             }
         }
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
-        conn->createCollection([col UTF8String]);
+        if (isRepl) {
+            repl_conn->createCollection([col UTF8String]);
+        }else {
+            conn->createCollection([col UTF8String]);
+        }
+        NSLog(@"Creation collection: %@.%@", dbname, collectionname);
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
@@ -224,15 +292,18 @@
 {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return;
             }
         }
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
-        conn->dropCollection([col UTF8String]);
+        if (isRepl) {
+            repl_conn->dropCollection([col UTF8String]);
+        }else {
+            conn->dropCollection([col UTF8String]);
+        }
+        NSLog(@"Drop collection: %@.%@", dbname, collectionname);
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
@@ -250,10 +321,8 @@
 {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return nil;
             }
         }
@@ -321,7 +390,13 @@
             [tmpstr release];
             [keys release];
         }
-        std::auto_ptr<mongo::DBClientCursor> cursor = conn->query(std::string([col UTF8String]), mongo::Query(criticalBSON).sort(sortBSON), [limit intValue], [skip intValue], &fieldsToReturn);
+        
+        std::auto_ptr<mongo::DBClientCursor> cursor;
+        if (isRepl) {
+            cursor = repl_conn->query(std::string([col UTF8String]), mongo::Query(criticalBSON).sort(sortBSON), [limit intValue], [skip intValue], &fieldsToReturn);
+        }else {
+            cursor = conn->query(std::string([col UTF8String]), mongo::Query(criticalBSON).sort(sortBSON), [limit intValue], [skip intValue], &fieldsToReturn);
+        }
         NSMutableArray *response = [[NSMutableArray alloc] initWithCapacity:[limit intValue]];
         while( cursor->more() )
         {
@@ -349,6 +424,7 @@
             [oidType release];
             [item release];
         }
+        NSLog(@"Find in db: %@.%@", dbname, collectionname);
         return response;
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
@@ -366,10 +442,8 @@
 {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return;
             }
         }
@@ -409,7 +483,12 @@
                 return;
             }
         }
-        conn->update(std::string([col UTF8String]), criticalBSON, fieldsBSON, (bool)[upset intValue]);
+        if (isRepl) {
+            repl_conn->update(std::string([col UTF8String]), criticalBSON, fieldsBSON, (bool)[upset intValue]);
+        }else {
+            conn->update(std::string([col UTF8String]), criticalBSON, fieldsBSON, (bool)[upset intValue]);
+        }
+        NSLog(@"Update in db: %@.%@", dbname, collectionname);
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
@@ -423,10 +502,8 @@
 {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return;
             }
         }
@@ -447,8 +524,14 @@
                 NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
                 return;
             }
-            conn->remove(std::string([col UTF8String]), criticalBSON);
+            if (isRepl) {
+                repl_conn->remove(std::string([col UTF8String]), criticalBSON);
+            }else {
+                conn->remove(std::string([col UTF8String]), criticalBSON);
+            }
+
         }
+        NSLog(@"Remove in db: %@.%@", dbname, collectionname);
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
@@ -462,10 +545,8 @@
 {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return;
             }
         }
@@ -486,8 +567,14 @@
                 NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
                 return;
             }
-            conn->insert(std::string([col UTF8String]), insertDataBSON);
+            if (isRepl) {
+                repl_conn->insert(std::string([col UTF8String]), insertDataBSON);
+            }else {
+                conn->insert(std::string([col UTF8String]), insertDataBSON);
+            }
+
         }
+        NSLog(@"Insert into db: %@.%@", dbname, collectionname);
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
@@ -503,10 +590,8 @@
 {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return;
             }
         }
@@ -561,7 +646,12 @@
         if (insertDataBSON == emptyBSON) {
             return;
         }
-        conn->insert(std::string([col UTF8String]), insertDataBSON);
+        if (isRepl) {
+            repl_conn->insert(std::string([col UTF8String]), insertDataBSON);
+        }else {
+            conn->insert(std::string([col UTF8String]), insertDataBSON);
+        }
+        NSLog(@"Find in db with filetype: %@.%@", dbname, collectionname);
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
@@ -574,15 +664,18 @@
 {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return nil;
             }
         }
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
-        std::auto_ptr<mongo::DBClientCursor> cursor = conn->getIndexes(std::string([col UTF8String]));
+        std::auto_ptr<mongo::DBClientCursor> cursor;
+        if (isRepl) {
+            cursor = repl_conn->getIndexes(std::string([col UTF8String]));
+        }else {
+            cursor = conn->getIndexes(std::string([col UTF8String]));
+        }
         NSMutableArray *response = [[NSMutableArray alloc] init];
         while( cursor->more() )
         {
@@ -597,6 +690,7 @@
             [name release];
             [item release];
         }
+        NSLog(@"Show indexes in db: %@.%@", dbname, collectionname);
         return response;
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
@@ -612,10 +706,8 @@
 {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return;
             }
         }
@@ -637,7 +729,12 @@
                 return;
             }
         }
-        conn->ensureIndex(std::string([col UTF8String]), indexDataBSON);
+        if (isRepl) {
+            repl_conn->ensureIndex(std::string([col UTF8String]), indexDataBSON);
+        }else {
+            conn->ensureIndex(std::string([col UTF8String]), indexDataBSON);
+        }
+        NSLog(@"Ensure index in db: %@.%@", dbname, collectionname);
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
@@ -650,15 +747,18 @@
 {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return;
             }
         }
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
-        conn->reIndex(std::string([col UTF8String]));
+        if (isRepl) {
+            repl_conn->reIndex(std::string([col UTF8String]));
+        }else {
+            conn->reIndex(std::string([col UTF8String]));
+        }
+        NSLog(@"Reindex in db: %@.%@", dbname, collectionname);
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
@@ -672,15 +772,18 @@
 {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return;
             }
         }
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
-        conn->dropIndex(std::string([col UTF8String]), [indexName UTF8String]);
+        if (isRepl) {
+            repl_conn->dropIndex(std::string([col UTF8String]), [indexName UTF8String]);
+        }else {
+            conn->dropIndex(std::string([col UTF8String]), [indexName UTF8String]);
+        }
+        NSLog(@"Drop index in db: %@.%@", dbname, collectionname);
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
@@ -694,11 +797,9 @@
 {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
-                return nil;
+                return 0;
             }
         }
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
@@ -710,16 +811,22 @@
             [json release];
             if (error) {
                 NSRunAlertPanel(@"Error", [error localizedDescription], @"OK", nil, nil);
-                return nil;
+                return 0;
             }
             try{
                 criticalBSON = mongo::fromjson([critical UTF8String]);
             }catch (mongo::MsgAssertionException &e) {
                 NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
-                return nil;
+                return 0;
             }
         }
-        long long int counter = conn->count(std::string([col UTF8String]), criticalBSON);
+        long long int counter;
+        if (isRepl) {
+            counter = repl_conn->count(std::string([col UTF8String]), criticalBSON);
+        }else {
+            counter = conn->count(std::string([col UTF8String]), criticalBSON);
+        }
+        NSLog(@"Count in db: %@.%@", dbname, collectionname);
         return counter;
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
@@ -738,10 +845,8 @@
 {
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return nil;
             }
         }
@@ -766,7 +871,13 @@
                 return nil;
             }
         }
-        mongo::BSONObj retval = conn->mapreduce(std::string([col UTF8String]), std::string([mapJs UTF8String]), std::string([reduceJs UTF8String]), criticalBSON, std::string([output UTF8String]));
+        mongo::BSONObj retval;
+        if (isRepl) {
+            retval = repl_conn->mapreduce(std::string([col UTF8String]), std::string([mapJs UTF8String]), std::string([reduceJs UTF8String]), criticalBSON, std::string([output UTF8String]));
+        }else {
+            retval = conn->mapreduce(std::string([col UTF8String]), std::string([mapJs UTF8String]), std::string([reduceJs UTF8String]), criticalBSON, std::string([output UTF8String]));
+        }
+        NSLog(@"Map reduce in db: %@.%@", dbname, collectionname);
         return [self bsonDictWrapper:retval];
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
@@ -777,7 +888,11 @@
 - (mongo::BSONObj) serverStat{
     try {
         mongo::BSONObj retval;
-        conn->runCommand("admin", BSON("serverStatus"<<1), retval);
+        if (isRepl) {
+            repl_conn->runCommand("admin", BSON("serverStatus"<<1), retval);
+        }else {
+            conn->runCommand("admin", BSON("serverStatus"<<1), retval);
+        }
         return retval;
     }catch (mongo::DBException &e) {
         //NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);

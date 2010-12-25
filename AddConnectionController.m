@@ -14,6 +14,9 @@
 
 @synthesize hostTextField;
 @synthesize hostportTextField;
+@synthesize usereplCheckBox;
+@synthesize serversTextField;
+@synthesize replnameTextField;
 @synthesize aliasTextField;
 @synthesize adminuserTextField;
 @synthesize adminpassTextField;
@@ -37,6 +40,9 @@
 - (void)dealloc {
     [hostTextField release];
     [hostportTextField release];
+    [usereplCheckBox release];
+    [serversTextField release];
+    [replnameTextField release];
     [aliasTextField release];
     [adminuserTextField release];
     [adminpassTextField release];
@@ -71,6 +77,9 @@
 - (IBAction)add:(id)sender {
     NSString *host;
     NSUInteger hostport;
+    NSString *servers;
+    NSString *repl_name;
+    NSUInteger userepl = 0;
     NSString *alias;
     NSString *adminuser = [adminuserTextField stringValue];
     NSString *adminpass = [adminpassTextField stringValue];
@@ -92,43 +101,45 @@
     }else{
         hostport = [hostportTextField intValue];
     }
+    
+    servers = [[NSString alloc] initWithString:[serversTextField stringValue]];
+    repl_name = [[NSString alloc] initWithString:[replnameTextField stringValue]];
+    if ([usereplCheckBox state])
+    {
+        userepl = 1;
+    }
+    
     if ([ [aliasTextField stringValue] length] == 0) {
         alias = [[NSString alloc] initWithString:@"localhost"];
     }else{
         alias = [[NSString alloc] initWithString:[aliasTextField stringValue]];
     }
+    if ([ [bindaddressTextField stringValue] length] == 0) {
+        bindaddress = [[NSString alloc] initWithString:@"127.0.0.1"];
+    }else{
+        bindaddress = [[NSString alloc] initWithString:[bindaddressTextField stringValue]];
+    }
+    if ([ [bindportTextField stringValue] length] == 0) {
+        bindport = 8888;
+    }else{
+        bindport = [bindportTextField intValue];
+    }
+    sshhost = [[NSString alloc] initWithString:[sshhostTextField stringValue]];
+    if ([[sshportTextField stringValue] length] == 0) {
+        sshport = 22;
+    }else {
+        sshport = [sshportTextField intValue];
+    }
+    
+    sshuser = [[NSString alloc] initWithString:[sshuserTextField stringValue]];
+    sshpassword = [[NSString alloc] initWithString:[sshpasswordTextField stringValue]];
     if ([usesshCheckBox state])
     {
         usessh = 1;
-        if ([ [bindaddressTextField stringValue] length] == 0) {
-            bindaddress = [[NSString alloc] initWithString:@"127.0.0.1"];
-        }else{
-            bindaddress = [[NSString alloc] initWithString:[bindaddressTextField stringValue]];
-        }
-        if ([ [bindportTextField stringValue] length] == 0) {
-            bindport = 8888;
-        }else{
-            bindport = [bindportTextField intValue];
-        }
-        sshhost = [[NSString alloc] initWithString:[sshhostTextField stringValue]];
-        if ([[sshportTextField stringValue] length] == 0) {
-            sshport = 22;
-        }else {
-            sshport = [sshportTextField intValue];
-        }
-
-        sshuser = [[NSString alloc] initWithString:[sshuserTextField stringValue]];
-        sshpassword = [[NSString alloc] initWithString:[sshpasswordTextField stringValue]];
-    }else{
-        bindaddress = @"127.0.0.1";
-        bindport = 8888;
-        sshhost = @"";
-        sshport = 22;
-        sshuser = @"";
-        sshpassword = @"";
+        
     }
-    NSArray *keys = [[NSArray alloc] initWithObjects:@"host", @"hostport", @"alias", @"adminuser", @"adminpass", @"defaultdb", @"usessh", @"bindaddress", @"bindport", @"sshhost", @"sshport", @"sshuser", @"sshpassword", nil];
-    NSArray *objs = [[NSArray alloc] initWithObjects:host, [NSNumber numberWithInt:hostport], alias, adminuser, adminpass, defaultdb, [NSNumber numberWithInt:usessh], bindaddress, [NSNumber numberWithInt:bindport], sshhost, [NSNumber numberWithInt:sshport], sshuser, sshpassword, nil];
+    NSArray *keys = [[NSArray alloc] initWithObjects:@"host", @"hostport", @"userepl", @"servers", @"repl_name", @"alias", @"adminuser", @"adminpass", @"defaultdb", @"usessh", @"bindaddress", @"bindport", @"sshhost", @"sshport", @"sshuser", @"sshpassword", nil];
+    NSArray *objs = [[NSArray alloc] initWithObjects:host, [NSNumber numberWithInt:hostport], [NSNumber numberWithInt:userepl], servers, repl_name, alias, adminuser, adminpass, defaultdb, [NSNumber numberWithInt:usessh], bindaddress, [NSNumber numberWithInt:bindport], sshhost, [NSNumber numberWithInt:sshport], sshuser, sshpassword, nil];
     if (!connectionInfo) {
         connectionInfo = [[NSMutableDictionary alloc] initWithCapacity:13]; 
     }
@@ -137,13 +148,12 @@
     [objs release];
     [host release];
     [alias release];
-    if (usessh == 1)
-    {
-        [sshhost release];
-        [sshuser release];
-        [sshpassword release];
-        [bindaddress release];
-    }
+    [servers release];
+    [repl_name release];
+    [sshhost release];
+    [sshuser release];
+    [sshpassword release];
+    [bindaddress release];
     if ([self validateConnection]) {
         [self close];
     }
@@ -171,6 +181,10 @@
         NSRunAlertPanel(@"Error", @"Please full fill ssh information!", @"OK", nil, nil);
         return NO;
     }
+    if ([usereplCheckBox state] == 1 && ([[connectionInfo objectForKey:@"servers"] length] == 0 || [[connectionInfo objectForKey:@"repl_name"] length] == 0)) {
+        NSRunAlertPanel(@"Error", @"Please full fill replica-set information!", @"OK", nil, nil);
+        return NO;
+    }
     return YES;
 }
 
@@ -193,5 +207,18 @@
         [sshportTextField setEnabled:NO];
     }
 
+}
+
+- (IBAction)enableRepl:(id)sender
+{
+    if ([usereplCheckBox state] == 1)
+    {
+        [serversTextField setEnabled:YES];
+        [replnameTextField setEnabled:YES];
+    }else {
+        [serversTextField setEnabled:NO];
+        [replnameTextField setEnabled:NO];
+    }
+    
 }
 @end

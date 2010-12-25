@@ -11,6 +11,8 @@
 @interface Connection: NSManagedObject {
     NSString *host;
     NSNumber *hostport;
+    NSString *servers;
+    NSString *repl_name;
     NSString *alias;
     NSString *adminuser;
     NSString *adminpass;
@@ -23,10 +25,13 @@
     NSNumber *bindport;
     NSSet *databases;
     NSNumber *usessh;
+    NSNumber *userepl;
 }
 
 @property (nonatomic, retain) NSString *host;
 @property (nonatomic, retain) NSNumber *hostport;
+@property (nonatomic, retain) NSString *servers;
+@property (nonatomic, retain) NSString *repl_name;
 @property (nonatomic, retain) NSString *alias;
 @property (nonatomic, retain) NSString *adminuser;
 @property (nonatomic, retain) NSString *adminpass;
@@ -39,5 +44,6 @@
 @property (nonatomic, retain) NSString *bindaddress;
 @property (nonatomic, retain) NSNumber *bindport;
 @property (nonatomic, retain) NSNumber *usessh;
+@property (nonatomic, retain) NSNumber *userepl;
 
 @end

@@ -112,11 +112,12 @@
     NSURL *url = [NSURL fileURLWithPath: [applicationSupportDirectory stringByAppendingPathComponent: @"storedata"]];
     
     // set store options to enable spotlight indexing
-    
     NSMutableDictionary *storeOptions = [NSMutableDictionary dictionary];
     [storeOptions setObject:YOUR_EXTERNAL_RECORD_EXTENSION forKey:NSExternalRecordExtensionOption];
     [storeOptions setObject:externalRecordsDirectory forKey:NSExternalRecordsDirectoryOption];
-
+    [storeOptions setObject:[NSNumber numberWithBool:YES] forKey:NSMigratePersistentStoresAutomaticallyOption];
+    [storeOptions setObject:[NSNumber numberWithBool:YES] forKey:NSInferMappingModelAutomaticallyOption];
+    
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: mom];
     if (![persistentStoreCoordinator addPersistentStoreWithType:YOUR_STORE_TYPE 
                                                 configuration:nil 
@@ -141,6 +142,7 @@
     if (managedObjectContext) return managedObjectContext;
 
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    
     if (!coordinator) {
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         [dict setValue:@"Failed to initialize the store" forKey:NSLocalizedDescriptionKey];
@@ -366,7 +368,7 @@
     if ([self isOpenedConnection:sender]) {
         return;
     }
-    ConnectionWindowController *connectionWindowController = [[ConnectionWindowController alloc] init];
+    ConnectionWindowController *connectionWindowController = [[[ConnectionWindowController alloc] init] autorelease];
     connectionWindowController.managedObjectContext = self.managedObjectContext;
     connectionWindowController.conn = sender;
     [connectionWindowController showWindow:sender];

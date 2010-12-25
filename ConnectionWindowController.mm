@@ -25,7 +25,6 @@
 #import "SidebarNode.h"
 #import "MongoDB.h"
 #import "Tunnel.h"
-#import <mongo/client/dbclient.h>
 
 @implementation ConnectionWindowController
 
@@ -69,6 +68,7 @@
 - (void) connect:(BOOL)haveHostAddress {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     [loaderIndicator start];
+    bool connected;
     NSString *hostaddress = [[[NSString alloc] init] autorelease];
     if (!haveHostAddress && [conn.usessh intValue]==1) {
         NSString *portForward = [[NSString alloc] initWithFormat:@"L:%@:%@:%@:%@", conn.hostport, conn.host, conn.sshhost, conn.bindport];
@@ -89,26 +89,42 @@
         //[sshTunnel start];
         [portForwardings release];
         return;
-        hostaddress = [NSString stringWithFormat:@"%@:%@", conn.host, conn.hostport];
     }else if (!haveHostAddress && [conn.host isEqualToString:@"flame.mongohq.com"]) {
         hostaddress = [NSString stringWithFormat:@"%@:%@/%@", conn.host, conn.hostport, conn.defaultdb];
     }else {
-        hostaddress = [NSString stringWithFormat:@"%@:%@", conn.host, conn.hostport];
+        if (conn.userepl) {
+            hostaddress = conn.repl_name;
+            NSArray *tmp = [conn.servers componentsSeparatedByString:@","];
+            NSMutableArray *hosts = [[NSMutableArray alloc] initWithCapacity:[tmp count]];
+            for (NSString *h in tmp) {
+                NSString *host = [h stringByTrimmingWhitespace];
+                if ([host length] == 0) {
+                    continue;
+                }
+                [hosts addObject:host];
+            }
+            connected = mongoDB = [[MongoDB alloc] initWithConn:conn.repl_name hosts:hosts];
+            [hosts release];
+        }else{
+            hostaddress = [NSString stringWithFormat:@"%@:%@", conn.host, conn.hostport];
+            connected = mongoDB = [[MongoDB alloc] initWithConn:hostaddress];
+        }
     }
-    mongoDB = [[MongoDB alloc] initWithConn:hostaddress];
-    if ([conn.adminuser isPresent]) {
-        [mongoDB authUser:conn.adminuser pass:conn.adminpass database:conn.defaultdb];
-    }
-    
-    if (![conn.defaultdb isPresent]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addDB:) name:kNewDBWindowWillClose object:nil];
-    }
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addCollection:) name:kNewCollectionWindowWillClose object:nil];
     [loaderIndicator stop];
-    [monitorButton setEnabled:YES];
-    [self reloadSidebar];
-    [self showServerStatus:nil];
+    if (connected) {
+        if ([conn.adminuser isPresent]) {
+            [mongoDB authUser:conn.adminuser pass:conn.adminpass database:conn.defaultdb];
+        }
+        
+        if (![conn.defaultdb isPresent]) {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addDB:) name:kNewDBWindowWillClose object:nil];
+        }
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addCollection:) name:kNewCollectionWindowWillClose object:nil];
+        [monitorButton setEnabled:YES];
+        [self reloadSidebar];
+        [self showServerStatus:nil];
+    }
     [pool release];
 }
 
@@ -176,7 +192,6 @@
     //exitThread = YES;
     selectedDB = nil;
     selectedCollection = nil;
-    [self release];
 }
 
 - (void)reloadSidebar {

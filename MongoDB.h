@@ -11,12 +11,19 @@
 
 @interface MongoDB : NSObject {
     mongo::DBClientConnection *conn;
+    mongo::DBClientReplicaSet::DBClientReplicaSet *repl_conn;
+    BOOL isRepl;
 }
 - (mongo::DBClientConnection *)mongoConnection;
+- (mongo::DBClientReplicaSet::DBClientReplicaSet *)mongoReplConnection;
 
 - (id)initWithConn:(NSString *)host;
+- (id)initWithConn:(NSString *)name
+             hosts:(NSArray *)hosts;
 - (bool)connect:(NSString *)host;
-- (void)authUser:(NSString *)user 
+- (bool)connect:(NSString *)name 
+          hosts:(NSArray *)hosts;
+- (bool)authUser:(NSString *)user 
             pass:(NSString *)pass 
         database:(NSString *)db;
 - (NSArray *)listDatabases;
