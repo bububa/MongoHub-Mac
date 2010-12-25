@@ -446,9 +446,9 @@
 	};
 	1D93C3CE11836863003216F7 /* ConnectionWindowController.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {801, 7917}}";
-			sepNavSelRange = "{5520, 0}";
-			sepNavVisRange = "{19059, 1251}";
+			sepNavIntBoundsRect = "{{0, 0}, {801, 7878}}";
+			sepNavSelRange = "{20317, 0}";
+			sepNavVisRange = "{19137, 1292}";
 			sepNavWindowFrame = "{{153, 110}, {813, 537}}";
 		};
 	};
@@ -554,17 +554,17 @@
 	};
 	1D93C60911841865003216F7 /* MongoDB.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {801, 1560}}";
-			sepNavSelRange = "{4798, 42}";
-			sepNavVisRange = "{3206, 1834}";
+			sepNavIntBoundsRect = "{{0, 0}, {801, 1586}}";
+			sepNavSelRange = "{4252, 0}";
+			sepNavVisRange = "{3347, 1789}";
 			sepNavWindowFrame = "{{15, 236}, {813, 537}}";
 		};
 	};
 	1D93C60A11841865003216F7 /* MongoDB.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {801, 14469}}";
-			sepNavSelRange = "{38300, 0}";
-			sepNavVisRange = "{35180, 1476}";
+			sepNavIntBoundsRect = "{{0, 0}, {801, 14352}}";
+			sepNavSelRange = "{33117, 0}";
+			sepNavVisRange = "{32777, 2088}";
 			sepNavWindowFrame = "{{456, 164}, {813, 537}}";
 		};
 	};
@@ -1086,7 +1086,7 @@
 		fRef = 1D93C60A11841865003216F7 /* MongoDB.mm */;
 		name = "MongoDB.mm: 903";
 		rLen = 0;
-		rLoc = 38300;
+		rLoc = 38509;
 		rType = 0;
 		vrLen = 1476;
 		vrLoc = 35180;
@@ -1120,6 +1120,272 @@
 		rType = 0;
 		vrLen = 1087;
 		vrLoc = 339;
+	};
+	1DCB3C5912C6148E00423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1DCC562812C264600025F181 /* StatMonitorTableController.m */;
+		name = "StatMonitorTableController.m: 32";
+		rLen = 0;
+		rLoc = 813;
+		rType = 0;
+		vrLen = 1087;
+		vrLoc = 339;
+	};
+	1DCB3C5A12C6171900423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1DCC562812C264600025F181 /* StatMonitorTableController.m */;
+		name = "StatMonitorTableController.m: 33";
+		rLen = 0;
+		rLoc = 815;
+		rType = 0;
+		vrLen = 1084;
+		vrLoc = 337;
+	};
+	1DCB3C5B12C6171900423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C60A11841865003216F7 /* MongoDB.mm */;
+		name = "MongoDB.mm: 795";
+		rLen = 58;
+		rLoc = 32853;
+		rType = 0;
+		vrLen = 2070;
+		vrLoc = 32777;
+	};
+	1DCB3C5C12C6171900423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C60911841865003216F7 /* MongoDB.h */;
+		name = "MongoDB.h: 115";
+		rLen = 0;
+		rLoc = 4898;
+		rType = 0;
+		vrLen = 1790;
+		vrLoc = 3304;
+	};
+	1DCB3C5D12C6171900423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C3CE11836863003216F7 /* ConnectionWindowController.mm */;
+		name = "ConnectionWindowController.mm: 161";
+		rLen = 0;
+		rLoc = 5520;
+		rType = 0;
+		vrLen = 1246;
+		vrLoc = 19059;
+	};
+	1DCB3C5E12C6171900423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C3CE11836863003216F7 /* ConnectionWindowController.mm */;
+		name = "ConnectionWindowController.mm: 595";
+		rLen = 0;
+		rLoc = 20280;
+		rType = 0;
+		vrLen = 1201;
+		vrLoc = 19283;
+	};
+	1DCB3C6212C618C300423160 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Cannot convert 'objc_object*' to 'NSTimeInterval' in initialization";
+		fRef = 1D93C3CE11836863003216F7 /* ConnectionWindowController.mm */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 0;
+		rLoc = 592;
+		rType = 1;
+	};
+	1DCB3C6312C618C300423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C3CE11836863003216F7 /* ConnectionWindowController.mm */;
+		name = "ConnectionWindowController.mm: 593";
+		rLen = 0;
+		rLoc = 20183;
+		rType = 0;
+		vrLen = 974;
+		vrLoc = 19480;
+	};
+	1DCB3C6412C618D300423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C60911841865003216F7 /* MongoDB.h */;
+		name = "MongoDB.h: 116";
+		rLen = 0;
+		rLoc = 5011;
+		rType = 0;
+		vrLen = 1764;
+		vrLoc = 3347;
+	};
+	1DCB3C6512C618D300423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C60A11841865003216F7 /* MongoDB.mm */;
+		name = "MongoDB.mm: 1098";
+		rLen = 0;
+		rLoc = 47014;
+		rType = 0;
+		vrLen = 1473;
+		vrLoc = 45936;
+	};
+	1DCB3C6612C618D300423160 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Cannot convert 'objc_object*' to 'NSTimeInterval' in initialization";
+		fRef = 1D93C3CE11836863003216F7 /* ConnectionWindowController.mm */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 0;
+		rLoc = 592;
+		rType = 1;
+	};
+	1DCB3C6712C618D300423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C3CE11836863003216F7 /* ConnectionWindowController.mm */;
+		name = "ConnectionWindowController.mm: 593";
+		rLen = 0;
+		rLoc = 20183;
+		rType = 0;
+		vrLen = 1340;
+		vrLoc = 19137;
+	};
+	1DCB3C6A12C61A9800423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C3CE11836863003216F7 /* ConnectionWindowController.mm */;
+		name = "ConnectionWindowController.mm: 593";
+		rLen = 0;
+		rLoc = 20183;
+		rType = 0;
+		vrLen = 1282;
+		vrLoc = 19137;
+	};
+	1DCB3C6B12C61A9800423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C60911841865003216F7 /* MongoDB.h */;
+		name = "MongoDB.h: 105";
+		rLen = 0;
+		rLoc = 4252;
+		rType = 0;
+		vrLen = 1789;
+		vrLoc = 3347;
+	};
+	1DCB3C6C12C61A9800423160 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "'prev' was not declared in this scope";
+		fRef = 1D93C60A11841865003216F7 /* MongoDB.mm */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 797;
+		rType = 1;
+	};
+	1DCB3C6D12C61A9800423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C60A11841865003216F7 /* MongoDB.mm */;
+		name = "MongoDB.mm: 798";
+		rLen = 0;
+		rLoc = 33035;
+		rType = 0;
+		vrLen = 1456;
+		vrLoc = 32247;
+	};
+	1DCB3C7012C61AFC00423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C60A11841865003216F7 /* MongoDB.mm */;
+		name = "MongoDB.mm: 798";
+		rLen = 0;
+		rLoc = 33035;
+		rType = 0;
+		vrLen = 1456;
+		vrLoc = 32247;
+	};
+	1DCB3C7612C61C3E00423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C60A11841865003216F7 /* MongoDB.mm */;
+		name = "MongoDB.mm: 798";
+		rLen = 0;
+		rLoc = 33035;
+		rType = 0;
+		vrLen = 1381;
+		vrLoc = 32247;
+	};
+	1DCB3C7812C61C6700423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C3CE11836863003216F7 /* ConnectionWindowController.mm */;
+		name = "ConnectionWindowController.mm: 593";
+		rLen = 0;
+		rLoc = 20183;
+		rType = 0;
+		vrLen = 1003;
+		vrLoc = 19352;
+	};
+	1DCB3C7912C61C6700423160 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Cannot convert 'objc_object*' to 'NSTimeInterval' in initialization";
+		fRef = 1D93C60A11841865003216F7 /* MongoDB.mm */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 797;
+		rType = 1;
+	};
+	1DCB3C7A12C61C6700423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C60A11841865003216F7 /* MongoDB.mm */;
+		name = "MongoDB.mm: 798";
+		rLen = 0;
+		rLoc = 33087;
+		rType = 0;
+		vrLen = 1169;
+		vrLoc = 32595;
+	};
+	1DCB3C7D12C61C6B00423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C60A11841865003216F7 /* MongoDB.mm */;
+		name = "MongoDB.mm: 798";
+		rLen = 0;
+		rLoc = 33035;
+		rType = 0;
+		vrLen = 1381;
+		vrLoc = 32247;
+	};
+	1DCB3C8412C61C9D00423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C60A11841865003216F7 /* MongoDB.mm */;
+		name = "MongoDB.mm: 799";
+		rLen = 0;
+		rLoc = 33117;
+		rType = 0;
+		vrLen = 1381;
+		vrLoc = 32247;
+	};
+	1DCB3C8812C61D1F00423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C60A11841865003216F7 /* MongoDB.mm */;
+		name = "MongoDB.mm: 799";
+		rLen = 0;
+		rLoc = 33117;
+		rType = 0;
+		vrLen = 1973;
+		vrLoc = 32777;
+	};
+	1DCB3C8C12C61E5500423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C60A11841865003216F7 /* MongoDB.mm */;
+		name = "MongoDB.mm: 799";
+		rLen = 0;
+		rLoc = 33117;
+		rType = 0;
+		vrLen = 2088;
+		vrLoc = 32777;
+	};
+	1DCB3C8D12C61E5500423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C3CE11836863003216F7 /* ConnectionWindowController.mm */;
+		name = "ConnectionWindowController.mm: 593";
+		rLen = 0;
+		rLoc = 20183;
+		rType = 0;
+		vrLen = 1282;
+		vrLoc = 19137;
+	};
+	1DCB3C8E12C61E5500423160 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C3CE11836863003216F7 /* ConnectionWindowController.mm */;
+		name = "ConnectionWindowController.mm: 596";
+		rLen = 0;
+		rLoc = 20317;
+		rType = 0;
+		vrLen = 1292;
+		vrLoc = 19137;
 	};
 	1DCC55C112C254E10025F181 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1173,8 +1439,8 @@
 	1DCC562812C264600025F181 /* StatMonitorTableController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {801, 702}}";
-			sepNavSelRange = "{813, 0}";
-			sepNavVisRange = "{339, 1087}";
+			sepNavSelRange = "{815, 0}";
+			sepNavVisRange = "{337, 1084}";
 		};
 	};
 	1DCC567412C26ABE0025F181 /* PBXTextBookmark */ = {
@@ -1733,7 +1999,7 @@
 		fRef = 1D93C60A11841865003216F7 /* MongoDB.mm */;
 		name = "MongoDB.mm: 795";
 		rLen = 0;
-		rLoc = 32855;
+		rLoc = 32912;
 		rType = 0;
 		vrLen = 1998;
 		vrLoc = 32608;
@@ -1780,7 +2046,7 @@
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeArchitecturePreference = x86_64;
-		activeBuildConfigurationName = Release;
+		activeBuildConfigurationName = Debug;
 		activeExecutable = 1D10C47C11831FAD00CF6B70 /* MongoHub */;
 		activeTarget = 8D1107260486CEB800E47090 /* MongoHub */;
 		addToTargets = (
@@ -1945,6 +2211,33 @@
 			1DCB3C4B12C6124000423160 /* PBXTextBookmark */ = 1DCB3C4B12C6124000423160 /* PBXTextBookmark */;
 			1DCB3C4C12C6124000423160 /* PBXTextBookmark */ = 1DCB3C4C12C6124000423160 /* PBXTextBookmark */;
 			1DCB3C4D12C6124000423160 /* PBXTextBookmark */ = 1DCB3C4D12C6124000423160 /* PBXTextBookmark */;
+			1DCB3C5912C6148E00423160 /* PBXTextBookmark */ = 1DCB3C5912C6148E00423160 /* PBXTextBookmark */;
+			1DCB3C5A12C6171900423160 /* PBXTextBookmark */ = 1DCB3C5A12C6171900423160 /* PBXTextBookmark */;
+			1DCB3C5B12C6171900423160 /* PBXTextBookmark */ = 1DCB3C5B12C6171900423160 /* PBXTextBookmark */;
+			1DCB3C5C12C6171900423160 /* PBXTextBookmark */ = 1DCB3C5C12C6171900423160 /* PBXTextBookmark */;
+			1DCB3C5D12C6171900423160 /* PBXTextBookmark */ = 1DCB3C5D12C6171900423160 /* PBXTextBookmark */;
+			1DCB3C5E12C6171900423160 /* PBXTextBookmark */ = 1DCB3C5E12C6171900423160 /* PBXTextBookmark */;
+			1DCB3C6212C618C300423160 /* XCBuildMessageTextBookmark */ = 1DCB3C6212C618C300423160 /* XCBuildMessageTextBookmark */;
+			1DCB3C6312C618C300423160 /* PBXTextBookmark */ = 1DCB3C6312C618C300423160 /* PBXTextBookmark */;
+			1DCB3C6412C618D300423160 /* PBXTextBookmark */ = 1DCB3C6412C618D300423160 /* PBXTextBookmark */;
+			1DCB3C6512C618D300423160 /* PBXTextBookmark */ = 1DCB3C6512C618D300423160 /* PBXTextBookmark */;
+			1DCB3C6612C618D300423160 /* XCBuildMessageTextBookmark */ = 1DCB3C6612C618D300423160 /* XCBuildMessageTextBookmark */;
+			1DCB3C6712C618D300423160 /* PBXTextBookmark */ = 1DCB3C6712C618D300423160 /* PBXTextBookmark */;
+			1DCB3C6A12C61A9800423160 /* PBXTextBookmark */ = 1DCB3C6A12C61A9800423160 /* PBXTextBookmark */;
+			1DCB3C6B12C61A9800423160 /* PBXTextBookmark */ = 1DCB3C6B12C61A9800423160 /* PBXTextBookmark */;
+			1DCB3C6C12C61A9800423160 /* XCBuildMessageTextBookmark */ = 1DCB3C6C12C61A9800423160 /* XCBuildMessageTextBookmark */;
+			1DCB3C6D12C61A9800423160 /* PBXTextBookmark */ = 1DCB3C6D12C61A9800423160 /* PBXTextBookmark */;
+			1DCB3C7012C61AFC00423160 /* PBXTextBookmark */ = 1DCB3C7012C61AFC00423160 /* PBXTextBookmark */;
+			1DCB3C7612C61C3E00423160 /* PBXTextBookmark */ = 1DCB3C7612C61C3E00423160 /* PBXTextBookmark */;
+			1DCB3C7812C61C6700423160 /* PBXTextBookmark */ = 1DCB3C7812C61C6700423160 /* PBXTextBookmark */;
+			1DCB3C7912C61C6700423160 /* XCBuildMessageTextBookmark */ = 1DCB3C7912C61C6700423160 /* XCBuildMessageTextBookmark */;
+			1DCB3C7A12C61C6700423160 /* PBXTextBookmark */ = 1DCB3C7A12C61C6700423160 /* PBXTextBookmark */;
+			1DCB3C7D12C61C6B00423160 /* PBXTextBookmark */ = 1DCB3C7D12C61C6B00423160 /* PBXTextBookmark */;
+			1DCB3C8412C61C9D00423160 /* PBXTextBookmark */ = 1DCB3C8412C61C9D00423160 /* PBXTextBookmark */;
+			1DCB3C8812C61D1F00423160 /* PBXTextBookmark */ = 1DCB3C8812C61D1F00423160 /* PBXTextBookmark */;
+			1DCB3C8C12C61E5500423160 /* PBXTextBookmark */ = 1DCB3C8C12C61E5500423160 /* PBXTextBookmark */;
+			1DCB3C8D12C61E5500423160 /* PBXTextBookmark */ = 1DCB3C8D12C61E5500423160 /* PBXTextBookmark */;
+			1DCB3C8E12C61E5500423160 /* PBXTextBookmark */ = 1DCB3C8E12C61E5500423160 /* PBXTextBookmark */;
 			1DCC55C112C254E10025F181 = 1DCC55C112C254E10025F181 /* PBXTextBookmark */;
 			1DCC55C212C254E10025F181 = 1DCC55C212C254E10025F181 /* PBXTextBookmark */;
 			1DCC55C312C254E10025F181 = 1DCC55C312C254E10025F181 /* PBXTextBookmark */;

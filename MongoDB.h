@@ -112,7 +112,7 @@
 - (std::auto_ptr<mongo::DBClientCursor>) findAllCursorInDB:(NSString *)dbname collection:(NSString *)collectionname user:(NSString *)user password:(NSString *)password fields:(mongo::BSONObj) fields;
 
 - (mongo::BSONObj) serverStat;
-- (NSDictionary *) serverMonitor:(mongo::BSONObj)a second:(mongo::BSONObj)b;
-- (double) diff:(NSString *)aName first:(mongo::BSONObj)a second:(mongo::BSONObj)b;
+- (NSDictionary *) serverMonitor:(mongo::BSONObj)a second:(mongo::BSONObj)b currentDate:(NSDate *)now previousDate:(NSDate *)previous;
+- (double) diff:(NSString *)aName first:(mongo::BSONObj)a second:(mongo::BSONObj)b timeInterval:(NSTimeInterval)interval;
 - (double) percent:(NSString *)aOut value:(NSString *)aVal first:(mongo::BSONObj)a second:(mongo::BSONObj)b;
 @end

@@ -585,12 +585,15 @@
 
 - (void)updateMonitor {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    NSDate *prev = [NSDate date];
     mongo::BSONObj a = [mongoDB serverStat];
     while (!monitorStopped) {
         [NSThread sleepForTimeInterval:1];
+        NSDate *now = [NSDate date];
         mongo::BSONObj b = [mongoDB serverStat];
-        NSDictionary *item = [mongoDB serverMonitor:a second:b];
+        NSDictionary *item = [mongoDB serverMonitor:a second:b currentDate:now previousDate:prev];
         a = b;
+        prev = now;
         [statMonitorTableController addObject:item];
         
     }

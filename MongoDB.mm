@@ -792,8 +792,11 @@
      */
 }
 
-- (NSDictionary *) serverMonitor:(mongo::BSONObj)a second:(mongo::BSONObj)b {
+- (NSDictionary *) serverMonitor:(mongo::BSONObj)a second:(mongo::BSONObj)b currentDate:(NSDate *)now previousDate:(NSDate *)previous{
     NSMutableDictionary *res = [[NSMutableDictionary alloc] initWithCapacity:14];
+    [res setObject:now forKey:@"time"];
+    NSTimeInterval interval = [now timeIntervalSinceDate:previous];
+    NSLog(@"%f", interval);
     if ( b["opcounters"].type() == mongo::Object ) {
         mongo::BSONObj ax = a["opcounters"].embeddedObject();
         mongo::BSONObj bx = b["opcounters"].embeddedObject();
@@ -801,13 +804,13 @@
         while ( i.more() ){
             mongo::BSONElement e = i.next();
             NSString *key = [NSString stringWithUTF8String:e.fieldName()];
-            [res setObject:[NSNumber numberWithInt:[self diff:key first:ax second:bx]] forKey:key];
+            [res setObject:[NSNumber numberWithInt:[self diff:key first:ax second:bx timeInterval:interval]] forKey:key];
         }
     }
     if ( b["backgroundFlushing"].type() == mongo::Object ){
         mongo::BSONObj ax = a["backgroundFlushing"].embeddedObject();
         mongo::BSONObj bx = b["backgroundFlushing"].embeddedObject();
-        [res setObject:[NSNumber numberWithInt:[self diff:@"flushes" first:ax second:bx]] forKey:@"flushes"];
+        [res setObject:[NSNumber numberWithInt:[self diff:@"flushes" first:ax second:bx timeInterval:interval]] forKey:@"flushes"];
     }
     if ( b.getFieldDotted("mem.supported").trueValue() ){
         mongo::BSONObj bx = b["mem"].embeddedObject();
@@ -819,12 +822,11 @@
         mongo::BSONObj ax = a["extra_info"].embeddedObject();
         mongo::BSONObj bx = b["extra_info"].embeddedObject();
         if ( ax["page_faults"].type() || ax["page_faults"].type() )
-            [res setObject:[NSNumber numberWithInt:[self diff:@"page_faults" first:ax second:bx]] forKey:@"faults"];
+            [res setObject:[NSNumber numberWithInt:[self diff:@"page_faults" first:ax second:bx timeInterval:interval]] forKey:@"faults"];
     }
     [res setObject:[NSNumber numberWithInt:[self percent:@"globalLock.totalTime" value:@"globalLock.lockTime" first:a second:b]] forKey:@"locked"];
     [res setObject:[NSNumber numberWithInt:[self percent:@"indexCounters.btree.accesses" value:@"indexCounters.btree.misses" first:a second:b]] forKey:@"misses"];
     [res setObject:[NSNumber numberWithInt:b.getFieldDotted( "connections.current" ).numberInt()] forKey:@"conn"];
-    [res setObject:[NSDate date] forKey:@"time"];
     return (NSDictionary *)res;
 }
 
@@ -1089,13 +1091,13 @@
     return cursor;
 }
 
-- (double) diff:(NSString *)aName first:(mongo::BSONObj)a second:(mongo::BSONObj)b {
+- (double) diff:(NSString *)aName first:(mongo::BSONObj)a second:(mongo::BSONObj)b timeInterval:(NSTimeInterval)interval{
     std::string name = std::string([aName UTF8String]);
     mongo::BSONElement x = a.getFieldDotted( name.c_str() );
     mongo::BSONElement y = b.getFieldDotted( name.c_str() );
     if ( ! x.isNumber() || ! y.isNumber() )
         return -1;
-    return ( y.number() - x.number() ) / 1;
+    return ( y.number() - x.number() ) / interval;
 }
 
 - (double) percent:(NSString *)aOut value:(NSString *)aVal first:(mongo::BSONObj)a second:(mongo::BSONObj)b {
