@@ -4,6 +4,8 @@
 **[MongoHub](http://mongohub.todayclose.com/)** is a **[mongodb](http://mongodb.org)** GUI application.
 This repository is a mac native version of MongoHub. If you are using windows or linux please download use the source from [http://github.com/bububa/MongoHub](http://github.com/bububa/MongoHub) which is made by Titanium Desktop.
 
+![mongohub splash](https://github.com/downloads/bububa/MongoHub-Mac/MongoHubWall.png)
+
 ## System Requirements
 
 Mac OS X(10.6.x), intel(64bit) based.
