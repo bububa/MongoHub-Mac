@@ -75,6 +75,7 @@
 		1DA6804B118875B300DFDD29 /* updatemenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DA68046118875B300DFDD29 /* updatemenu.png */; };
 		1DA6806C11888BDD00DFDD29 /* NSString+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA6806B11888BDD00DFDD29 /* NSString+Extras.m */; };
 		1DBFFAF512C1FDF200B643CA /* NSProgressIndicator+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DBFFAF412C1FDF200B643CA /* NSProgressIndicator+Extras.m */; };
+		1DCC562912C264600025F181 /* StatMonitorTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DCC562812C264600025F181 /* StatMonitorTableController.m */; };
 		1DEC7F3B12B7ECAD00FC804E /* Tunnel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DEC7F3A12B7ECAC00FC804E /* Tunnel.m */; };
 		1DEC7FF112B7EDB900FC804E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEC7FF012B7EDB900FC804E /* Security.framework */; };
 		1DEC803512B7EE2100FC804E /* SSHCommand.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1DEC803412B7EE2100FC804E /* SSHCommand.sh */; };
@@ -267,6 +268,8 @@
 		1DA6806B11888BDD00DFDD29 /* NSString+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extras.m"; sourceTree = "<group>"; };
 		1DBFFAF312C1FDF200B643CA /* NSProgressIndicator+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSProgressIndicator+Extras.h"; sourceTree = "<group>"; };
 		1DBFFAF412C1FDF200B643CA /* NSProgressIndicator+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSProgressIndicator+Extras.m"; sourceTree = "<group>"; };
+		1DCC562712C264600025F181 /* StatMonitorTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatMonitorTableController.h; sourceTree = "<group>"; };
+		1DCC562812C264600025F181 /* StatMonitorTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatMonitorTableController.m; sourceTree = "<group>"; };
 		1DEC7F3912B7ECAC00FC804E /* Tunnel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tunnel.h; sourceTree = "<group>"; };
 		1DEC7F3A12B7ECAC00FC804E /* Tunnel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tunnel.m; sourceTree = "<group>"; };
 		1DEC7FF012B7EDB900FC804E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
@@ -435,6 +438,8 @@
 				1D93C7481184369D003216F7 /* DatabasesArrayController.m */,
 				1D26619211CFD2560092C6B5 /* FieldMapTableController.h */,
 				1D26619311CFD2560092C6B5 /* FieldMapTableController.m */,
+				1DCC562712C264600025F181 /* StatMonitorTableController.h */,
+				1DCC562812C264600025F181 /* StatMonitorTableController.m */,
 			);
 			name = ArrayControllers;
 			sourceTree = "<group>";
@@ -797,6 +802,7 @@
 				1D26619411CFD2560092C6B5 /* FieldMapTableController.m in Sources */,
 				1DEC7F3B12B7ECAD00FC804E /* Tunnel.m in Sources */,
 				1DBFFAF512C1FDF200B643CA /* NSProgressIndicator+Extras.m in Sources */,
+				1DCC562912C264600025F181 /* StatMonitorTableController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

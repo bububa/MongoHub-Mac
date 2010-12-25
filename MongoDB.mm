@@ -774,6 +774,60 @@
     return nil;
 }
 
+- (mongo::BSONObj) serverStat{
+    try {
+        mongo::BSONObj retval;
+        conn->runCommand("admin", BSON("serverStatus"<<1), retval);
+        return retval;
+    }catch (mongo::DBException &e) {
+        //NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
+        return mongo::BSONObj();
+    }
+    /*
+    mongo::BSONObj out;
+    if ( ! conn->simpleCommand( "admin" , &out , "serverStatus" ) ){
+        return mongo::BSONObj();
+    }
+    return out.getOwned();
+     */
+}
+
+- (NSDictionary *) serverMonitor:(mongo::BSONObj)a second:(mongo::BSONObj)b {
+    NSMutableDictionary *res = [[NSMutableDictionary alloc] initWithCapacity:14];
+    if ( b["opcounters"].type() == mongo::Object ) {
+        mongo::BSONObj ax = a["opcounters"].embeddedObject();
+        mongo::BSONObj bx = b["opcounters"].embeddedObject();
+        mongo::BSONObjIterator i( bx );
+        while ( i.more() ){
+            mongo::BSONElement e = i.next();
+            NSString *key = [NSString stringWithUTF8String:e.fieldName()];
+            [res setObject:[NSNumber numberWithInt:[self diff:key first:ax second:bx]] forKey:key];
+        }
+    }
+    if ( b["backgroundFlushing"].type() == mongo::Object ){
+        mongo::BSONObj ax = a["backgroundFlushing"].embeddedObject();
+        mongo::BSONObj bx = b["backgroundFlushing"].embeddedObject();
+        [res setObject:[NSNumber numberWithInt:[self diff:@"flushes" first:ax second:bx]] forKey:@"flushes"];
+    }
+    if ( b.getFieldDotted("mem.supported").trueValue() ){
+        mongo::BSONObj bx = b["mem"].embeddedObject();
+        [res setObject:[NSNumber numberWithInt:bx["mapped"].numberInt()] forKey:@"mapped"];
+        [res setObject:[NSNumber numberWithInt:bx["virtual"].numberInt()] forKey:@"vsize"];
+        [res setObject:[NSNumber numberWithInt:bx["resident"].numberInt()] forKey:@"res"];
+    }
+    if ( b["extra_info"].type() == mongo::Object ){
+        mongo::BSONObj ax = a["extra_info"].embeddedObject();
+        mongo::BSONObj bx = b["extra_info"].embeddedObject();
+        if ( ax["page_faults"].type() || ax["page_faults"].type() )
+            [res setObject:[NSNumber numberWithInt:[self diff:@"page_faults" first:ax second:bx]] forKey:@"faults"];
+    }
+    [res setObject:[NSNumber numberWithInt:[self percent:@"globalLock.totalTime" value:@"globalLock.lockTime" first:a second:b]] forKey:@"locked"];
+    [res setObject:[NSNumber numberWithInt:[self percent:@"indexCounters.btree.accesses" value:@"indexCounters.btree.misses" first:a second:b]] forKey:@"misses"];
+    [res setObject:[NSNumber numberWithInt:b.getFieldDotted( "connections.current" ).numberInt()] forKey:@"conn"];
+    [res setObject:[NSDate date] forKey:@"time"];
+    return (NSDictionary *)res;
+}
+
 #pragma mark BSON to NSMutableArray
 - (NSMutableArray *) bsonDictWrapper:(mongo::BSONObj)retval
 {
@@ -1033,6 +1087,27 @@
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
     return cursor;
+}
+
+- (double) diff:(NSString *)aName first:(mongo::BSONObj)a second:(mongo::BSONObj)b {
+    std::string name = std::string([aName UTF8String]);
+    mongo::BSONElement x = a.getFieldDotted( name.c_str() );
+    mongo::BSONElement y = b.getFieldDotted( name.c_str() );
+    if ( ! x.isNumber() || ! y.isNumber() )
+        return -1;
+    return ( y.number() - x.number() ) / 1;
+}
+
+- (double) percent:(NSString *)aOut value:(NSString *)aVal first:(mongo::BSONObj)a second:(mongo::BSONObj)b {
+    const char * outof = [aOut UTF8String];
+    const char * val = [aVal UTF8String];
+    double x = ( b.getFieldDotted( val ).number() - a.getFieldDotted( val ).number() );
+    double y = ( b.getFieldDotted( outof ).number() - a.getFieldDotted( outof ).number() );
+    if ( y == 0 )
+        return 0;
+    double p = x / y;
+    p = (double)((int)(p * 1000)) / 10;
+    return p;
 }
 
 @end

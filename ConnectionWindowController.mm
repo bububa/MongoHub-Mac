@@ -9,6 +9,7 @@
 #import "Configure.h"
 #import "NSString+Extras.h"
 #import "NSProgressIndicator+Extras.h"
+#import <BWToolkitFramework/BWToolkitFramework.h>
 #import "ConnectionWindowController.h"
 #import "QueryWindowController.h"
 #import "AddDBController.h";
@@ -18,11 +19,13 @@
 #import "ExportWindowController.h"
 #import "ResultsOutlineViewController.h"
 #import "DatabasesArrayController.h"
+#import "StatMonitorTableController.h"
 #import "Connection.h"
 #import "Sidebar.h"
 #import "SidebarNode.h"
 #import "MongoDB.h"
 #import "Tunnel.h"
+#import <mongo/client/dbclient.h>
 
 @implementation ConnectionWindowController
 
@@ -33,6 +36,9 @@
 @synthesize mongoDB;
 @synthesize sidebar;
 @synthesize loaderIndicator;
+@synthesize monitorButton;
+@synthesize monitorSheetController;
+@synthesize statMonitorTableController;
 @synthesize databases;
 @synthesize collections;
 @synthesize selectedDB;
@@ -99,6 +105,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addCollection:) name:kNewCollectionWindowWillClose object:nil];
     [loaderIndicator stop];
+    [monitorButton setEnabled:YES];
     [self reloadSidebar];
     [self showServerStatus:nil];
     [pool release];
@@ -107,7 +114,7 @@
 - (void)windowDidLoad {
     [super windowDidLoad];
     exitThread = NO;
-    NSString *appVersion = [[NSString alloc] initWithFormat:@"version(%@)", [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey] ];
+    NSString *appVersion = [[NSString alloc] initWithFormat:@"version(%@[%@])", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"], [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey] ];
     [bundleVersion setStringValue: appVersion];
     [appVersion release];
     [self connect:NO];
@@ -149,6 +156,9 @@
     [addCollectionController release];
     [resultsTitle release];
     [loaderIndicator release];
+    [monitorButton release];
+    [monitorSheetController release];
+    [statMonitorTableController release];
     [bundleVersion release];
     [authWindowController release];
     [importWindowController release];
@@ -558,6 +568,34 @@
     [alert beginSheetModalForWindow:[self window] modalDelegate:self
                      didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
                         contextInfo:nil];
+}
+
+- (IBAction)startMonitor:(id)sender {
+    monitorStopped = NO;
+    [NSThread detachNewThreadSelector: @selector(updateMonitor) toTarget:self withObject:nil ];
+    [monitorSheetController openSheet:sender];
+    NSLog(@"startMonitor");
+}
+
+- (IBAction)stopMonitor:(id)sender {
+    [monitorSheetController closeSheet:sender];
+    monitorStopped = YES;
+    NSLog(@"stopMonitor");
+}
+
+- (void)updateMonitor {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    mongo::BSONObj a = [mongoDB serverStat];
+    while (!monitorStopped) {
+        [NSThread sleepForTimeInterval:1];
+        mongo::BSONObj b = [mongoDB serverStat];
+        NSDictionary *item = [mongoDB serverMonitor:a second:b];
+        a = b;
+        [statMonitorTableController addObject:item];
+        
+    }
+    [NSThread exit];
+    [pool release];
 }
 
 @end
