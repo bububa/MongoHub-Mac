@@ -30,7 +30,6 @@
     
     if (numberOfRows > 0)
         [nsTableView scrollRowToVisible:numberOfRows - 1];
-    NSLog(@"%@", nsMutaryDataObj);
 }
 
 - (int)numberOfRowsInTableView:(NSTableView *)pTableViewObj {

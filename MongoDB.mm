@@ -900,7 +900,7 @@
                     value = @"binary";
                 }else if (e.type() == mongo::NumberLong) {
                     fieldType = @"Long";
-                    value = [NSString stringWithFormat:@"%d", e.numberLong()];
+                    value = [NSString stringWithFormat:@"%qi", e.numberLong()];
                 }else if ([fieldName isEqualToString:@"_id" ]) {
                     if (e.type() == mongo::jstOID)
                     {
@@ -1035,9 +1035,9 @@
                     }
                 }else if (e.type() == mongo::NumberLong) {
                     fieldType = @"Long";
-                    value = [NSString stringWithFormat:@"%d", e.numberLong()];
+                    value = [NSString stringWithFormat:@"%qi", e.numberLong()];
                     if (hasId) {
-                        [arr addObject:[NSString stringWithFormat:@"%d", e.numberLong()]];
+                        [arr addObject:[NSString stringWithFormat:@"%qi", e.numberLong()]];
                     }
                 }else if (e.type() == mongo::jstOID) {
                     fieldType = @"ObjectId";
