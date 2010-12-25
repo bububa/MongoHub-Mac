@@ -59,7 +59,7 @@
 }
 
 - (void) tunnelStatusChanged: (Tunnel*) tunnel status: (NSString*) status {
-    NSLog(@"%@", status);
+    NSLog(@"SSH TUNNEL STATUS: %@", status);
     if( [status isEqualToString: @"CONNECTED"] ){
         exitThread = YES;
         [self connect:YES];
@@ -74,7 +74,8 @@
         NSString *portForward = [[NSString alloc] initWithFormat:@"L:%@:%@:%@:%@", conn.hostport, conn.host, conn.sshhost, conn.bindport];
         NSMutableArray *portForwardings = [[NSMutableArray alloc] initWithObjects:portForward, nil];
         [portForward release];
-        sshTunnel =[[Tunnel alloc] init];
+        if (!sshTunnel)
+            sshTunnel =[[Tunnel alloc] init];
         [sshTunnel setDelegate:self];
         [sshTunnel setUser:conn.sshuser];
         [sshTunnel setHost:conn.sshhost];
@@ -85,7 +86,7 @@
         [sshTunnel setAliveInterval:30];
         [sshTunnel setTcpKeepAlive:YES];
         [sshTunnel setCompression:YES];
-        [sshTunnel start];
+        //[sshTunnel start];
         [portForwardings release];
         return;
         hostaddress = [NSString stringWithFormat:@"%@:%@", conn.host, conn.hostport];
@@ -127,12 +128,14 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     while(!exitThread){
 		@synchronized(self){
-            [sshTunnel readStatus];
-            /*if( [sshTunnel running] == YES && [sshTunnel checkProcess] == NO ){
+            if ([sshTunnel running] == NO){
+                [sshTunnel start];
+            }else if( [sshTunnel running] == YES && [sshTunnel checkProcess] == NO ){
                 [sshTunnel stop];
                 [NSThread sleepForTimeInterval:2];
                 [sshTunnel start];
-            }*/
+            }
+            [sshTunnel readStatus];
 		}
 		[NSThread sleepForTimeInterval:3];
 	}

@@ -796,7 +796,6 @@
     NSMutableDictionary *res = [[NSMutableDictionary alloc] initWithCapacity:14];
     [res setObject:now forKey:@"time"];
     NSTimeInterval interval = [now timeIntervalSinceDate:previous];
-    NSLog(@"%f", interval);
     if ( b["opcounters"].type() == mongo::Object ) {
         mongo::BSONObj ax = a["opcounters"].embeddedObject();
         mongo::BSONObj bx = b["opcounters"].embeddedObject();
