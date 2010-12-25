@@ -37,39 +37,45 @@ This project is very new. Any issues or bug reports are welcome. And I still don
 ## History
 
 ** [Last Update 2.2.0] **
-- SSH Tunnel connection support;
-- Fixed a bug in display ObjectID type fields;
-- Fixed some UI bugs;
-- Fixed some memory leaks and random crashes;
-- Add confirm panel before drop database or collection;
-- Run queries in a seperate thread so that won't block the UI;
-- Fixed a bug to install on some 10.6.x(64bit) system.
+	
+	- SSH Tunnel connection support;
+	- Fixed a bug in display ObjectID type fields;
+	- Fixed some UI bugs;
+	- Fixed some memory leaks and random crashes;
+	- Add confirm panel before drop database or collection;
+	- Run queries in a seperate thread so that won't block the UI;
+	- Fixed a bug to install on some 10.6.x(64bit) system.
 
 ** [2.1.0] **
-- Auto expand and collaspe finding results;
-- Display Date_t or Timestamp as GMT time format;
-- Fixed a bug in display ObjectIds in Array element;
-- Import data from mysql database to mongodb;
-- Export data from mongodb to mysql database.
+	
+	- Auto expand and collaspe finding results;
+	- Display Date_t or Timestamp as GMT time format;
+	- Fixed a bug in display ObjectIds in Array element;
+	- Import data from mysql database to mongodb;
+	- Export data from mongodb to mysql database.
 
 ** [2.0.9] **
-- Add support for mongohq.com;
-- Changed update behavior;
-- Fixed a bug to detect NumberLong type of BSONElement;
-- Fixed a bug in Array type of BSONElement.
+	
+	- Add support for mongohq.com;
+	- Changed update behavior;
+	- Fixed a bug to detect NumberLong type of BSONElement;
+	- Fixed a bug in Array type of BSONElement.
 
 ** [2.0.8] **
-- Fix several UI bugs in Query Window;
-- Fix bugs in Find Query and Update Query;
-- Fix bugs related to ObjectId;
-- Fix copy&paste bugs.
+	
+	- Fix several UI bugs in Query Window;
+	- Fix bugs in Find Query and Update Query;
+	- Fix bugs related to ObjectId;
+	- Fix copy&paste bugs.
 
 ** [2.0.7] **
-- Add sparkle framework to check application updates.
+	
+	- Add sparkle framework to check application updates.
 
 ** [2.0.6] **
-- fixed some UI bugs;
-- add admin auth support.
+	
+	- fixed some UI bugs;
+	- add admin auth support.
 
 ## Contribute
 
