@@ -13,3 +13,5 @@
 #define kAuthWindowWillClose @"AuthWindowWillClose"
 #define kImportWindowWillClose @"ImportWindowWillClose"
 #define kExportWindowWillClose @"ExportWindowWillClose"
+#define kJsonWindowWillClose @"kJsonWindowWillClose"
+#define kJsonWindowSaved @"kJsonWindowSaved"

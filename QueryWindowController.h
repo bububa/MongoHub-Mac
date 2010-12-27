@@ -130,4 +130,7 @@
 - (IBAction)updateQueryComposer:(id)sender;
 - (IBAction)removeQueryComposer:(id)sender;
 
+- (void)showEditWindow:(id)sender;
+- (void)jsonWindowWillClose:(id)sender;
+
 @end

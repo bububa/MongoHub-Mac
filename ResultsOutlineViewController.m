@@ -8,7 +8,6 @@
 
 #import "ResultsOutlineViewController.h"
 
-
 @implementation ResultsOutlineViewController
 
 @synthesize myOutlineView;
@@ -24,6 +23,7 @@
 }
 
 - (void)dealloc {
+    [myOutlineView deselectAll:nil];
     [myOutlineView release];
     [results release];
     [super dealloc];
@@ -123,14 +123,29 @@ objectValueForTableColumn:(NSTableColumn *)tableColumn
 	{
 		case -1:
 			break;
-		default:
-            if ([myOutlineView isItemExpanded:[myOutlineView itemAtRow:[myOutlineView selectedRow]]]) {
-                [myOutlineView collapseItem:[myOutlineView itemAtRow:[myOutlineView selectedRow]] collapseChildren:YES];
+		default:{
+            id currentItem = [myOutlineView itemAtRow:[myOutlineView selectedRow]];
+            if ([myOutlineView isItemExpanded:currentItem]) {
+                [myOutlineView collapseItem:currentItem collapseChildren:YES];
             }else {
-                [myOutlineView expandItem:[myOutlineView itemAtRow:[myOutlineView selectedRow]] expandChildren:YES];
+                [myOutlineView expandItem:currentItem expandChildren:YES];
             }
 			break;
+        }
 	}
+}
+
+
+#pragma mark helper methods
+- (id)rootForItem:(id)item
+{
+    id parentItem = [myOutlineView parentForItem:item];
+    if (parentItem) {
+        return [self rootForItem:parentItem];
+    }else {
+        return item;
+    }
+
 }
 
 @end

@@ -58,6 +58,12 @@
                          skip:(NSNumber *)skip 
                         limit:(NSNumber *)limit 
                          sort:(NSString *)sort;
+- (void) saveInDB:(NSString *)dbname 
+       collection:(NSString *)collectionname 
+             user:(NSString *)user 
+         password:(NSString *)password 
+       jsonString:(NSString *)jsonString 
+              _id:(NSString *)_id;
 - (void) updateInDB:(NSString *)dbname 
          collection:(NSString *)collectionname 
                user:(NSString *)user 

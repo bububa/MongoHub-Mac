@@ -91,8 +91,9 @@
         return;
     }else if (!haveHostAddress && [conn.host isEqualToString:@"flame.mongohq.com"]) {
         hostaddress = [NSString stringWithFormat:@"%@:%@/%@", conn.host, conn.hostport, conn.defaultdb];
+        connected = mongoDB = [[MongoDB alloc] initWithConn:hostaddress];
     }else {
-        if (conn.userepl) {
+        if ([conn.userepl intValue] == 1) {
             hostaddress = conn.repl_name;
             NSArray *tmp = [conn.servers componentsSeparatedByString:@","];
             NSMutableArray *hosts = [[NSMutableArray alloc] initWithCapacity:[tmp count]];
@@ -192,6 +193,8 @@
     //exitThread = YES;
     selectedDB = nil;
     selectedCollection = nil;
+    resultsOutlineViewController = nil;
+    [super release];
 }
 
 - (void)reloadSidebar {
@@ -285,9 +288,11 @@
 {
     [loaderIndicator start];
     [resultsTitle setStringValue:[NSString stringWithFormat:@"Server %@:%@ stats", conn.host, conn.hostport]];
-    NSMutableArray *results = [[NSMutableArray alloc] initWithArray:[mongoDB serverStatus]];
+    NSArray *serverStats = [[NSArray alloc] initWithArray:[mongoDB serverStatus]];
+    NSMutableArray *results = [[NSMutableArray alloc] initWithArray:serverStats];
+    [serverStats release];
     resultsOutlineViewController.results = results;
-    [resultsOutlineViewController.myOutlineView reloadData];//NSLog(@"STATUS: %@", results);
+    [resultsOutlineViewController.myOutlineView reloadData];
     [results release];
     [loaderIndicator stop];
     
@@ -320,7 +325,7 @@
 }
 
 - (IBAction)showCollStats:(id)sender 
-{
+{NSLog(@"showCollStats");
     if (selectedDB==nil || selectedCollection==nil) {
         NSRunAlertPanel(@"Error", @"Please specify a collection!", @"OK", nil, nil);
         return;

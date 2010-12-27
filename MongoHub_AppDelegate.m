@@ -368,7 +368,7 @@
     if ([self isOpenedConnection:sender]) {
         return;
     }
-    ConnectionWindowController *connectionWindowController = [[[ConnectionWindowController alloc] init] autorelease];
+    ConnectionWindowController *connectionWindowController = [[ConnectionWindowController alloc] init];
     connectionWindowController.managedObjectContext = self.managedObjectContext;
     connectionWindowController.conn = sender;
     [connectionWindowController showWindow:sender];

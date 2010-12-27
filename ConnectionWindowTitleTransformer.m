@@ -21,7 +21,7 @@
 {
     if (value)
     {
-        if ([value userepl]) {
+        if ([[value userepl] intValue] == 1) {
             return [NSString stringWithFormat:@"%@ [%@]", [value alias], [value repl_name] ];
         }else {
             return [NSString stringWithFormat:@"%@ [%@:%@]", [value alias], [value host], [value hostport] ];

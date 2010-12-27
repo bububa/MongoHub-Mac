@@ -15,6 +15,7 @@
 #import "MongoDB.h"
 #import <BWToolkitFramework/BWToolkitFramework.h>
 #import "NSString+Extras.h"
+#import "JsonWindowController.h"
 
 @implementation QueryWindowController
 
@@ -533,5 +534,34 @@
     NSString *query = [NSString stringWithFormat:@"db.%@.remove(%@)", col, critical];
     [critical release];
     [removeQueryTextField setStringValue:query];
+}
+
+- (void)showEditWindow:(id)sender
+{
+    switch([findResultsViewController.myOutlineView selectedRow])
+	{
+		case -1:
+			break;
+		default:{
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(findQuery:) name:kJsonWindowSaved object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jsonWindowWillClose:) name:kJsonWindowWillClose object:nil];
+            id currentItem = [findResultsViewController.myOutlineView itemAtRow:[findResultsViewController.myOutlineView selectedRow]];
+            //NSLog(@"%@", [findResultsViewController rootForItem:currentItem]);
+            JsonWindowController *jsonWindowController = [[JsonWindowController alloc] init];
+            jsonWindowController.managedObjectContext = self.managedObjectContext;
+            jsonWindowController.conn = conn;
+            jsonWindowController.dbname = dbname;
+            jsonWindowController.collectionname = collectionname;
+            jsonWindowController.mongoDB = mongoDB;
+            jsonWindowController.jsonDict = currentItem;
+            [jsonWindowController showWindow:sender];
+			break;
+        }
+	}
+}
+
+- (void)jsonWindowWillClose:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

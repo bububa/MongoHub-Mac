@@ -34,6 +34,11 @@
 		1D601B3E11C8E7F900C86274 /* importbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B3C11C8E7F900C86274 /* importbox.png */; };
 		1D601B5211C8F08C00C86274 /* ImportWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D601B5111C8F08C00C86274 /* ImportWindowController.mm */; };
 		1D601B5611C8F24300C86274 /* Import.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B5511C8F24300C86274 /* Import.xib */; };
+		1D64100212C8E16C0030AA4C /* NSArray+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64100112C8E16C0030AA4C /* NSArray+Color.m */; };
+		1D64100512C8E1C00030AA4C /* NSScanner+SkipUpToCharset.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64100412C8E1C00030AA4C /* NSScanner+SkipUpToCharset.m */; };
+		1D64100812C8E21C0030AA4C /* UKSyntaxColoredTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64100712C8E21C0030AA4C /* UKSyntaxColoredTextViewController.m */; };
+		1D64100D12C8E3D90030AA4C /* JsonWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D64100C12C8E3D90030AA4C /* JsonWindowController.mm */; };
+		1D64100F12C8E6BE0030AA4C /* JsonWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D64100E12C8E6BE0030AA4C /* JsonWindow.xib */; };
 		1D799455118755EE009C187F /* AddDBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D799454118755EE009C187F /* AddDBController.m */; };
 		1D79945711875E7A009C187F /* NewDB.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D79945611875E7A009C187F /* NewDB.xib */; };
 		1D8A624E11897C6800D55937 /* indexmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D8A624D11897C6800D55937 /* indexmenu.png */; };
@@ -77,6 +82,11 @@
 		1DBFFAF512C1FDF200B643CA /* NSProgressIndicator+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DBFFAF412C1FDF200B643CA /* NSProgressIndicator+Extras.m */; };
 		1DCB3CFF12C63CD400423160 /* MongoHub_DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1DCB3CFE12C63CD400423160 /* MongoHub_DataModel.xcdatamodeld */; };
 		1DCC562912C264600025F181 /* StatMonitorTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DCC562812C264600025F181 /* StatMonitorTableController.m */; };
+		1DD1CA8312C8EFD4007F2909 /* SyntaxDefinition.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1CA8112C8EFD4007F2909 /* SyntaxDefinition.plist */; };
+		1DD1CA8412C8EFD4007F2909 /* SyntaxColorDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1CA8212C8EFD4007F2909 /* SyntaxColorDefaults.plist */; };
+		1DD1CA8912C8F004007F2909 /* CSS 1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1CA8612C8F004007F2909 /* CSS 1.plist */; };
+		1DD1CA8A12C8F004007F2909 /* HTML.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1CA8712C8F004007F2909 /* HTML.plist */; };
+		1DD1CA8B12C8F004007F2909 /* Objective C.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1CA8812C8F004007F2909 /* Objective C.plist */; };
 		1DEC7F3B12B7ECAD00FC804E /* Tunnel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DEC7F3A12B7ECAC00FC804E /* Tunnel.m */; };
 		1DEC7FF112B7EDB900FC804E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEC7FF012B7EDB900FC804E /* Security.framework */; };
 		1DEC803512B7EE2100FC804E /* SSHCommand.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1DEC803412B7EE2100FC804E /* SSHCommand.sh */; };
@@ -207,6 +217,15 @@
 		1D601B5011C8F08C00C86274 /* ImportWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportWindowController.h; sourceTree = "<group>"; };
 		1D601B5111C8F08C00C86274 /* ImportWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImportWindowController.mm; sourceTree = "<group>"; };
 		1D601B5511C8F24300C86274 /* Import.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Import.xib; sourceTree = "<group>"; };
+		1D64100012C8E16C0030AA4C /* NSArray+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Color.h"; sourceTree = "<group>"; };
+		1D64100112C8E16C0030AA4C /* NSArray+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Color.m"; sourceTree = "<group>"; };
+		1D64100312C8E1C00030AA4C /* NSScanner+SkipUpToCharset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScanner+SkipUpToCharset.h"; sourceTree = "<group>"; };
+		1D64100412C8E1C00030AA4C /* NSScanner+SkipUpToCharset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScanner+SkipUpToCharset.m"; sourceTree = "<group>"; };
+		1D64100612C8E21C0030AA4C /* UKSyntaxColoredTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKSyntaxColoredTextViewController.h; path = ../UKSyntaxColoredTextViewController.h; sourceTree = "<group>"; };
+		1D64100712C8E21C0030AA4C /* UKSyntaxColoredTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKSyntaxColoredTextViewController.m; path = ../UKSyntaxColoredTextViewController.m; sourceTree = "<group>"; };
+		1D64100B12C8E3D90030AA4C /* JsonWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonWindowController.h; sourceTree = "<group>"; };
+		1D64100C12C8E3D90030AA4C /* JsonWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JsonWindowController.mm; sourceTree = "<group>"; };
+		1D64100E12C8E6BE0030AA4C /* JsonWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JsonWindow.xib; sourceTree = "<group>"; };
 		1D799453118755EE009C187F /* AddDBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDBController.h; sourceTree = "<group>"; };
 		1D799454118755EE009C187F /* AddDBController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDBController.m; sourceTree = "<group>"; };
 		1D79945611875E7A009C187F /* NewDB.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewDB.xib; sourceTree = "<group>"; };
@@ -271,6 +290,11 @@
 		1DCB3D0012C63CD400423160 /* MongoHub_DataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MongoHub_DataModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		1DCC562712C264600025F181 /* StatMonitorTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatMonitorTableController.h; sourceTree = "<group>"; };
 		1DCC562812C264600025F181 /* StatMonitorTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatMonitorTableController.m; sourceTree = "<group>"; };
+		1DD1CA8112C8EFD4007F2909 /* SyntaxDefinition.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SyntaxDefinition.plist; sourceTree = "<group>"; };
+		1DD1CA8212C8EFD4007F2909 /* SyntaxColorDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SyntaxColorDefaults.plist; sourceTree = "<group>"; };
+		1DD1CA8612C8F004007F2909 /* CSS 1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CSS 1.plist"; sourceTree = "<group>"; };
+		1DD1CA8712C8F004007F2909 /* HTML.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HTML.plist; sourceTree = "<group>"; };
+		1DD1CA8812C8F004007F2909 /* Objective C.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Objective C.plist"; sourceTree = "<group>"; };
 		1DEC7F3912B7ECAC00FC804E /* Tunnel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tunnel.h; sourceTree = "<group>"; };
 		1DEC7F3A12B7ECAC00FC804E /* Tunnel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tunnel.m; sourceTree = "<group>"; };
 		1DEC7FF012B7EDB900FC804E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
@@ -342,6 +366,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1D64100A12C8E39F0030AA4C /* JSONEditor */,
 				1D20AC811188B28000D9D4C5 /* JSON */,
 				1D93C608118417D5003216F7 /* Helpers */,
 				1D93C44C11837668003216F7 /* Sidebar */,
@@ -416,6 +441,18 @@
 			);
 			path = JSON;
 			sourceTree = SOURCE_ROOT;
+		};
+		1D64100A12C8E39F0030AA4C /* JSONEditor */ = {
+			isa = PBXGroup;
+			children = (
+				1D64100612C8E21C0030AA4C /* UKSyntaxColoredTextViewController.h */,
+				1D64100712C8E21C0030AA4C /* UKSyntaxColoredTextViewController.m */,
+				1D64100B12C8E3D90030AA4C /* JsonWindowController.h */,
+				1D64100C12C8E3D90030AA4C /* JsonWindowController.mm */,
+			);
+			name = JSONEditor;
+			path = JSON;
+			sourceTree = "<group>";
 		};
 		1D93C1DD11833342003216F7 /* ConnectionsCollectionView */ = {
 			isa = PBXGroup;
@@ -545,8 +582,22 @@
 				1DEC7F3A12B7ECAC00FC804E /* Tunnel.m */,
 				1DBFFAF312C1FDF200B643CA /* NSProgressIndicator+Extras.h */,
 				1DBFFAF412C1FDF200B643CA /* NSProgressIndicator+Extras.m */,
+				1D64100012C8E16C0030AA4C /* NSArray+Color.h */,
+				1D64100112C8E16C0030AA4C /* NSArray+Color.m */,
+				1D64100312C8E1C00030AA4C /* NSScanner+SkipUpToCharset.h */,
+				1D64100412C8E1C00030AA4C /* NSScanner+SkipUpToCharset.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		1DD1CA8512C8F004007F2909 /* Syntax Definitions */ = {
+			isa = PBXGroup;
+			children = (
+				1DD1CA8612C8F004007F2909 /* CSS 1.plist */,
+				1DD1CA8712C8F004007F2909 /* HTML.plist */,
+				1DD1CA8812C8F004007F2909 /* Objective C.plist */,
+			);
+			path = "Syntax Definitions";
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* MongoHub */ = {
@@ -575,6 +626,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1DD1CA8512C8F004007F2909 /* Syntax Definitions */,
+				1DD1CA8112C8EFD4007F2909 /* SyntaxDefinition.plist */,
+				1DD1CA8212C8EFD4007F2909 /* SyntaxColorDefaults.plist */,
 				1DFC2A8C11970BD0006AA167 /* dsa_pub.pem */,
 				1DEC803412B7EE2100FC804E /* SSHCommand.sh */,
 				1D93C27011833A19003216F7 /* images */,
@@ -591,6 +645,7 @@
 				1D210BFF11930E18000EF41C /* Auth.xib */,
 				1D601B5511C8F24300C86274 /* Import.xib */,
 				1D26615111CFC5BE0092C6B5 /* Export.xib */,
+				1D64100E12C8E6BE0030AA4C /* JsonWindow.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -747,6 +802,12 @@
 				1D601B5611C8F24300C86274 /* Import.xib in Resources */,
 				1D26615211CFC5BE0092C6B5 /* Export.xib in Resources */,
 				1DEC803512B7EE2100FC804E /* SSHCommand.sh in Resources */,
+				1D64100F12C8E6BE0030AA4C /* JsonWindow.xib in Resources */,
+				1DD1CA8312C8EFD4007F2909 /* SyntaxDefinition.plist in Resources */,
+				1DD1CA8412C8EFD4007F2909 /* SyntaxColorDefaults.plist in Resources */,
+				1DD1CA8912C8F004007F2909 /* CSS 1.plist in Resources */,
+				1DD1CA8A12C8F004007F2909 /* HTML.plist in Resources */,
+				1DD1CA8B12C8F004007F2909 /* Objective C.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,6 +865,10 @@
 				1DEC7F3B12B7ECAD00FC804E /* Tunnel.m in Sources */,
 				1DBFFAF512C1FDF200B643CA /* NSProgressIndicator+Extras.m in Sources */,
 				1DCC562912C264600025F181 /* StatMonitorTableController.m in Sources */,
+				1D64100212C8E16C0030AA4C /* NSArray+Color.m in Sources */,
+				1D64100512C8E1C00030AA4C /* NSScanner+SkipUpToCharset.m in Sources */,
+				1D64100812C8E21C0030AA4C /* UKSyntaxColoredTextViewController.m in Sources */,
+				1D64100D12C8E3D90030AA4C /* JsonWindowController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

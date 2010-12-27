@@ -30,6 +30,7 @@
 
 - (id)initWithConn:(NSString *)host {
     self = [super init];
+    isRepl = NO;
     [self connect:host];
     return self;
 }
@@ -327,6 +328,7 @@
             }
         }
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
+        /*
         mongo::BSONObj criticalBSON;
         if ([critical isPresent]) {
             NSError *error = nil;
@@ -361,6 +363,9 @@
                 return nil;
             }
         }
+        */
+        mongo::BSONObj criticalBSON = mongo::fromjson([critical UTF8String]);
+        mongo::BSONObj sortBSON = mongo::fromjson([sort UTF8String]);
         mongo::BSONObj fieldsToReturn;
         if ([fields isPresent]) {
             NSArray *keys = [[NSArray alloc] initWithArray:[fields componentsSeparatedByString:@","]];
@@ -413,13 +418,15 @@
                 oidType = [[NSString alloc] initWithString:@"String"];
                 oid = [[NSString alloc] initWithUTF8String:e.str().c_str()];
             }
-            
+            NSString *jsonString = [[NSString alloc] initWithUTF8String:b.jsonString(mongo::TenGen, 1).c_str()];
             NSMutableDictionary *item = [[NSMutableDictionary alloc] initWithCapacity:4];
             [item setObject:@"_id" forKey:@"name"];
             [item setObject:oidType forKey:@"type"];
             [item setObject:oid forKey:@"value"];
+            [item setObject:jsonString forKey:@"raw"];
             [item setObject:[self bsonDictWrapper:b] forKey:@"child"];
             [response addObject:item];
+            [jsonString release];
             [oid release];
             [oidType release];
             [item release];
@@ -430,6 +437,35 @@
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
     return nil;
+}
+
+- (void) saveInDB:(NSString *)dbname 
+       collection:(NSString *)collectionname 
+             user:(NSString *)user 
+         password:(NSString *)password 
+       jsonString:(NSString *)jsonString 
+              _id:(NSString *)_id
+{
+    try {
+        if ([user length]>0 && [password length]>0) {
+            bool ok = [self authUser:user pass:password database:dbname];
+            if (!ok) {
+                return;
+            }
+        }
+        NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];NSLog(@"%@", jsonString);NSLog(@"%@", _id);
+        mongo::BSONObj fields = mongo::fromjson([jsonString UTF8String]);
+        mongo::BSONObj critical = mongo::fromjson([[NSString stringWithFormat:@"{\"_id\":%@}", _id] UTF8String]);
+        
+        if (isRepl) {
+            repl_conn->update(std::string([col UTF8String]), critical, fields, false);
+        }else {
+            conn->update(std::string([col UTF8String]), critical, fields, false);
+        }
+        NSLog(@"save in db: %@.%@", dbname, collectionname);
+    }catch (mongo::DBException &e) {
+        NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
+    }
 }
 
 - (void) updateInDB:(NSString *)dbname 
@@ -448,6 +484,7 @@
             }
         }
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
+        /*
         mongo::BSONObj criticalBSON;
         if ([critical isPresent]) {
             NSError *error = nil;
@@ -483,6 +520,9 @@
                 return;
             }
         }
+        */
+        mongo::BSONObj criticalBSON = mongo::fromjson([critical UTF8String]);
+        mongo::BSONObj fieldsBSON = mongo::fromjson([[NSString stringWithFormat:@"{$set:%@}", fields] UTF8String]);
         if (isRepl) {
             repl_conn->update(std::string([col UTF8String]), criticalBSON, fieldsBSON, (bool)[upset intValue]);
         }else {
@@ -803,6 +843,7 @@
             }
         }
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
+        /*
         mongo::BSONObj criticalBSON;
         if ([critical isPresent]) {
             NSError *error = nil;
@@ -820,6 +861,8 @@
                 return 0;
             }
         }
+        */
+        mongo::BSONObj criticalBSON = mongo::fromjson([critical UTF8String]);
         long long int counter;
         if (isRepl) {
             counter = repl_conn->count(std::string([col UTF8String]), criticalBSON);
@@ -854,6 +897,7 @@
             return nil;
         }
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
+        /*
         mongo::BSONObj criticalBSON;
         if ([critical isPresent]) {
             NSError *error = nil;
@@ -871,6 +915,8 @@
                 return nil;
             }
         }
+        */
+        mongo::BSONObj criticalBSON = mongo::fromjson([critical UTF8String]);
         mongo::BSONObj retval;
         if (isRepl) {
             retval = repl_conn->mapreduce(std::string([col UTF8String]), std::string([mapJs UTF8String]), std::string([reduceJs UTF8String]), criticalBSON, std::string([output UTF8String]));
