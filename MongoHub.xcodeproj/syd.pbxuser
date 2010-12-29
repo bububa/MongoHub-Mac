@@ -461,9 +461,9 @@
 	};
 	1D64100712C8E21C0030AA4C /* UKSyntaxColoredTextViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {801, 18298}}";
-			sepNavSelRange = "{34145, 16}";
-			sepNavVisRange = "{33633, 1384}";
+			sepNavIntBoundsRect = "{{0, 0}, {801, 18774}}";
+			sepNavSelRange = "{26885, 0}";
+			sepNavVisRange = "{26437, 1548}";
 		};
 	};
 	1D64100B12C8E3D90030AA4C /* JsonWindowController.h */ = {
@@ -855,9 +855,9 @@
 	};
 	1D93C60A11841865003216F7 /* MongoDB.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {801, 16575}}";
-			sepNavSelRange = "{15270, 10}";
-			sepNavVisRange = "{49901, 1473}";
+			sepNavIntBoundsRect = "{{0, 0}, {801, 18256}}";
+			sepNavSelRange = "{10614, 0}";
+			sepNavVisRange = "{11401, 1534}";
 			sepNavWindowFrame = "{{456, 164}, {813, 537}}";
 		};
 	};
@@ -1689,15 +1689,15 @@
 	1DD1CA8112C8EFD4007F2909 /* SyntaxDefinition.plist */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {801, 1414}}";
-			sepNavSelRange = "{0, 2181}";
+			sepNavSelRange = "{343, 0}";
 			sepNavVisRange = "{0, 740}";
 		};
 	};
 	1DD1CA8212C8EFD4007F2909 /* SyntaxColorDefaults.plist */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {801, 770}}";
-			sepNavSelRange = "{828, 1}";
-			sepNavVisRange = "{0, 818}";
+			sepNavSelRange = "{1016, 0}";
+			sepNavVisRange = "{586, 777}";
 		};
 	};
 	1DD1CA8612C8F004007F2909 /* CSS 1.plist */ = {
@@ -1776,9 +1776,9 @@
 	};
 	1DDC486812CB7758009924A1 /* JSON.plist */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {801, 2632}}";
-			sepNavSelRange = "{2154, 0}";
-			sepNavVisRange = "{1609, 762}";
+			sepNavIntBoundsRect = "{{0, 0}, {801, 2296}}";
+			sepNavSelRange = "{798, 0}";
+			sepNavVisRange = "{308, 660}";
 		};
 	};
 	1DDC491D12CBB720009924A1 /* PBXTextBookmark */ = {
@@ -1867,7 +1867,7 @@
 		fRef = 1D64100712C8E21C0030AA4C /* UKSyntaxColoredTextViewController.m */;
 		name = "UKSyntaxColoredTextViewController.m: 1026";
 		rLen = 16;
-		rLoc = 34145;
+		rLoc = 34547;
 		rType = 0;
 		vrLen = 1384;
 		vrLoc = 33633;
@@ -1937,7 +1937,7 @@
 		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
 		name = "JSON.plist: 57";
 		rLen = 0;
-		rLoc = 579;
+		rLoc = 211;
 		rType = 0;
 		vrLen = 696;
 		vrLoc = 979;
@@ -1947,7 +1947,7 @@
 		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
 		name = "JSON.plist: 141";
 		rLen = 0;
-		rLoc = 953;
+		rLoc = 585;
 		rType = 0;
 		vrLen = 671;
 		vrLoc = 2844;
@@ -1957,7 +1957,7 @@
 		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
 		name = "JSON.plist: 141";
 		rLen = 0;
-		rLoc = 953;
+		rLoc = 585;
 		rType = 0;
 		vrLen = 708;
 		vrLoc = 2844;
@@ -2087,7 +2087,7 @@
 		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
 		name = "JSON.plist: 141";
 		rLen = 0;
-		rLoc = 953;
+		rLoc = 585;
 		rType = 0;
 		vrLen = 708;
 		vrLoc = 2844;
@@ -2097,7 +2097,7 @@
 		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
 		name = "JSON.plist: 114";
 		rLen = 0;
-		rLoc = 579;
+		rLoc = 211;
 		rType = 0;
 		vrLen = 678;
 		vrLoc = 2117;
@@ -2107,7 +2107,7 @@
 		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
 		name = "JSON.plist: 266";
 		rLen = 0;
-		rLoc = 4000;
+		rLoc = 3574;
 		rType = 0;
 		vrLen = 652;
 		vrLoc = 5056;
@@ -2117,7 +2117,7 @@
 		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
 		name = "JSON.plist: 60";
 		rLen = 0;
-		rLoc = 953;
+		rLoc = 585;
 		rType = 0;
 		vrLen = 661;
 		vrLoc = 308;
@@ -2127,7 +2127,7 @@
 		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
 		name = "JSON.plist: 33";
 		rLen = 0;
-		rLoc = 579;
+		rLoc = 211;
 		rType = 0;
 		vrLen = 653;
 		vrLoc = 345;
@@ -2137,7 +2137,7 @@
 		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
 		name = "JSON.plist: 37";
 		rLen = 0;
-		rLoc = 579;
+		rLoc = 211;
 		rType = 0;
 		vrLen = 652;
 		vrLoc = 502;
@@ -2147,7 +2147,7 @@
 		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
 		name = "JSON.plist: 78";
 		rLen = 0;
-		rLoc = 953;
+		rLoc = 585;
 		rType = 0;
 		vrLen = 661;
 		vrLoc = 1075;
@@ -2157,7 +2157,7 @@
 		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
 		name = "JSON.plist: 42";
 		rLen = 0;
-		rLoc = 579;
+		rLoc = 211;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 615;
@@ -2167,7 +2167,7 @@
 		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
 		name = "JSON.plist: 78";
 		rLen = 0;
-		rLoc = 953;
+		rLoc = 585;
 		rType = 0;
 		vrLen = 669;
 		vrLoc = 1336;
@@ -2177,7 +2177,7 @@
 		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
 		name = "JSON.plist: 41";
 		rLen = 0;
-		rLoc = 579;
+		rLoc = 211;
 		rType = 0;
 		vrLen = 713;
 		vrLoc = 0;
@@ -2187,7 +2187,7 @@
 		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
 		name = "JSON.plist: 95";
 		rLen = 0;
-		rLoc = 2119;
+		rLoc = 1693;
 		rType = 0;
 		vrLen = 729;
 		vrLoc = 1515;
@@ -2197,10 +2197,100 @@
 		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
 		name = "JSON.plist: 96";
 		rLen = 0;
-		rLoc = 2154;
+		rLoc = 1728;
 		rType = 0;
 		vrLen = 762;
 		vrLoc = 1609;
+	};
+	1DDC498112CBC43D009924A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D93C60A11841865003216F7 /* MongoDB.mm */;
+		name = "MongoDB.mm: 329";
+		rLen = 0;
+		rLoc = 10614;
+		rType = 0;
+		vrLen = 1534;
+		vrLoc = 11401;
+	};
+	1DDC498212CBC43D009924A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1DD1CA8112C8EFD4007F2909 /* SyntaxDefinition.plist */;
+		name = "SyntaxDefinition.plist: 14";
+		rLen = 0;
+		rLoc = 343;
+		rType = 0;
+		vrLen = 740;
+		vrLoc = 0;
+	};
+	1DDC498312CBC43D009924A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1DD1CA8212C8EFD4007F2909 /* SyntaxColorDefaults.plist */;
+		name = "SyntaxColorDefaults.plist: 39";
+		rLen = 0;
+		rLoc = 1016;
+		rType = 0;
+		vrLen = 777;
+		vrLoc = 586;
+	};
+	1DDC498412CBC43D009924A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
+		name = "JSON.plist: 19";
+		rLen = 0;
+		rLoc = 211;
+		rType = 0;
+		vrLen = 753;
+		vrLoc = 0;
+	};
+	1DDC498512CBC43D009924A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D64100712C8E21C0030AA4C /* UKSyntaxColoredTextViewController.m */;
+		name = "UKSyntaxColoredTextViewController.m: 844";
+		rLen = 0;
+		rLoc = 26885;
+		rType = 0;
+		vrLen = 1537;
+		vrLoc = 26437;
+	};
+	1DDC498612CBC43D009924A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D64100712C8E21C0030AA4C /* UKSyntaxColoredTextViewController.m */;
+		name = "UKSyntaxColoredTextViewController.m: 844";
+		rLen = 0;
+		rLoc = 26885;
+		rType = 0;
+		vrLen = 1472;
+		vrLoc = 26437;
+	};
+	1DDC498B12CBC58A009924A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D64100712C8E21C0030AA4C /* UKSyntaxColoredTextViewController.m */;
+		name = "UKSyntaxColoredTextViewController.m: 844";
+		rLen = 0;
+		rLoc = 26885;
+		rType = 0;
+		vrLen = 1548;
+		vrLoc = 26437;
+	};
+	1DDC498C12CBC58A009924A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
+		name = "JSON.plist: 19";
+		rLen = 0;
+		rLoc = 211;
+		rType = 0;
+		vrLen = 753;
+		vrLoc = 0;
+	};
+	1DDC498D12CBC58A009924A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1DDC486812CB7758009924A1 /* JSON.plist */;
+		name = "JSON.plist: 35";
+		rLen = 0;
+		rLoc = 798;
+		rType = 0;
+		vrLen = 660;
+		vrLoc = 308;
 	};
 	1DEC7E0312B7A7FF00FC804E /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -2810,6 +2900,15 @@
 			1DDC497612CBBE18009924A1 /* PBXTextBookmark */ = 1DDC497612CBBE18009924A1 /* PBXTextBookmark */;
 			1DDC497912CBBEA9009924A1 /* PBXTextBookmark */ = 1DDC497912CBBEA9009924A1 /* PBXTextBookmark */;
 			1DDC497A12CBBEEC009924A1 /* PBXTextBookmark */ = 1DDC497A12CBBEEC009924A1 /* PBXTextBookmark */;
+			1DDC498112CBC43D009924A1 /* PBXTextBookmark */ = 1DDC498112CBC43D009924A1 /* PBXTextBookmark */;
+			1DDC498212CBC43D009924A1 /* PBXTextBookmark */ = 1DDC498212CBC43D009924A1 /* PBXTextBookmark */;
+			1DDC498312CBC43D009924A1 /* PBXTextBookmark */ = 1DDC498312CBC43D009924A1 /* PBXTextBookmark */;
+			1DDC498412CBC43D009924A1 /* PBXTextBookmark */ = 1DDC498412CBC43D009924A1 /* PBXTextBookmark */;
+			1DDC498512CBC43D009924A1 /* PBXTextBookmark */ = 1DDC498512CBC43D009924A1 /* PBXTextBookmark */;
+			1DDC498612CBC43D009924A1 /* PBXTextBookmark */ = 1DDC498612CBC43D009924A1 /* PBXTextBookmark */;
+			1DDC498B12CBC58A009924A1 /* PBXTextBookmark */ = 1DDC498B12CBC58A009924A1 /* PBXTextBookmark */;
+			1DDC498C12CBC58A009924A1 /* PBXTextBookmark */ = 1DDC498C12CBC58A009924A1 /* PBXTextBookmark */;
+			1DDC498D12CBC58A009924A1 /* PBXTextBookmark */ = 1DDC498D12CBC58A009924A1 /* PBXTextBookmark */;
 			1DEC7E0312B7A7FF00FC804E = 1DEC7E0312B7A7FF00FC804E /* PBXTextBookmark */;
 			1DEC7E0412B7A7FF00FC804E = 1DEC7E0412B7A7FF00FC804E /* PBXTextBookmark */;
 			1DEC7E4412B7B5B600FC804E = 1DEC7E4412B7B5B600FC804E /* PBXTextBookmark */;

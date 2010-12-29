@@ -839,6 +839,13 @@ static BOOL			sSyntaxColoredTextDocPrefsInited = NO;
 		NSDictionary*				vStyles = [self defaultTextAttributes];
 		NSUserDefaults*				vPrefs = [NSUserDefaults standardUserDefaults];
         
+        NSDictionary*		dStyles = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       [NSColor whiteColor], NSForegroundColorAttributeName,
+                                       @"JSONStrings", TD_SYNTAX_COLORING_MODE_ATTR,
+                                       nil];
+        
+        [vString addAttributes: dStyles range: NSMakeRange( 0, [vString length] )];
+        
 		while( (vCurrComponent = [vComponentsEnny nextObject]) )
 		{
 			NSString*   vComponentType = [vCurrComponent objectForKey: @"Type"];
