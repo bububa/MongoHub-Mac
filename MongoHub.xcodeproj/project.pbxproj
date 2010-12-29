@@ -87,6 +87,7 @@
 		1DD1CA8912C8F004007F2909 /* CSS 1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1CA8612C8F004007F2909 /* CSS 1.plist */; };
 		1DD1CA8A12C8F004007F2909 /* HTML.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1CA8712C8F004007F2909 /* HTML.plist */; };
 		1DD1CA8B12C8F004007F2909 /* Objective C.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DD1CA8812C8F004007F2909 /* Objective C.plist */; };
+		1DDC486912CB7758009924A1 /* JSON.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1DDC486812CB7758009924A1 /* JSON.plist */; };
 		1DEC7F3B12B7ECAD00FC804E /* Tunnel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DEC7F3A12B7ECAC00FC804E /* Tunnel.m */; };
 		1DEC7FF112B7EDB900FC804E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEC7FF012B7EDB900FC804E /* Security.framework */; };
 		1DEC803512B7EE2100FC804E /* SSHCommand.sh in Resources */ = {isa = PBXBuildFile; fileRef = 1DEC803412B7EE2100FC804E /* SSHCommand.sh */; };
@@ -295,6 +296,7 @@
 		1DD1CA8612C8F004007F2909 /* CSS 1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CSS 1.plist"; sourceTree = "<group>"; };
 		1DD1CA8712C8F004007F2909 /* HTML.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HTML.plist; sourceTree = "<group>"; };
 		1DD1CA8812C8F004007F2909 /* Objective C.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Objective C.plist"; sourceTree = "<group>"; };
+		1DDC486812CB7758009924A1 /* JSON.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = JSON.plist; sourceTree = "<group>"; };
 		1DEC7F3912B7ECAC00FC804E /* Tunnel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tunnel.h; sourceTree = "<group>"; };
 		1DEC7F3A12B7ECAC00FC804E /* Tunnel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tunnel.m; sourceTree = "<group>"; };
 		1DEC7FF012B7EDB900FC804E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
@@ -596,6 +598,7 @@
 				1DD1CA8612C8F004007F2909 /* CSS 1.plist */,
 				1DD1CA8712C8F004007F2909 /* HTML.plist */,
 				1DD1CA8812C8F004007F2909 /* Objective C.plist */,
+				1DDC486812CB7758009924A1 /* JSON.plist */,
 			);
 			path = "Syntax Definitions";
 			sourceTree = "<group>";
@@ -808,6 +811,7 @@
 				1DD1CA8912C8F004007F2909 /* CSS 1.plist in Resources */,
 				1DD1CA8A12C8F004007F2909 /* HTML.plist in Resources */,
 				1DD1CA8B12C8F004007F2909 /* Objective C.plist in Resources */,
+				1DDC486912CB7758009924A1 /* JSON.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

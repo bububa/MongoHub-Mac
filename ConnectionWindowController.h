@@ -31,6 +31,7 @@
     IBOutlet Sidebar *sidebar;
     IBOutlet NSTextField *resultsTitle;
     IBOutlet NSProgressIndicator *loaderIndicator;
+    IBOutlet NSButton *reconnectButton;
     IBOutlet NSButton *monitorButton;
     IBOutlet BWSheetController *monitorSheetController;
     IBOutlet StatMonitorTableController *statMonitorTableController;
@@ -63,6 +64,7 @@
 @property (nonatomic, retain) NSTextField *resultsTitle;
 @property (nonatomic, retain) NSProgressIndicator *loaderIndicator;
 @property (nonatomic, retain) NSButton *monitorButton;
+@property (nonatomic, retain) NSButton *reconnectButton;
 @property (nonatomic, retain) BWSheetController *monitorSheetController;
 @property (nonatomic, retain) StatMonitorTableController *statMonitorTableController;
 @property (nonatomic, retain) AddDBController *addDBController;
@@ -76,6 +78,7 @@
 - (void)reloadDBList;
 - (void)useDB:(id)sender;
 - (void)useCollection:(id)sender;
+- (IBAction)reconnect:(id)sender;
 - (IBAction)showServerStatus:(id)sender;
 - (IBAction)showDBStats:(id)sender;
 - (IBAction)showCollStats:(id)sender;

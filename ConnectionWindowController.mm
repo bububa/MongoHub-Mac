@@ -36,6 +36,7 @@
 @synthesize sidebar;
 @synthesize loaderIndicator;
 @synthesize monitorButton;
+@synthesize reconnectButton;
 @synthesize monitorSheetController;
 @synthesize statMonitorTableController;
 @synthesize databases;
@@ -68,6 +69,8 @@
 - (void) connect:(BOOL)haveHostAddress {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     [loaderIndicator start];
+    [reconnectButton setEnabled:NO];
+    [monitorButton setEnabled:NO];
     bool connected;
     NSString *hostaddress = [[[NSString alloc] init] autorelease];
     if (!haveHostAddress && [conn.usessh intValue]==1) {
@@ -122,6 +125,7 @@
         }
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addCollection:) name:kNewCollectionWindowWillClose object:nil];
+        [reconnectButton setEnabled:YES];
         [monitorButton setEnabled:YES];
         [self reloadSidebar];
         [self showServerStatus:nil];
@@ -135,6 +139,14 @@
     NSString *appVersion = [[NSString alloc] initWithFormat:@"version(%@[%@])", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"], [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey] ];
     [bundleVersion setStringValue: appVersion];
     [appVersion release];
+    [self connect:NO];
+    if ([conn.usessh intValue]==1) {
+        [NSThread detachNewThreadSelector: @selector(checkTunnel) toTarget:self withObject:nil ];
+    }
+}
+
+- (IBAction)reconnect:(id)sender
+{
     [self connect:NO];
     if ([conn.usessh intValue]==1) {
         [NSThread detachNewThreadSelector: @selector(checkTunnel) toTarget:self withObject:nil ];
@@ -176,6 +188,7 @@
     [addCollectionController release];
     [resultsTitle release];
     [loaderIndicator release];
+    [reconnectButton release];
     [monitorButton release];
     [monitorSheetController release];
     [statMonitorTableController release];
@@ -191,9 +204,9 @@
         [sshTunnel stop];
     }
     //exitThread = YES;
+    resultsOutlineViewController = nil;
     selectedDB = nil;
     selectedCollection = nil;
-    resultsOutlineViewController = nil;
     [super release];
 }
 
