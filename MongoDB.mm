@@ -418,12 +418,14 @@
                 oidType = [[NSString alloc] initWithString:@"String"];
                 oid = [[NSString alloc] initWithUTF8String:e.str().c_str()];
             }
-            NSString *jsonString = [[NSString alloc] initWithUTF8String:b.jsonString(mongo::TenGen, 1).c_str()];
+            NSString *jsonString = [[NSString alloc] initWithUTF8String:b.jsonString(mongo::TenGen).c_str()];
+            NSString *jsonStringb = [[NSString alloc] initWithUTF8String:b.jsonString(mongo::TenGen, 1).c_str()];
             NSMutableDictionary *item = [[NSMutableDictionary alloc] initWithCapacity:4];
             [item setObject:@"_id" forKey:@"name"];
             [item setObject:oidType forKey:@"type"];
             [item setObject:oid forKey:@"value"];
             [item setObject:jsonString forKey:@"raw"];
+            [item setObject:jsonStringb forKey:@"beautified"];
             [item setObject:[self bsonDictWrapper:b] forKey:@"child"];
             [response addObject:item];
             [jsonString release];

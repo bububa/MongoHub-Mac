@@ -553,7 +553,7 @@
             jsonWindowController.dbname = dbname;
             jsonWindowController.collectionname = collectionname;
             jsonWindowController.mongoDB = mongoDB;
-            jsonWindowController.jsonDict = currentItem;
+            jsonWindowController.jsonDict = [findResultsViewController rootForItem:currentItem];
             [jsonWindowController showWindow:sender];
 			break;
         }

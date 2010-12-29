@@ -55,10 +55,10 @@
     NSString *title = [[NSString alloc] initWithFormat:@"%@.%@ _id:%@", dbname, collectionname, [jsonDict objectForKey:@"value"]];
     [self.window setTitle:title];
     [title release];
+    [myTextView setString:[jsonDict objectForKey:@"beautified"]];
     syntaxColoringController = [[UKSyntaxColoredTextViewController alloc] init];
 	[syntaxColoringController setDelegate: self];
 	[syntaxColoringController setView: myTextView];
-    [myTextView setString:[jsonDict objectForKey:@"raw"]];
 }
 
 
@@ -77,6 +77,10 @@
 	[progress display];
 }
 
+-(NSString *)syntaxDefinitionFilenameForTextViewController: (UKSyntaxColoredTextViewController*)sender
+{
+    return @"JSON";
+}
 
 -(void)	selectionInTextViewController: (UKSyntaxColoredTextViewController*)sender						// Update any selection status display.
               changedToStartCharacter: (NSUInteger)startCharInLine endCharacter: (NSUInteger)endCharInLine

@@ -254,7 +254,6 @@ static BOOL			sSyntaxColoredTextDocPrefsInited = NO;
 			replacementString = nil;
 		}
 		replacementString = [rps retain];
-		
 		[self performSelector: @selector(didChangeText) withObject: nil afterDelay: 0.0];	// Queue this up on the event loop. If we change the text here, we only confuse the undo stack.
 	}
 	
@@ -1343,7 +1342,7 @@ static BOOL			sSyntaxColoredTextDocPrefsInited = NO;
 
 -(NSDictionary*)	defaultTextAttributes
 {
-	return [NSDictionary dictionaryWithObject: [NSFont userFixedPitchFontOfSize: 10.0] forKey: NSFontAttributeName];
+	return [NSDictionary dictionaryWithObjectsAndKeys: [NSFont userFixedPitchFontOfSize: 10.0], NSFontAttributeName, nil];
 }
 
 @end

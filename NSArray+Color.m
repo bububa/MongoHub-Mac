@@ -45,7 +45,7 @@
 
 +(NSArray*)		arrayWithColor: (NSColor*) col
 {
-	CGFloat			fRed = 0, fGreen = 0, fBlue = 0, fAlpha = 1.0;
+	CGFloat			fRed = 1, fGreen = 1, fBlue = 1, fAlpha = 1.0;
 	
 	col = [col colorUsingColorSpaceName: NSCalibratedRGBColorSpace];
 	[col getRed: &fRed green: &fGreen blue: &fBlue alpha: &fAlpha];
@@ -66,7 +66,7 @@
 
 -(NSColor*)		colorValue
 {
-	float			fRed = 0, fGreen = 0, fBlue = 0, fAlpha = 1.0;
+	float			fRed = 1, fGreen = 1, fBlue = 1, fAlpha = 1.0;
 	
 	if( [self count] >= 3 )
 	{

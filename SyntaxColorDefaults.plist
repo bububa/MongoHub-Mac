@@ -46,8 +46,8 @@
 	</array>
 	<key>SyntaxColoring:Color:UserIdentifiers</key>
 	<array>
-		<real>0.0</real>
-		<real>0.25097999999999998</real>
+		<real>1.0</real>
+		<real>0.95097999999999998</real>
 		<real>0.50196099999999999</real>
 	</array>
 </dict>
