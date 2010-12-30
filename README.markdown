@@ -38,6 +38,16 @@ This project is very new. Any issues or bug reports are welcome. And I still don
 
 ## History
 
+** [Last Update 2.3.0] **
+	
+	- Add mongo stat monitor;
+	- Add replica set connection support;
+	- Add reconnect support;
+	- Add an JSON editor for found results with syntax highlight;
+	- More flexible query style in find window;
+	- Fixed long long int value overflow;
+	- Fixed application crash during open/close connection window.
+
 ** [Last Update 2.2.0] **
 	
 	- SSH Tunnel connection support;
