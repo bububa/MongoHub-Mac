@@ -166,6 +166,10 @@
     return [[self managedObjectContext] undoManager];
 }
 
+-(BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication
+{
+    return YES;
+}
 
 /**
     Performs the save action for the application, which is to send the save:
