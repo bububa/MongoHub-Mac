@@ -420,6 +420,12 @@
             }
             NSString *jsonString = [[NSString alloc] initWithUTF8String:b.jsonString(mongo::TenGen).c_str()];
             NSString *jsonStringb = [[NSString alloc] initWithUTF8String:b.jsonString(mongo::TenGen, 1).c_str()];
+            if (jsonString == nil) {
+                jsonString = @"";
+            }
+            if (jsonStringb == nil) {
+                jsonStringb = @"";
+            }
             NSMutableDictionary *item = [[NSMutableDictionary alloc] initWithCapacity:4];
             [item setObject:@"_id" forKey:@"name"];
             [item setObject:oidType forKey:@"type"];
