@@ -558,8 +558,8 @@
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
         mongo::BSONObj criticalBSON;
         if ([critical isPresent]) {
-            NSError *error = nil;
-            /*SBJSON *json = [SBJSON new];
+            /*NSError *error = nil;
+            SBJSON *json = [SBJSON new];
             [json objectWithString:critical error:&error];
             [json release];
             if (error) {

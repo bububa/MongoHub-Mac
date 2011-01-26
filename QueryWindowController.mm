@@ -136,6 +136,7 @@
 
 - (void)doFindQuery {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    NSTimeInterval speed = [NSDate timeIntervalSinceReferenceDate];
     [findQueryLoaderIndicator start];
     NSString *user=nil;
     NSString *password=nil;
@@ -169,7 +170,7 @@
                                         user:user 
                                     password:password 
                                     critical:critical];
-    [totalResultsTextField setStringValue:[NSString stringWithFormat:@"Total Results: %d", total]];
+    [totalResultsTextField setStringValue:[NSString stringWithFormat:@"Total Results: %d (%0.2fs)", total, [NSDate timeIntervalSinceReferenceDate]-speed]];
     findResultsViewController.results = results;
     [findResultsViewController.myOutlineView reloadData];
     [results release];
