@@ -241,7 +241,7 @@
         password = db.password;
     }
     [db release];
-    NSString *critical = [updateCriticalTextField stringValue];
+    NSString *critical = [removeCriticalTextField stringValue];
     int total = [mongoDB countInDB:dbname 
                         collection:collectionname 
                               user:user 

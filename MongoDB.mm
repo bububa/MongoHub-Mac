@@ -559,13 +559,13 @@
         mongo::BSONObj criticalBSON;
         if ([critical isPresent]) {
             NSError *error = nil;
-            SBJSON *json = [SBJSON new];
+            /*SBJSON *json = [SBJSON new];
             [json objectWithString:critical error:&error];
             [json release];
             if (error) {
                 NSRunAlertPanel(@"Error", [error localizedDescription], @"OK", nil, nil);
                 return;
-            }
+            }*/
             try{
                 criticalBSON = mongo::fromjson([critical UTF8String]);
             }catch (mongo::MsgAssertionException &e) {
@@ -601,14 +601,14 @@
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
         mongo::BSONObj insertDataBSON;
         if ([insertData isPresent]) {
-            NSError *error = nil;
+            /*NSError *error = nil;
             SBJSON *json = [SBJSON new];
             [json objectWithString:insertData error:&error];
             [json release];
             if (error) {
                 NSRunAlertPanel(@"Error", [error localizedDescription], @"OK", nil, nil);
                 return;
-            }
+            }*/
             try{
                 insertDataBSON = mongo::fromjson([insertData UTF8String]);
             }catch (mongo::MsgAssertionException &e) {
