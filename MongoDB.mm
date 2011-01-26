@@ -8,7 +8,7 @@
 
 #import "MongoDB.h"
 #import "NSString+Extras.h"
-#import "JSON.h"
+#import <RegexKit/RegexKit.h>
 #import <mongo/client/dbclient.h>
 
 @implementation MongoDB
@@ -328,71 +328,23 @@
             }
         }
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
-        /*
-        mongo::BSONObj criticalBSON;
-        if ([critical isPresent]) {
-            NSError *error = nil;
-            SBJSON *json = [SBJSON new];
-            [json objectWithString:critical error:&error];
-            [json release];
-            if (error) {
-                NSRunAlertPanel(@"Error", [error localizedDescription], @"OK", nil, nil);
-                return nil;
-            }
-            try{
-                criticalBSON = mongo::fromjson([critical UTF8String]);
-            }catch (mongo::MsgAssertionException &e) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
-                return nil;
-            }
-        }
-        mongo::BSONObj sortBSON;
-        if ([sort isPresent]) {
-            NSError *error = nil;
-            SBJSON *json = [SBJSON new];
-            [json objectWithString:sort error:&error];
-            [json release];
-            if (error) {
-                NSRunAlertPanel(@"Error", [error localizedDescription], @"OK", nil, nil);
-                return nil;
-            }
-            try{
-                sortBSON = mongo::fromjson([sort UTF8String]);
-            }catch (mongo::MsgAssertionException &e) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
-                return nil;
-            }
-        }
-        */
         mongo::BSONObj criticalBSON = mongo::fromjson([critical UTF8String]);
         mongo::BSONObj sortBSON = mongo::fromjson([sort UTF8String]);
         mongo::BSONObj fieldsToReturn;
         if ([fields isPresent]) {
             NSArray *keys = [[NSArray alloc] initWithArray:[fields componentsSeparatedByString:@","]];
-            NSMutableArray *tmpstr = [[NSMutableArray alloc] initWithCapacity:[keys count]];
+            mongo::BSONObjBuilder builder;
             for (NSString *str in keys) {
-                [tmpstr addObject:[NSString stringWithFormat:@"%@:1", str]];
+                builder.append([str UTF8String], 1);
             }
-            NSString *jsFields = [[NSString alloc] initWithFormat:@"{%@}", [tmpstr componentsJoinedByString:@","] ];
-            NSError *error = nil;
-            SBJSON *json = [SBJSON new];
-            [json objectWithString:jsFields error:&error];
-            [json release];
-            if (error) {
-                NSRunAlertPanel(@"Error", [error localizedDescription], @"OK", nil, nil);
-                return nil;
-            }
-            try{
+            fieldsToReturn = builder.obj();
+            /*try{
                 fieldsToReturn = mongo::fromjson([jsFields UTF8String]);
             }catch (mongo::MsgAssertionException &e) {
-                [jsFields release];
-                [tmpstr release];
                 [keys release];
                 NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
                 return nil;
-            }
-            [jsFields release];
-            [tmpstr release];
+            }*/
             [keys release];
         }
         
@@ -419,13 +371,34 @@
                 oid = [[NSString alloc] initWithUTF8String:e.str().c_str()];
             }
             NSString *jsonString = [[NSString alloc] initWithUTF8String:b.jsonString(mongo::TenGen).c_str()];
-            NSString *jsonStringb = [[NSString alloc] initWithUTF8String:b.jsonString(mongo::TenGen, 1).c_str()];
+            NSMutableString *jsonStringb = [[NSMutableString alloc] initWithUTF8String:b.jsonString(mongo::TenGen, 1).c_str()];
             if (jsonString == nil) {
                 jsonString = @"";
             }
             if (jsonStringb == nil) {
-                jsonStringb = @"";
+                jsonStringb = [NSMutableString stringWithString:@""];
             }
+            NSMutableArray *repArr = [[NSMutableArray alloc] initWithCapacity:4];
+            id regx2 = [RKRegex regexWithRegexString:@"(Date\\(\\s\\d+\\s\\))" options:RKCompileCaseless];
+            RKEnumerator *matchEnumerator2 = [jsonString matchEnumeratorWithRegex:regx2];
+            while([matchEnumerator2 nextRanges] != NULL) {
+                NSString *enumeratedStr=NULL;
+                [matchEnumerator2 getCapturesWithReferences:@"$1", &enumeratedStr, nil];
+                [repArr addObject:enumeratedStr];
+            }
+            NSMutableArray *oriArr = [[NSMutableArray alloc] initWithCapacity:4];
+            id regx = [RKRegex regexWithRegexString:@"(Date\\(\\s+\"[^^]*?\"\\s+\\))" options:RKCompileCaseless];
+            RKEnumerator *matchEnumerator = [jsonStringb matchEnumeratorWithRegex:regx];
+            while([matchEnumerator nextRanges] != NULL) {
+                NSString *enumeratedStr=NULL;
+                [matchEnumerator getCapturesWithReferences:@"$1", &enumeratedStr, nil];
+                [oriArr addObject:enumeratedStr];
+            }
+            for (unsigned int i=0; i<[repArr count]; i++) {
+                jsonStringb = [NSMutableString stringWithString:[jsonStringb stringByReplacingOccurrencesOfString:[oriArr objectAtIndex:i] withString:[repArr objectAtIndex:i]]];
+            }
+            [oriArr release];
+            [repArr release];
             NSMutableDictionary *item = [[NSMutableDictionary alloc] initWithCapacity:4];
             [item setObject:@"_id" forKey:@"name"];
             [item setObject:oidType forKey:@"type"];
@@ -492,43 +465,6 @@
             }
         }
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
-        /*
-        mongo::BSONObj criticalBSON;
-        if ([critical isPresent]) {
-            NSError *error = nil;
-            SBJSON *json = [SBJSON new];
-            [json objectWithString:critical error:&error];
-            [json release];
-            if (error) {
-                NSRunAlertPanel(@"Error", [error localizedDescription], @"OK", nil, nil);
-                return;
-            }
-            try{
-                criticalBSON = mongo::fromjson([critical UTF8String]);
-            }catch (mongo::MsgAssertionException &e) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
-                return;
-            }
-        }
-        mongo::BSONObj fieldsBSON;
-        if ([fields isPresent]) {
-            NSError *error = nil;
-            SBJSON *json = [SBJSON new];
-            [json objectWithString:fields error:&error];
-            [json release];
-            if (error) {
-                NSRunAlertPanel(@"Error", [error localizedDescription], @"OK", nil, nil);
-                return;
-            }
-            try{
-                //fieldsBSON = mongo::fromjson([[NSString stringWithFormat:@"{$set:%@}", fields] UTF8String]);
-                fieldsBSON = mongo::fromjson([fields UTF8String]);
-            }catch (mongo::MsgAssertionException &e) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
-                return;
-            }
-        }
-        */
         mongo::BSONObj criticalBSON = mongo::fromjson([critical UTF8String]);
         mongo::BSONObj fieldsBSON = mongo::fromjson([[NSString stringWithFormat:@"{$set:%@}", fields] UTF8String]);
         if (isRepl) {
@@ -558,14 +494,6 @@
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
         mongo::BSONObj criticalBSON;
         if ([critical isPresent]) {
-            /*NSError *error = nil;
-            SBJSON *json = [SBJSON new];
-            [json objectWithString:critical error:&error];
-            [json release];
-            if (error) {
-                NSRunAlertPanel(@"Error", [error localizedDescription], @"OK", nil, nil);
-                return;
-            }*/
             try{
                 criticalBSON = mongo::fromjson([critical UTF8String]);
             }catch (mongo::MsgAssertionException &e) {
@@ -601,14 +529,6 @@
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
         mongo::BSONObj insertDataBSON;
         if ([insertData isPresent]) {
-            /*NSError *error = nil;
-            SBJSON *json = [SBJSON new];
-            [json objectWithString:insertData error:&error];
-            [json release];
-            if (error) {
-                NSRunAlertPanel(@"Error", [error localizedDescription], @"OK", nil, nil);
-                return;
-            }*/
             try{
                 insertDataBSON = mongo::fromjson([insertData UTF8String]);
             }catch (mongo::MsgAssertionException &e) {
@@ -762,14 +682,6 @@
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
         mongo::BSONObj indexDataBSON;
         if ([indexData isPresent]) {
-            NSError *error = nil;
-            SBJSON *json = [SBJSON new];
-            [json objectWithString:indexData error:&error];
-            [json release];
-            if (error) {
-                NSRunAlertPanel(@"Error", [error localizedDescription], @"OK", nil, nil);
-                return;
-            }
             try{
                 indexDataBSON = mongo::fromjson([indexData UTF8String]);
             }catch (mongo::MsgAssertionException &e) {
@@ -851,25 +763,6 @@
             }
         }
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
-        /*
-        mongo::BSONObj criticalBSON;
-        if ([critical isPresent]) {
-            NSError *error = nil;
-            SBJSON *json = [SBJSON new];
-            [json objectWithString:critical error:&error];
-            [json release];
-            if (error) {
-                NSRunAlertPanel(@"Error", [error localizedDescription], @"OK", nil, nil);
-                return 0;
-            }
-            try{
-                criticalBSON = mongo::fromjson([critical UTF8String]);
-            }catch (mongo::MsgAssertionException &e) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
-                return 0;
-            }
-        }
-        */
         mongo::BSONObj criticalBSON = mongo::fromjson([critical UTF8String]);
         long long int counter;
         if (isRepl) {
@@ -905,25 +798,6 @@
             return nil;
         }
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
-        /*
-        mongo::BSONObj criticalBSON;
-        if ([critical isPresent]) {
-            NSError *error = nil;
-            SBJSON *json = [SBJSON new];
-            [json objectWithString:critical error:&error];
-            [json release];
-            if (error) {
-                NSRunAlertPanel(@"Error", [error localizedDescription], @"OK", nil, nil);
-                return nil;
-            }
-            try{
-                criticalBSON = mongo::fromjson([critical UTF8String]);
-            }catch (mongo::MsgAssertionException &e) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
-                return nil;
-            }
-        }
-        */
         mongo::BSONObj criticalBSON = mongo::fromjson([critical UTF8String]);
         mongo::BSONObj retval;
         if (isRepl) {

@@ -140,7 +140,7 @@
     }else {
         _id = [NSString stringWithFormat:@"\"%@\"", [jsonDict objectForKey:@"value"]];
     }
-    NSString *json = [[NSString alloc] initWithString:[myTextView string]];
+    NSMutableString *json = [[NSMutableString alloc] initWithString:[myTextView string]];
     [mongoDB saveInDB:dbname collection:collectionname user:user password:password jsonString:json _id:_id];
     [json release];
     [progress stopAnimation: self];

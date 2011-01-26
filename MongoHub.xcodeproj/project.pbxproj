@@ -13,12 +13,6 @@
 		1D1D65571189C5E000582917 /* servermenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1D65531189C5E000582917 /* servermenu.png */; };
 		1D1D65651189C93400582917 /* supportmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1D65641189C93400582917 /* supportmenu.png */; };
 		1D1D65A31189F05600582917 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1D1D65A21189F05600582917 /* Icon.icns */; };
-		1D20AC8F1188B28000D9D4C5 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC841188B28000D9D4C5 /* NSObject+SBJSON.m */; };
-		1D20AC901188B28000D9D4C5 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC861188B28000D9D4C5 /* NSString+SBJSON.m */; };
-		1D20AC911188B28000D9D4C5 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC881188B28000D9D4C5 /* SBJSON.m */; };
-		1D20AC921188B28000D9D4C5 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC8A1188B28000D9D4C5 /* SBJsonBase.m */; };
-		1D20AC931188B28000D9D4C5 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC8C1188B28000D9D4C5 /* SBJsonParser.m */; };
-		1D20AC941188B28000D9D4C5 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D20AC8E1188B28000D9D4C5 /* SBJsonWriter.m */; };
 		1D210BFB1192FF06000EF41C /* key.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D210BFA1192FF06000EF41C /* key.png */; };
 		1D210BFE119301BA000EF41C /* AuthWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D210BFD119301BA000EF41C /* AuthWindowController.m */; };
 		1D210C0011930E18000EF41C /* Auth.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D210BFF11930E18000EF41C /* Auth.xib */; };
@@ -26,6 +20,8 @@
 		1D26615211CFC5BE0092C6B5 /* Export.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D26615111CFC5BE0092C6B5 /* Export.xib */; };
 		1D26619111CFD1640092C6B5 /* FieldMapDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D26619011CFD1640092C6B5 /* FieldMapDataObject.m */; };
 		1D26619411CFD2560092C6B5 /* FieldMapTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D26619311CFD2560092C6B5 /* FieldMapTableController.m */; };
+		1D317EEC12F0A88900255AF7 /* RegexKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D317EEB12F0A88900255AF7 /* RegexKit.framework */; };
+		1D317F0512F0A8AE00255AF7 /* RegexKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D317EEB12F0A88900255AF7 /* RegexKit.framework */; };
 		1D58BE0B118ED8D20045A044 /* mapreducemenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D58BE0A118ED8D20045A044 /* mapreducemenu.png */; };
 		1D58BE37118EFF810045A044 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D93C24A118334F6003216F7 /* BWToolkitFramework.framework */; };
 		1D601B3811C8E13000C86274 /* exportmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B3611C8E13000C86274 /* exportmenu.png */; };
@@ -126,6 +122,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		1D317F0A12F0A8C600255AF7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1D317F0512F0A8AE00255AF7 /* RegexKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D58BE3A118EFF840045A044 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -133,15 +139,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				1D58BE37118EFF810045A044 /* BWToolkitFramework.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1D58BE45118EFFBD0045A044 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,19 +183,6 @@
 		1D1D65531189C5E000582917 /* servermenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = servermenu.png; path = Resourses/images/servermenu.png; sourceTree = SOURCE_ROOT; };
 		1D1D65641189C93400582917 /* supportmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = supportmenu.png; path = Resourses/images/supportmenu.png; sourceTree = SOURCE_ROOT; };
 		1D1D65A21189F05600582917 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon.icns; path = Resourses/images/Icon.icns; sourceTree = SOURCE_ROOT; };
-		1D20AC821188B28000D9D4C5 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSON.h; path = JSON/JSON.h; sourceTree = SOURCE_ROOT; };
-		1D20AC831188B28000D9D4C5 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJSON.h"; path = "JSON/NSObject+SBJSON.h"; sourceTree = SOURCE_ROOT; };
-		1D20AC841188B28000D9D4C5 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SBJSON.m"; path = "JSON/NSObject+SBJSON.m"; sourceTree = SOURCE_ROOT; };
-		1D20AC851188B28000D9D4C5 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+SBJSON.h"; path = "JSON/NSString+SBJSON.h"; sourceTree = SOURCE_ROOT; };
-		1D20AC861188B28000D9D4C5 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SBJSON.m"; path = "JSON/NSString+SBJSON.m"; sourceTree = SOURCE_ROOT; };
-		1D20AC871188B28000D9D4C5 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJSON.h; path = JSON/SBJSON.h; sourceTree = SOURCE_ROOT; };
-		1D20AC881188B28000D9D4C5 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJSON.m; path = JSON/SBJSON.m; sourceTree = SOURCE_ROOT; };
-		1D20AC891188B28000D9D4C5 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonBase.h; path = JSON/SBJsonBase.h; sourceTree = SOURCE_ROOT; };
-		1D20AC8A1188B28000D9D4C5 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonBase.m; path = JSON/SBJsonBase.m; sourceTree = SOURCE_ROOT; };
-		1D20AC8B1188B28000D9D4C5 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonParser.h; path = JSON/SBJsonParser.h; sourceTree = SOURCE_ROOT; };
-		1D20AC8C1188B28000D9D4C5 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonParser.m; path = JSON/SBJsonParser.m; sourceTree = SOURCE_ROOT; };
-		1D20AC8D1188B28000D9D4C5 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonWriter.h; path = JSON/SBJsonWriter.h; sourceTree = SOURCE_ROOT; };
-		1D20AC8E1188B28000D9D4C5 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonWriter.m; path = JSON/SBJsonWriter.m; sourceTree = SOURCE_ROOT; };
 		1D210BFA1192FF06000EF41C /* key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = key.png; path = Resourses/images/key.png; sourceTree = SOURCE_ROOT; };
 		1D210BFC119301BA000EF41C /* AuthWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthWindowController.h; sourceTree = "<group>"; };
 		1D210BFD119301BA000EF41C /* AuthWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthWindowController.m; sourceTree = "<group>"; };
@@ -210,6 +194,7 @@
 		1D26619011CFD1640092C6B5 /* FieldMapDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldMapDataObject.m; sourceTree = "<group>"; };
 		1D26619211CFD2560092C6B5 /* FieldMapTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldMapTableController.h; sourceTree = "<group>"; };
 		1D26619311CFD2560092C6B5 /* FieldMapTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldMapTableController.m; sourceTree = "<group>"; };
+		1D317EEB12F0A88900255AF7 /* RegexKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegexKit.framework; path = Library/Frameworks/RegexKit.framework; sourceTree = SDKROOT; };
 		1D58BE0A118ED8D20045A044 /* mapreducemenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mapreducemenu.png; path = Resourses/images/mapreducemenu.png; sourceTree = SOURCE_ROOT; };
 		1D601B3611C8E13000C86274 /* exportmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = exportmenu.png; path = Resourses/images/exportmenu.png; sourceTree = SOURCE_ROOT; };
 		1D601B3711C8E13000C86274 /* importmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = importmenu.png; path = Resourses/images/importmenu.png; sourceTree = SOURCE_ROOT; };
@@ -359,6 +344,7 @@
 				1DFC2A7C11970A1E006AA167 /* Sparkle.framework in Frameworks */,
 				1DF865D811C8FEF000DF7493 /* MCPKit_bundled.framework in Frameworks */,
 				1DEC7FF112B7EDB900FC804E /* Security.framework in Frameworks */,
+				1D317EEC12F0A88900255AF7 /* RegexKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,7 +355,6 @@
 			isa = PBXGroup;
 			children = (
 				1D64100A12C8E39F0030AA4C /* JSONEditor */,
-				1D20AC811188B28000D9D4C5 /* JSON */,
 				1D93C608118417D5003216F7 /* Helpers */,
 				1D93C44C11837668003216F7 /* Sidebar */,
 				1D93C3FF11836D98003216F7 /* Transformers */,
@@ -388,6 +373,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1D317EEB12F0A88900255AF7 /* RegexKit.framework */,
 				1D93C5F511839970003216F7 /* libboost_program_options.a */,
 				1D93C5F311839959003216F7 /* libboost_filesystem.a */,
 				1D93C5F111839940003216F7 /* libboost_thread.a */,
@@ -423,26 +409,6 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
-		};
-		1D20AC811188B28000D9D4C5 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				1D20AC821188B28000D9D4C5 /* JSON.h */,
-				1D20AC831188B28000D9D4C5 /* NSObject+SBJSON.h */,
-				1D20AC841188B28000D9D4C5 /* NSObject+SBJSON.m */,
-				1D20AC851188B28000D9D4C5 /* NSString+SBJSON.h */,
-				1D20AC861188B28000D9D4C5 /* NSString+SBJSON.m */,
-				1D20AC871188B28000D9D4C5 /* SBJSON.h */,
-				1D20AC881188B28000D9D4C5 /* SBJSON.m */,
-				1D20AC891188B28000D9D4C5 /* SBJsonBase.h */,
-				1D20AC8A1188B28000D9D4C5 /* SBJsonBase.m */,
-				1D20AC8B1188B28000D9D4C5 /* SBJsonParser.h */,
-				1D20AC8C1188B28000D9D4C5 /* SBJsonParser.m */,
-				1D20AC8D1188B28000D9D4C5 /* SBJsonWriter.h */,
-				1D20AC8E1188B28000D9D4C5 /* SBJsonWriter.m */,
-			);
-			path = JSON;
-			sourceTree = SOURCE_ROOT;
 		};
 		1D64100A12C8E39F0030AA4C /* JSONEditor */ = {
 			isa = PBXGroup;
@@ -714,9 +680,9 @@
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				7905130A0DDD0A660070760D /* CopyFiles */,
 				1D58BE3A118EFF840045A044 /* CopyFiles */,
-				1D58BE45118EFFBD0045A044 /* CopyFiles */,
 				1DFC2A8B11970A4A006AA167 /* CopyFiles */,
 				1DF8661511C8FF2600DF7493 /* CopyFiles */,
+				1D317F0A12F0A8C600255AF7 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -855,12 +821,6 @@
 				1DF96E3B11881AED00C35AB8 /* AddCollectionController.m in Sources */,
 				1DF96F9211883B3800C35AB8 /* QueryWindowController.mm in Sources */,
 				1DA6806C11888BDD00DFDD29 /* NSString+Extras.m in Sources */,
-				1D20AC8F1188B28000D9D4C5 /* NSObject+SBJSON.m in Sources */,
-				1D20AC901188B28000D9D4C5 /* NSString+SBJSON.m in Sources */,
-				1D20AC911188B28000D9D4C5 /* SBJSON.m in Sources */,
-				1D20AC921188B28000D9D4C5 /* SBJsonBase.m in Sources */,
-				1D20AC931188B28000D9D4C5 /* SBJsonParser.m in Sources */,
-				1D20AC941188B28000D9D4C5 /* SBJsonWriter.m in Sources */,
 				1D210BFE119301BA000EF41C /* AuthWindowController.m in Sources */,
 				1D601B5211C8F08C00C86274 /* ImportWindowController.mm in Sources */,
 				1D26614E11CFC47C0092C6B5 /* ExportWindowController.mm in Sources */,
@@ -929,7 +889,7 @@
 					"$(inherited)",
 					"\"$(SDKROOT)/usr/lib/gcc/i686-apple-darwin10/4.0.1\"",
 				);
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = MongoHub;
 				SDKROOT = macosx10.6;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
@@ -957,7 +917,7 @@
 					"$(inherited)",
 					"\"$(SDKROOT)/usr/lib/gcc/i686-apple-darwin10/4.0.1\"",
 				);
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = MongoHub;
 				SDKROOT = macosx10.6;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
@@ -975,7 +935,7 @@
 				HEADER_SEARCH_PATHS = /usr/local/include/;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-licucore";
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
@@ -993,7 +953,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include/;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-licucore";
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
