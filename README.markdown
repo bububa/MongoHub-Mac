@@ -22,6 +22,7 @@ Before builing ensure the following frameworks are present:
 		BWToolkitFramework.framework
 		Sparkle.framework
 		MCPKit_bundled.framework
+		RegexKit.framework
 
 The project also expects Boost libraries and the MongoDB client libraries.
 
