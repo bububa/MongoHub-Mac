@@ -268,18 +268,14 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
-								<string>1D93C608118417D5003216F7</string>
-								<string>29B97323FDCFA39411CA2CEA</string>
-								<string>1058C7A0FEA54F0111CA2CBB</string>
+								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>1C37FBAC04509CD000000102</string>
-								<string>1D317ECF12F0955000255AF7</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>6</integer>
-									<integer>4</integer>
-									<integer>2</integer>
+									<integer>23</integer>
+									<integer>16</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -316,14 +312,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MongoDB.mm</string>
+								<string>MongoHub_AppDelegate.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -331,11 +325,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MongoDB.mm</string>
+										<string>MongoHub_AppDelegate.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1D317F6412F0B73300255AF7</string>
+										<string>1DAA345712FBF46A00A82A86</string>
 										<key>history</key>
 										<array>
 											<string>1D93C3E211836A06003216F7</string>
@@ -435,7 +429,6 @@
 											<string>1DDC498B12CBC58A009924A1</string>
 											<string>1DDC49B212CBCA60009924A1</string>
 											<string>1DDC49B312CBCA60009924A1</string>
-											<string>1DDC49B412CBCA60009924A1</string>
 											<string>1DDC49B612CBCA60009924A1</string>
 											<string>1D03E9E712D48DF400B72756</string>
 											<string>1D04CABA12D71CDB007F3730</string>
@@ -448,14 +441,15 @@
 											<string>1D04CC1912D778CE007F3730</string>
 											<string>1D04CC1A12D778CE007F3730</string>
 											<string>1D04CC1B12D778CE007F3730</string>
-											<string>1D04CC1C12D778CE007F3730</string>
 											<string>1D317DF612F078D900255AF7</string>
 											<string>1D317DF712F078D900255AF7</string>
 											<string>1D317DF812F078D900255AF7</string>
 											<string>1D317DF912F078D900255AF7</string>
 											<string>1D317F0612F0A8C600255AF7</string>
 											<string>1D317F0712F0A8C600255AF7</string>
-											<string>1D317F0812F0A8C600255AF7</string>
+											<string>1DAA345412FBF46A00A82A86</string>
+											<string>1DAA345512FBF46A00A82A86</string>
+											<string>1DAA345612FBF46A00A82A86</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -467,14 +461,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {862, 429}}</string>
+								<string>{{0, 0}, {862, 422}}</string>
 								<key>RubberWindowFrame</key>
 								<string>50 73 1129 705 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>429pt</string>
+							<string>422pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -487,14 +481,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 434}, {862, 230}}</string>
+								<string>{{0, 427}, {862, 237}}</string>
 								<key>RubberWindowFrame</key>
 								<string>50 73 1129 705 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>230pt</string>
+							<string>237pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -513,9 +507,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>1D317DFE12F078D900255AF7</string>
+				<string>1DAA344C12FBEFE500A82A86</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>1D317DFF12F078D900255AF7</string>
+				<string>1DAA344D12FBEFE500A82A86</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -653,10 +647,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1D93C1AB118329FB003216F7</string>
-		<string>/Users/syd/Documents/Works/codes/MongoHub/MongoHub.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>50 73 1129 705 0 0 1280 778 </string>
@@ -680,7 +671,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MongoDB.mm</string>
+								<string>MongoHub_AppDelegate.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -738,7 +729,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1D93C1AB118329FB003216F7</string>
-				<string>1D317DEA12F078A200255AF7</string>
+				<string>1DAA344E12FBEFE600A82A86</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
