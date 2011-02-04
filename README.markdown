@@ -39,6 +39,13 @@ This project is very new. Any issues or bug reports are welcome. And I still don
 
 ## History
 
+** [Last Update 2.3.1] **
+	
+	- Fixed a bug in jsoneditor related to Date() object;
+	- Add execution time in find panel;
+	- Add reconnect support;
+	- Fixed a bug in remove function.
+
 ** [Last Update 2.3.0] **
 	
 	- Add mongo stat monitor;
