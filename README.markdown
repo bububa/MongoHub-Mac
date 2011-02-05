@@ -1,4 +1,4 @@
-# MongoHub
+# MongoHub ![http://stillmaintained.com/bububa/MongoHub-Mac.png](http://stillmaintained.com/bububa/MongoHub-Mac)
 
 ## What is MongoHub
 **[MongoHub](http://mongohub.todayclose.com/)** is a **[mongodb](http://mongodb.org)** GUI application.
