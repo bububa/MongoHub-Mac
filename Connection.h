@@ -21,6 +21,7 @@
     NSNumber *sshport;
     NSString *sshuser;
     NSString *sshpassword;
+    NSString *sshkeyfile;
     NSString *bindaddress;
     NSNumber *bindport;
     NSSet *databases;
@@ -41,6 +42,7 @@
 @property (nonatomic, retain) NSNumber *sshport;
 @property (nonatomic, retain) NSString *sshuser;
 @property (nonatomic, retain) NSString *sshpassword;
+@property (nonatomic, retain) NSString *sshkeyfile;
 @property (nonatomic, retain) NSString *bindaddress;
 @property (nonatomic, retain) NSNumber *bindport;
 @property (nonatomic, retain) NSNumber *usessh;

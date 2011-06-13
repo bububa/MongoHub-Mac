@@ -158,6 +158,7 @@ static int GetFirstChildPID(int pid)
 @synthesize port;
 @synthesize user;
 @synthesize password;
+@synthesize keyfile;
 @synthesize aliveInterval;
 @synthesize aliveCountMax;
 @synthesize tcpKeepAlive;
@@ -237,6 +238,7 @@ static int GetFirstChildPID(int pid)
 	[lock lock];
 	if(isRunning && [retStatus isEqualToString: @""]){
 		NSString *pipeStr = [[NSString alloc] initWithData: [[pipe fileHandleForReading] availableData] encoding: NSASCIIStringEncoding];
+        //NSLog(@"%@", pipeStr);
 		pipeData = [pipeData stringByAppendingString:  pipeStr];
         [pipeStr release];
 		NSRange r = [pipeData rangeOfString: @"CONNECTED"];
@@ -315,14 +317,28 @@ static int GetFirstChildPID(int pid)
 		pfs = [NSString stringWithFormat: @"%@ -%@ %@:%@:%@:%@", pfs, [pfa objectAtIndex: 0], [pfa objectAtIndex: 2], [pfa objectAtIndex: 1], [pfa objectAtIndex: 3], [pfa objectAtIndex: 4] ];
 	}
 	
-	NSString* cmd = [NSString stringWithFormat: @"ssh -N -o ConnectTimeout=28 %@%@%@%@%@%@-p %d %@@%@",
-					 [additionalArgs length] > 0 ? [NSString stringWithFormat: @"%@ ", additionalArgs] : @"",
-					 [pfs length] > 0 ? [NSString stringWithFormat: @"%@ ",pfs] : @"",
-					 aliveInterval > 0 ? [NSString stringWithFormat: @"-o ServerAliveInterval=%d ",aliveInterval] : @"",
-					 aliveCountMax > 0 ? [NSString stringWithFormat: @"-o ServerAliveCountMax=%d ",aliveCountMax] : @"",
-					 tcpKeepAlive == YES ? @"-o TCPKeepAlive=yes " : @"",
-					 compression == YES ? @"-C " : @"",
-					 port,user,host];
+	NSString* cmd;
+    if ([password isNotEqualTo:@""]|| [keyfile isEqualToString:@""]) {
+        cmd = [NSString stringWithFormat: @"ssh -N -o ConnectTimeout=28 %@%@%@%@%@%@-p %d %@@%@",
+               [additionalArgs length] > 0 ? [NSString stringWithFormat: @"%@ ", additionalArgs] : @"",
+               [pfs length] > 0 ? [NSString stringWithFormat: @"%@ ",pfs] : @"",
+               aliveInterval > 0 ? [NSString stringWithFormat: @"-o ServerAliveInterval=%d ",aliveInterval] : @"",
+               aliveCountMax > 0 ? [NSString stringWithFormat: @"-o ServerAliveCountMax=%d ",aliveCountMax] : @"",
+               tcpKeepAlive == YES ? @"-o TCPKeepAlive=yes " : @"",
+               compression == YES ? @"-C " : @"",
+               port,user,host];
+    }else {
+        cmd = [NSString stringWithFormat: @"ssh -N -o ConnectTimeout=28 %@%@%@%@%@%@-p %d -i %@ %@@%@",
+               [additionalArgs length] > 0 ? [NSString stringWithFormat: @"%@ ", additionalArgs] : @"",
+               [pfs length] > 0 ? [NSString stringWithFormat: @"%@ ",pfs] : @"",
+               aliveInterval > 0 ? [NSString stringWithFormat: @"-o ServerAliveInterval=%d ",aliveInterval] : @"",
+               aliveCountMax > 0 ? [NSString stringWithFormat: @"-o ServerAliveCountMax=%d ",aliveCountMax] : @"",
+               tcpKeepAlive == YES ? @"-o TCPKeepAlive=yes " : @"",
+               compression == YES ? @"-C " : @"",
+               port,keyfile,user,host];
+    }
+
+    
 	NSLog(@"cmd: %@", cmd);
 	return [NSArray arrayWithObjects: cmd, password, nil];
 }
@@ -618,6 +634,8 @@ static int GetFirstChildPID(int pid)
 	[coder encodeObject: host forKey: @"host"];
 	[coder encodeInt: port forKey: @"port"];
 	[coder encodeObject: user forKey: @"user"];
+    [coder encodeObject: password forKey: @"password"];
+    [coder encodeObject: keyfile forKey: @"keyfile"];
 	[coder encodeInt: aliveInterval forKey: @"aliveInterval"];
 	[coder encodeInt: aliveCountMax forKey: @"aliveCountMax"];
 	[coder encodeBool: tcpKeepAlive forKey: @"tcpKeepAlive"];
@@ -635,6 +653,8 @@ static int GetFirstChildPID(int pid)
 	host = [coder decodeObjectForKey: @"host"];
 	port = [coder decodeIntForKey: @"port"];
 	user = [coder decodeObjectForKey: @"user"];
+    password = [coder decodeObjectForKey: @"password"];
+    keyfile = [coder decodeObjectForKey: @"keyfile"];
 	aliveInterval = [coder decodeIntForKey: @"aliveInterval"];
 	aliveCountMax = [coder decodeIntForKey: @"aliveCountMax"];
 	tcpKeepAlive = [coder decodeBoolForKey: @"tcpKeepAlive"];

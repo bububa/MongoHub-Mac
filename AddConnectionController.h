@@ -26,6 +26,7 @@
     IBOutlet NSTextField *sshportTextField;
     IBOutlet NSTextField *sshuserTextField;
     IBOutlet NSSecureTextField *sshpasswordTextField;
+    IBOutlet NSTextField *sshkeyfileTextField;
     IBOutlet ConnectionsArrayController *connectionsArrayController;
     NSDictionary *connectionInfo;
     NSManagedObjectContext *managedObjectContext;
@@ -47,6 +48,7 @@
 @property (nonatomic, retain) NSTextField *sshportTextField;
 @property (nonatomic, retain) NSTextField *sshuserTextField;
 @property (nonatomic, retain) NSSecureTextField *sshpasswordTextField;
+@property (nonatomic, retain) NSTextField *sshkeyfileTextField;
 @property (nonatomic, retain) NSDictionary *connectionInfo;
 @property (nonatomic, retain) ConnectionsArrayController *connectionsArrayController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -56,5 +58,7 @@
 - (IBAction)enableSSH:(id)sender;
 - (IBAction)enableRepl:(id)sender;
 - (BOOL)validateConnection;
+
+- (IBAction)chooseKeyPath:(id)sender;
 
 @end

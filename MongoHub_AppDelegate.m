@@ -110,7 +110,6 @@
     }
 
     NSURL *url = [NSURL fileURLWithPath: [applicationSupportDirectory stringByAppendingPathComponent: @"storedata"]];
-    
     // set store options to enable spotlight indexing
     NSMutableDictionary *storeOptions = [NSMutableDictionary dictionary];
     [storeOptions setObject:YOUR_EXTERNAL_RECORD_EXTENSION forKey:NSExternalRecordExtensionOption];
@@ -322,6 +321,7 @@
     [newObj setValue:[[sender object] objectForKey:@"bindport"] forKey:@"bindport"];
     [newObj setValue:[[sender object] objectForKey:@"sshhost"] forKey:@"sshhost"];
     [newObj setValue:[[sender object] objectForKey:@"sshport"] forKey:@"sshport"];
+    [newObj setValue:[[sender object] objectForKey:@"sshkeyfile"] forKey:@"sshkeyfile"];
     [newObj setValue:[[sender object] objectForKey:@"sshuser"] forKey:@"sshuser"];
     [newObj setValue:[[sender object] objectForKey:@"sshpassword"] forKey:@"sshpassword"];
     [connectionsArrayController addObject:newObj];

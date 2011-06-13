@@ -27,6 +27,7 @@
 @dynamic sshport;
 @dynamic sshuser;
 @dynamic sshpassword;
+@dynamic sshkeyfile;
 @dynamic bindaddress;
 @dynamic bindport;
 

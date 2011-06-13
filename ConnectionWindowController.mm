@@ -83,6 +83,7 @@
         [sshTunnel setUser:conn.sshuser];
         [sshTunnel setHost:conn.sshhost];
         [sshTunnel setPassword:conn.sshpassword];
+        [sshTunnel setKeyfile:conn.sshkeyfile];
         [sshTunnel setPort:[conn.sshport intValue]];
         [sshTunnel setPortForwardings:portForwardings];
         [sshTunnel setAliveCountMax:3];

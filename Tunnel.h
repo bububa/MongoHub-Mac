@@ -25,6 +25,7 @@
 	int port;
 	NSString* user;
 	NSString* password;
+    NSString* keyfile;
 	int aliveInterval;
 	int aliveCountMax;
 	BOOL tcpKeepAlive;
@@ -39,6 +40,7 @@
 @property(assign) int port;
 @property(retain) NSString* user;
 @property(retain) NSString* password;
+@property(retain) NSString* keyfile;
 @property(assign) int aliveInterval;
 @property(assign) int aliveCountMax;
 @property(assign) BOOL tcpKeepAlive;
