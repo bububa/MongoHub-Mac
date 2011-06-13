@@ -24,8 +24,8 @@
 		1D317F0512F0A8AE00255AF7 /* RegexKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D317EEB12F0A88900255AF7 /* RegexKit.framework */; };
 		1D58BE0B118ED8D20045A044 /* mapreducemenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D58BE0A118ED8D20045A044 /* mapreducemenu.png */; };
 		1D58BE37118EFF810045A044 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1D93C24A118334F6003216F7 /* BWToolkitFramework.framework */; };
-		1D601B3811C8E13000C86274 /* exportmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B3611C8E13000C86274 /* exportmenu.png */; };
-		1D601B3911C8E13000C86274 /* importmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B3711C8E13000C86274 /* importmenu.png */; };
+		1D601B3811C8E13000C86274 /* importmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B3611C8E13000C86274 /* importmenu.png */; };
+		1D601B3911C8E13000C86274 /* exportmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B3711C8E13000C86274 /* exportmenu.png */; };
 		1D601B3D11C8E7F900C86274 /* exportbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B3B11C8E7F900C86274 /* exportbox.png */; };
 		1D601B3E11C8E7F900C86274 /* importbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D601B3C11C8E7F900C86274 /* importbox.png */; };
 		1D601B5211C8F08C00C86274 /* ImportWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D601B5111C8F08C00C86274 /* ImportWindowController.mm */; };
@@ -196,8 +196,8 @@
 		1D26619311CFD2560092C6B5 /* FieldMapTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldMapTableController.m; sourceTree = "<group>"; };
 		1D317EEB12F0A88900255AF7 /* RegexKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RegexKit.framework; path = Library/Frameworks/RegexKit.framework; sourceTree = SDKROOT; };
 		1D58BE0A118ED8D20045A044 /* mapreducemenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mapreducemenu.png; path = Resourses/images/mapreducemenu.png; sourceTree = SOURCE_ROOT; };
-		1D601B3611C8E13000C86274 /* exportmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = exportmenu.png; path = Resourses/images/exportmenu.png; sourceTree = SOURCE_ROOT; };
-		1D601B3711C8E13000C86274 /* importmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = importmenu.png; path = Resourses/images/importmenu.png; sourceTree = SOURCE_ROOT; };
+		1D601B3611C8E13000C86274 /* importmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = importmenu.png; sourceTree = "<group>"; };
+		1D601B3711C8E13000C86274 /* exportmenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exportmenu.png; sourceTree = "<group>"; };
 		1D601B3B11C8E7F900C86274 /* exportbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = exportbox.png; path = Resourses/images/exportbox.png; sourceTree = SOURCE_ROOT; };
 		1D601B3C11C8E7F900C86274 /* importbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = importbox.png; path = Resourses/images/importbox.png; sourceTree = SOURCE_ROOT; };
 		1D601B5011C8F08C00C86274 /* ImportWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportWindowController.h; sourceTree = "<group>"; };
@@ -455,8 +455,8 @@
 			children = (
 				1D601B3B11C8E7F900C86274 /* exportbox.png */,
 				1D601B3C11C8E7F900C86274 /* importbox.png */,
-				1D601B3611C8E13000C86274 /* exportmenu.png */,
-				1D601B3711C8E13000C86274 /* importmenu.png */,
+				1D601B3611C8E13000C86274 /* importmenu.png */,
+				1D601B3711C8E13000C86274 /* exportmenu.png */,
 				1D210BFA1192FF06000EF41C /* key.png */,
 				1D58BE0A118ED8D20045A044 /* mapreducemenu.png */,
 				1D1D65A21189F05600582917 /* Icon.icns */,
@@ -764,8 +764,8 @@
 				1D210BFB1192FF06000EF41C /* key.png in Resources */,
 				1D210C0011930E18000EF41C /* Auth.xib in Resources */,
 				1DFC2A8D11970BD0006AA167 /* dsa_pub.pem in Resources */,
-				1D601B3811C8E13000C86274 /* exportmenu.png in Resources */,
-				1D601B3911C8E13000C86274 /* importmenu.png in Resources */,
+				1D601B3811C8E13000C86274 /* importmenu.png in Resources */,
+				1D601B3911C8E13000C86274 /* exportmenu.png in Resources */,
 				1D601B3D11C8E7F900C86274 /* exportbox.png in Resources */,
 				1D601B3E11C8E7F900C86274 /* importbox.png in Resources */,
 				1D601B5611C8F24300C86274 /* Import.xib in Resources */,

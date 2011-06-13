@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <BWToolkitFramework/BWToolkitFramework.h>
+#import <mongo/client/dbclient.h>
 @class DatabasesArrayController;
 @class ResultsOutlineViewController;
 @class Connection;
@@ -58,6 +59,29 @@
     IBOutlet NSTextField *mroutputTextField;
     IBOutlet NSProgressIndicator *mrLoaderIndicator;
     IBOutlet ResultsOutlineViewController *mrOutlineViewController;
+    
+    IBOutlet NSTextField *expCriticalTextField;
+    IBOutlet NSTokenField *expFieldsTextField;
+    IBOutlet NSTextField *expSkipTextField;
+    IBOutlet NSTextField *expLimitTextField;
+    IBOutlet NSTextField *expSortTextField;
+    IBOutlet BWInsetTextField *expResultsTextField;
+    IBOutlet NSTextField *expPathTextField;
+    IBOutlet NSPopUpButton *expTypePopUpButton;
+    IBOutlet NSTextField *expQueryTextField;
+    IBOutlet NSButton *expJsonArrayCheckBox;
+    IBOutlet NSProgressIndicator *expProgressIndicator;
+    
+    IBOutlet NSButton *impIgnoreBlanksCheckBox;
+    IBOutlet NSButton *impDropCheckBox;
+    IBOutlet NSButton *impHeaderlineCheckBox;
+    IBOutlet NSTokenField *impFieldsTextField;
+    IBOutlet BWInsetTextField *impResultsTextField;
+    IBOutlet NSTextField *impPathTextField;
+    IBOutlet NSPopUpButton *impTypePopUpButton;
+    IBOutlet NSButton *impJsonArrayCheckBox;
+    IBOutlet NSButton *impStopOnErrorCheckBox;
+    IBOutlet NSProgressIndicator *impProgressIndicator;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -105,6 +129,29 @@
 @property (nonatomic, retain) ResultsOutlineViewController *mrOutlineViewController;
 @property (nonatomic, retain) NSProgressIndicator *mrLoaderIndicator;
 
+@property (nonatomic, retain) NSTextField *expCriticalTextField;
+@property (nonatomic, retain) NSTokenField *expFieldsTextField;
+@property (nonatomic, retain) NSTextField *expSkipTextField;
+@property (nonatomic, retain) NSTextField *expLimitTextField;
+@property (nonatomic, retain) NSTextField *expSortTextField;
+@property (nonatomic, retain) BWInsetTextField *expResultsTextField;
+@property (nonatomic, retain) NSTextField *expPathTextField;
+@property (nonatomic, retain) NSPopUpButton *expTypePopUpButton;
+@property (nonatomic, retain) NSTextField *expQueryTextField;
+@property (nonatomic, retain) NSButton *expJsonArrayCheckBox;
+@property (nonatomic, retain) NSProgressIndicator *expProgressIndicator;
+
+@property (nonatomic, retain) NSButton *impIgnoreBlanksCheckBox;
+@property (nonatomic, retain) NSButton *impDropCheckBox;
+@property (nonatomic, retain) NSButton *impHeaderlineCheckBox;
+@property (nonatomic, retain) NSTokenField *impFieldsTextField;
+@property (nonatomic, retain) BWInsetTextField *impResultsTextField;
+@property (nonatomic, retain) NSTextField *impPathTextField;
+@property (nonatomic, retain) NSPopUpButton *impTypePopUpButton;
+@property (nonatomic, retain) NSButton *impJsonArrayCheckBox;
+@property (nonatomic, retain) NSButton *impStopOnErrorCheckBox;
+@property (nonatomic, retain) NSProgressIndicator *impProgressIndicator;
+
 - (IBAction)findQuery:(id)sender;
 - (void)doFindQuery;
 - (IBAction)expandFindResults:(id)sender;
@@ -125,12 +172,20 @@
 - (void)doDropIndex;
 - (IBAction) mapReduce:(id)sender;
 - (void)doMapReduce;
+- (IBAction) export:(id)sender;
+- (void)doExport;
+- (IBAction) import:(id)sender;
+- (void)doImport;
 
 - (IBAction)findQueryComposer:(id)sender;
 - (IBAction)updateQueryComposer:(id)sender;
 - (IBAction)removeQueryComposer:(id)sender;
+- (IBAction) exportQueryComposer:(id)sender;
 
 - (void)showEditWindow:(id)sender;
 - (void)jsonWindowWillClose:(id)sender;
 
+- (IBAction)chooseExportPath:(id)sender;
+- (IBAction)chooseImportPath:(id)sender;
+- (mongo::BSONObj)parseCSVLine:(char *)line type:(int)_type sep:(const char *)_sep headerLine:(bool)_headerLine ignoreBlanks:(bool)_ignoreBlanks fields:(std::vector<std::string> &)_fields;
 @end
