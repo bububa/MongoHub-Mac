@@ -124,6 +124,16 @@
 
 - (std::auto_ptr<mongo::DBClientCursor>) findAllCursorInDB:(NSString *)dbname collection:(NSString *)collectionname user:(NSString *)user password:(NSString *)password fields:(mongo::BSONObj) fields;
 
+- (std::auto_ptr<mongo::DBClientCursor>) findCursorInDB:(NSString *)dbname collection:(NSString *)collectionname user:(NSString *)user password:(NSString *)password critical:(NSString *)critical fields:(NSString *)fields skip:(NSNumber *)skip limit:(NSNumber *)limit sort:(NSString *)sort;
+
+- (void) updateBSONInDB:(NSString *)dbname 
+             collection:(NSString *)collectionname 
+                   user:(NSString *)user 
+               password:(NSString *)password 
+               critical:(mongo::Query)critical 
+                 fields:(mongo::BSONObj)fields 
+                  upset:(bool)upset;
+
 - (mongo::BSONObj) serverStat;
 - (NSDictionary *) serverMonitor:(mongo::BSONObj)a second:(mongo::BSONObj)b currentDate:(NSDate *)now previousDate:(NSDate *)previous;
 - (double) diff:(NSString *)aName first:(mongo::BSONObj)a second:(mongo::BSONObj)b timeInterval:(NSTimeInterval)interval;

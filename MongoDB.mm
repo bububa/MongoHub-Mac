@@ -1117,20 +1117,92 @@
     std::auto_ptr<mongo::DBClientCursor> cursor;
     try {
         if ([user length]>0 && [password length]>0) {
-            std::string errmsg;
-            bool ok = conn->auth(std::string([dbname UTF8String]), std::string([user UTF8String]), std::string([password UTF8String]), errmsg);
+            bool ok = [self authUser:user pass:password database:dbname];
             if (!ok) {
-                NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:errmsg.c_str()], @"OK", nil, nil);
                 return cursor;
             }
         }
         NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
-        std::auto_ptr<mongo::DBClientCursor> cursor = conn->query(std::string([col UTF8String]), mongo::Query(), 0, 0, &fields);
+        if (isRepl) {
+            cursor = repl_conn->query(std::string([col UTF8String]), mongo::Query(), 0, 0, &fields, mongo::QueryOption_SlaveOk | mongo::QueryOption_NoCursorTimeout);
+        }else {
+            cursor = conn->query(std::string([col UTF8String]), mongo::Query(), 0, 0, &fields, mongo::QueryOption_SlaveOk | mongo::QueryOption_NoCursorTimeout);
+        }
         return cursor;
     }catch (mongo::DBException &e) {
         NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
     }
     return cursor;
+}
+
+- (std::auto_ptr<mongo::DBClientCursor>) findCursorInDB:(NSString *)dbname 
+                   collection:(NSString *)collectionname 
+                         user:(NSString *)user 
+                     password:(NSString *)password 
+                     critical:(NSString *)critical 
+                       fields:(NSString *)fields 
+                         skip:(NSNumber *)skip 
+                        limit:(NSNumber *)limit 
+                         sort:(NSString *)sort
+{
+    std::auto_ptr<mongo::DBClientCursor> cursor;
+    try {
+        if ([user length]>0 && [password length]>0) {
+            bool ok = [self authUser:user pass:password database:dbname];
+            if (!ok) {
+                return cursor;
+            }
+        }
+        NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
+        mongo::BSONObj criticalBSON = mongo::fromjson([critical UTF8String]);
+        mongo::BSONObj sortBSON = mongo::fromjson([sort UTF8String]);
+        mongo::BSONObj fieldsToReturn;
+        if ([fields isPresent]) {
+            NSArray *keys = [[NSArray alloc] initWithArray:[fields componentsSeparatedByString:@","]];
+            mongo::BSONObjBuilder builder;
+            for (NSString *str in keys) {
+                builder.append([str UTF8String], 1);
+            }
+            fieldsToReturn = builder.obj();
+            [keys release];
+        }
+        if (isRepl) {
+            cursor = repl_conn->query(std::string([col UTF8String]), mongo::Query(criticalBSON).sort(sortBSON), [limit intValue], [skip intValue], &fieldsToReturn, mongo::QueryOption_SlaveOk | mongo::QueryOption_NoCursorTimeout);
+        }else {
+            cursor = conn->query(std::string([col UTF8String]), mongo::Query(criticalBSON).sort(sortBSON), [limit intValue], [skip intValue], &fieldsToReturn, mongo::QueryOption_SlaveOk | mongo::QueryOption_NoCursorTimeout);
+        }
+        return cursor;
+    }catch (mongo::DBException &e) {
+        NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
+    }
+    return cursor;
+}
+
+- (void) updateBSONInDB:(NSString *)dbname 
+         collection:(NSString *)collectionname 
+               user:(NSString *)user 
+           password:(NSString *)password 
+           critical:(mongo::Query)critical 
+             fields:(mongo::BSONObj)fields 
+              upset:(bool)upset
+{
+    try {
+        if ([user length]>0 && [password length]>0) {
+            bool ok = [self authUser:user pass:password database:dbname];
+            if (!ok) {
+                return;
+            }
+        }
+        NSString *col = [NSString stringWithFormat:@"%@.%@", dbname, collectionname];
+        if (isRepl) {
+            repl_conn->update(std::string([col UTF8String]), critical, fields, upset);
+        }else {
+            conn->update(std::string([col UTF8String]), critical, fields, upset);
+        }
+        NSLog(@"Update in db: %@.%@", dbname, collectionname);
+    }catch (mongo::DBException &e) {
+        NSRunAlertPanel(@"Error", [NSString stringWithUTF8String:e.what()], @"OK", nil, nil);
+    }
 }
 
 - (double) diff:(NSString *)aName first:(mongo::BSONObj)a second:(mongo::BSONObj)b timeInterval:(NSTimeInterval)interval{
