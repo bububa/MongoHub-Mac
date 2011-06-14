@@ -268,6 +268,9 @@
     [collections release];
     [loaderIndicator start];
     collections = [[NSMutableArray alloc] initWithArray:[mongoDB listCollections:dbname user:user password:password]];
+    if ([collections count] == 0) {
+        [collections addObject:@"test"];
+    }
     [loaderIndicator stop];
     [dbname release];
     
