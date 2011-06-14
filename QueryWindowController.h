@@ -176,6 +176,8 @@
 - (void)doExport;
 - (IBAction) import:(id)sender;
 - (void)doImport;
+- (IBAction)removeRecord:(id)sender;
+- (void)doRemoveRecord;
 
 - (IBAction)findQueryComposer:(id)sender;
 - (IBAction)updateQueryComposer:(id)sender;

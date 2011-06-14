@@ -770,6 +770,47 @@
     [pool release];
 }
 
+- (IBAction)removeRecord:(id)sender
+{
+    [NSThread detachNewThreadSelector:@selector(doRemoveRecord) toTarget:self withObject:nil];
+}
+
+- (void)doRemoveRecord
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    if ([findResultsViewController.myOutlineView selectedRow] != -1)
+    {
+        id currentItem = [findResultsViewController.myOutlineView itemAtRow:[findResultsViewController.myOutlineView selectedRow]];
+        //NSLog(@"%@", [findResultsViewController rootForItem:currentItem]);
+        [removeQueryLoaderIndicator start];
+        NSString *user=nil;
+        NSString *password=nil;
+        Database *db = [databasesArrayController dbInfo:conn name:dbname];
+        if (db) {
+            user = db.user;
+            password = db.password;
+        }
+        [db release];
+        NSString *critical;
+        if ([[currentItem objectForKey:@"type"] isEqualToString:@"ObjectId"]) {
+            critical = [NSString stringWithFormat:@"{_id:ObjectId(\"%@\")}", [currentItem objectForKey:@"value"]];
+        }else if ([[currentItem objectForKey:@"type"] isEqualToString:@"String"]) {
+            critical = [NSString stringWithFormat:@"{_id:\"%@\"}", [currentItem objectForKey:@"value"]];
+        }else {
+            critical = [NSString stringWithFormat:@"{_id:%@}", [currentItem objectForKey:@"value"]];
+        }NSLog(@"%@", critical);
+        [mongoDB removeInDB:dbname 
+                 collection:collectionname 
+                       user:user 
+                   password:password 
+                   critical:critical];
+        [removeQueryLoaderIndicator stop];
+        [self findQuery:nil];
+    }
+    [NSThread exit];
+    [pool release];
+}
+
 - (void)controlTextDidChange:(NSNotification *)nd
 {
 	NSTextField *ed = [nd object];
