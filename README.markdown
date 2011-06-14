@@ -39,6 +39,14 @@ This project is very new. Any issues or bug reports are welcome. And I still don
 
 ## History
 
+** [Last Update 2.3.2] **
+	
+	- Fixed a bug in jsoneditor related to Date() object;
+	- Add import/export to JSON/CSV functions;
+	- Add support for ssh access use public key;
+	- Add a function to remove single record in find query window;
+	- Fixed a bug to create collection in a database which doesn't have collection;
+	
 ** [Last Update 2.3.1] **
 	
 	- Fixed a bug in jsoneditor related to Date() object;
